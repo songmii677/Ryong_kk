@@ -36,12 +36,12 @@ onMounted(async () => {
 
     <section class="section">
       <h2>연회비</h2>
-
-      <ul>
-        <li v-for="(fee, brand) in card.annual_fee" :key="brand">
+      
+      <template v-for="(fee, brand) in card.annual_fee" :key="brand">
+        <li v-if="fee">
           {{ brand }}: {{ fee }}원
         </li>
-      </ul>
+      </template>
     </section>
 
     <section class="section">
