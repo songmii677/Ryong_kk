@@ -74,18 +74,24 @@ button {
 }
 
 .character-circle {
-  width: 170px;
-  height: 170px;
+  width: 140px;
+  height: 140px;
+  margin: 12px auto 28px;
   border-radius: 50%;
-  background: #e9fff6;
-  margin: 28px auto;
+  background-color: #f4f4f4;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  overflow: hidden;
 }
 
-.dino {
-  font-size: 80px;
+.dino-image {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  transform: scale(2);
 }
 
 .hero-card h2,

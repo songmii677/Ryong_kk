@@ -9,7 +9,9 @@ const cards = ref([])
 onMounted(async () => {
   try {
     const response = await getCards()
-    cards.value = response.data
+
+    // axios response 형태와 data만 반환하는 형태 둘 다 대응
+    cards.value = response?.data ?? response
   } catch (error) {
     console.error('카드 목록 불러오기 실패:', error)
   }
@@ -31,12 +33,14 @@ function goDetail(cardId) {
         class="card-item"
         @click="goDetail(card.id)"
       >
-        <img
-          v-if="card.image_url"
-          :src="card.image_url"
-          :alt="card.name"
-          class="card-image"
-        />
+        <div class="card-image-box">
+          <img
+            v-if="card.image_url"
+            :src="card.image_url"
+            :alt="card.name"
+            class="card-image"
+          />
+        </div>
 
         <div class="card-info">
           <p class="company">{{ card.company }}</p>
@@ -57,47 +61,105 @@ function goDetail(cardId) {
 
 .card-list-page h1 {
   margin-bottom: 24px;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 20px;
 }
 
 .card-item {
-  padding: 24px;
-  border-radius: 18px;
+  min-height: 310px;
+  padding: 30px 24px 28px;
+  border-radius: 22px;
   background-color: #ffffff;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   text-align: center;
+  overflow: hidden;
+  transition: 0.2s;
 }
 
 .card-item:hover {
   transform: translateY(-4px);
-  transition: 0.2s;
+}
+
+.card-image-box {
+  width: 280px;
+  height: 75px;
+  margin-bottom: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  border-radius: 14px;
+  background-color: transparent;
 }
 
 .card-image {
-  width: 120px;
-  height: 170px;
+  width: 280px;
+  height: 175px;
   object-fit: contain;
-  margin-bottom: 16px;
+  object-position: center;
+
+  transform: scale(1.9);
+  transform-origin: center;
+  display: block;
+}
+
+.card-info {
+  width: 100%;
 }
 
 .company {
   color: #777;
   font-size: 14px;
+  margin-bottom: 8px;
 }
 
 .card-info h2 {
   font-size: 18px;
   margin: 8px 0;
+  color: #111;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .type {
   color: #555;
   font-size: 14px;
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-item {
+    min-height: 290px;
+  }
+
+  .card-image-box {
+    width: 260px;
+    height: 160px;
+  }
 }
 </style>
