@@ -11,7 +11,26 @@ const recommendedCards = ref([])
 onMounted(async () => {
   try {
     const response = await getRecommendCards(selectedCategory.value, 3)
-    recommendedCards.value = response.data
+
+    console.log('추천 API 원본 응답:', response)
+
+    const data = response?.data ?? response
+
+    console.log('추천 API 실제 데이터:', data)
+
+    if (Array.isArray(data)) {
+      recommendedCards.value = data
+    } else if (Array.isArray(data.cards)) {
+      recommendedCards.value = data.cards
+    } else if (Array.isArray(data.results)) {
+      recommendedCards.value = data.results
+    } else if (Array.isArray(data.data)) {
+      recommendedCards.value = data.data
+    } else {
+      recommendedCards.value = []
+    }
+
+    console.log('화면에 표시할 카드:', recommendedCards.value)
   } catch (error) {
     console.error('추천 카드 불러오기 실패:', error)
   }
@@ -31,7 +50,11 @@ function goDetail(cardId) {
       <strong>{{ selectedCategory }}</strong>
     </p>
 
-    <section class="recommend-list">
+    <p v-if="recommendedCards.length === 0">
+      추천 카드가 없습니다. API 응답 또는 카드 데이터를 확인해주세요.
+    </p>
+
+    <section v-else class="recommend-list">
       <article
         v-for="card in recommendedCards"
         :key="card.id"
@@ -49,7 +72,7 @@ function goDetail(cardId) {
           <p class="company">{{ card.company }}</p>
           <h2>{{ card.name }}</h2>
 
-          <ul v-if="card.benefits[selectedCategory]">
+          <ul v-if="card.benefits && card.benefits[selectedCategory]">
             <li
               v-for="benefit in card.benefits[selectedCategory]"
               :key="benefit"

@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import kkImage from '@/assets/kk.png'
 
 const router = useRouter()
 
@@ -31,7 +32,7 @@ function goSurvey() {
         <p class="badge">카드 추천 테스트</p>
 
         <div class="character-circle">
-          <div class="dino">🦖</div>
+          <img :src="kkImage" alt="룡크크" class="dino-image" />
         </div>
 
         <h2>
