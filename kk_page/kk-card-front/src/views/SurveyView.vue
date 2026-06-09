@@ -34,7 +34,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { questions } from '../data/questions'
+import { questions } from '../data/questions.js'
 
 const router = useRouter()
 
