@@ -31,7 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'cardlist',
+    "rest_framework",
+    "corsheaders",
+    "cardlist",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -69,6 +72,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pjt.wsgi.application'
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
@@ -116,3 +123,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
