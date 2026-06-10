@@ -47,21 +47,17 @@ onMounted(async () => {
     <section class="section">
       <h2>혜택</h2>
 
-      <div
-        v-for="(items, category) in card.benefits"
-        :key="category"
-        class="benefit-box"
-      >
-        <h3>{{ category }}</h3>
-
-        <ul v-if="items && items.length">
-          <li v-for="item in items" :key="item">
-            {{ item }}
-          </li>
-        </ul>
-
-        <p v-else>해당 혜택 없음</p>
-      </div>
+      <template v-for="(items, category) in card.benefits"
+      :key="category">
+        <div v-if="items && items.length" class="benefit-box">
+          <h3>{{ category }}</h3>
+          <ul>
+            <li v-for="item in items" :key="item">
+              {{ item }}
+            </li>
+          </ul>
+        </div>
+      </template>
     </section>
 
     <a
