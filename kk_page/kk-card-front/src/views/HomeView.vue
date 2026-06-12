@@ -24,7 +24,6 @@ function goSurvey() {
     <header class="top-bar">
       <button class="icon-btn">☰</button>
       <h1 class="logo">룡크크</h1>
-      <button class="login-btn">로그인</button>
     </header>
 
     <main class="home-main">

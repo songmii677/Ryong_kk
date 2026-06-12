@@ -5,6 +5,8 @@ import CardListView from '@/views/CardListView.vue'
 import CardDetailView from '@/views/CardDetailView.vue'
 import ResultView from '@/views/ResultView.vue'
 import SurveyView from '@/views/SurveyView.vue'
+import SignupView from '@/views/SignupView.vue'
+import LoginView from '@/views/LoginView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,7 +35,23 @@ const router = createRouter({
       path: '/survey',
       name: 'survey',
       component: SurveyView,
-    }
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignupView,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView,
+    },
+    {
+      path: '/mypage',
+      name: 'mypage',
+      component: () => import('@/views/MyPageView.vue'),
+      meta: { requiresAuth: true},
+    },
   ],
 })
 
