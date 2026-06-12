@@ -5,50 +5,145 @@ import { getRecommendCards } from '@/api/cards'
 
 const router = useRouter()
 
-const selectedCategory = ref('쇼핑/간편결제')
+const selectedCategory = ref('')
+const persona = ref({
+  title: '',
+  desc: ''
+})
 const recommendedCards = ref([])
 
+// 카테고리 점수 계산 함수
+function analyzeAnswers() {
+  const answers =
+    JSON.parse(
+      localStorage.getItem('surveyAnswers')
+    ) || []
+
+  const categoryScore = {}
+
+  let cardType = 'credit'
+
+  answers.forEach(answer => {
+
+    if (answer.key === 'card_type') {
+      cardType = answer.value
+    }
+
+    if (answer.key === 'category') {
+      categoryScore[answer.value] =
+        (categoryScore[answer.value] || 0) + 1
+    }
+  })
+
+  const topCategory =
+    Object.entries(categoryScore)
+      .sort((a, b) => b[1] - a[1])[0]?.[0]
+
+  return {
+    cardType,
+    topCategory
+  }
+}
+
+function getPersona(cardType, category) {
+
+  if (
+    cardType === 'check' &&
+    category === '음식/카페'
+  ) {
+    return {
+      title: '☕ 카페 러버',
+      desc: '카페와 외식, 배달을 즐기는 소비형'
+    }
+  }
+
+  if (
+    cardType === 'check' &&
+    category === '통신'
+  ) {
+    return {
+      title: '💸 알뜰한 생활러',
+      desc: '고정 지출을 아끼는 실속형'
+    }
+  }
+
+  if (
+    cardType === 'credit' &&
+    category === '쇼핑/간편결제'
+  ) {
+    return {
+      title: '🛍️ 혜택 사냥꾼',
+      desc: '쇼핑 할인과 적립을 적극 활용하는 타입'
+    }
+  }
+
+  if (
+    cardType === 'credit' &&
+    category === '여행'
+  ) {
+    return {
+      title: '✈️ 여행 준비러',
+      desc: '항공과 숙박 혜택을 중요하게 생각하는 타입'
+    }
+  }
+
+  if (
+    cardType === 'credit' &&
+    category === '문화/생활'
+  ) {
+    return {
+      title: '🎬 OTT 마스터',
+      desc: '넷플릭스와 구독 서비스를 즐기는 타입'
+    }
+  }
+
+  return {
+    title: '🌱 사회초년생',
+    desc: '실속 있는 소비를 추구하는 타입'
+  }
+}
+
 onMounted(async () => {
+
+  const result = analyzeAnswers()
+
+  selectedCategory.value =
+    result.topCategory
+
+  persona.value =
+    getPersona(
+      result.cardType,
+      result.topCategory
+    )
+
   try {
-    const response = await getRecommendCards(selectedCategory.value, 3)
 
-    console.log('추천 API 원본 응답:', response)
+    const response =
+      await getRecommendCards(
+        selectedCategory.value,
+        3
+      )
 
-    const data = response?.data ?? response
-
-    console.log('추천 API 실제 데이터:', data)
+    const data =
+      response?.data ?? response
 
     if (Array.isArray(data)) {
       recommendedCards.value = data
     } else if (Array.isArray(data.cards)) {
       recommendedCards.value = data.cards
-    } else if (Array.isArray(data.results)) {
-      recommendedCards.value = data.results
-    } else if (Array.isArray(data.data)) {
-      recommendedCards.value = data.data
-    } else {
-      recommendedCards.value = []
     }
 
-    console.log('화면에 표시할 카드:', recommendedCards.value)
   } catch (error) {
-    console.error('추천 카드 불러오기 실패:', error)
+    console.error(error)
   }
 })
 
-function goDetail(cardId) {
-  router.push(`/cards/${cardId}`)
-}
 </script>
 
 <template>
   <main class="result-page">
-    <h1>당신에게 추천하는 카드</h1>
-
-    <p class="desc">
-      선택한 소비 성향:
-      <strong>{{ selectedCategory }}</strong>
-    </p>
+    <h1>당신은 {{ persona.title }} !</h1>
+    <p><strong>{{ persona.desc }}</strong></p>
 
     <p v-if="recommendedCards.length === 0">
       추천 카드가 없습니다. API 응답 또는 카드 데이터를 확인해주세요.
