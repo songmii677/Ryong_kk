@@ -237,13 +237,13 @@ button {
   margin-bottom: 28px;
 }
 
-.card-list {
+.result-page .card-list {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-.recommend-card {
+.result-page .recommend-card {
   background: white;
   border-radius: 26px;
   padding: 20px;
@@ -252,7 +252,7 @@ button {
   box-shadow: 0 10px 24px rgba(74, 143, 180, 0.14);
 }
 
-.card-image {
+/* .card-image {
   width: 70px;
   height: 100px;
   border-radius: 16px;
@@ -262,18 +262,18 @@ button {
   justify-content: center;
   font-size: 34px;
   flex-shrink: 0;
-}
+} */
 
-.card-info {
+/* .card-info {
   flex: 1;
-}
+} */
 
-.company {
+/* .company {
   margin: 0;
   font-size: 13px;
   color: #2d9c7a;
   font-weight: 800;
-}
+} */
 
 .card-info h3 {
   margin: 4px 0 6px;
@@ -368,7 +368,7 @@ button {
   box-shadow: 0 10px 24px rgba(74, 143, 180, 0.14);
 }
 
-.card-image-box {
+.result-page .card-image-box {
   width: 78px;
   height: 110px;
   border-radius: 16px;
@@ -380,17 +380,17 @@ button {
   overflow: hidden;
 }
 
-.card-image {
+.result-page .card-image {
   max-width: 64px;
   max-height: 96px;
   object-fit: contain;
 }
 
-.card-info {
+.result-page .card-info {
   flex: 1;
 }
 
-.company {
+.result-page .company {
   margin: 0;
   font-size: 13px;
   color: #2d9c7a;
@@ -402,13 +402,13 @@ button {
   font-size: 18px;
 }
 
-.annual-fee {
+.result-page .annual-fee {
   margin: 0 0 10px;
   font-size: 13px;
   color: #777;
 }
 
-.benefit-list {
+.result-page .benefit-list {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -424,13 +424,13 @@ button {
   font-weight: 700;
 }
 
-.reason {
+.result-page .reason {
   font-size: 13px;
   line-height: 1.5;
   color: #555;
 }
 
-.detail-btn {
+.result-page .detail-btn {
   width: 100%;
   height: 38px;
   border: none;
