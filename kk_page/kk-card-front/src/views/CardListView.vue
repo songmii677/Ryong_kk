@@ -2,9 +2,13 @@
 import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getCards } from '@/api/cards'
+import { useCompareStore } from '@/stores/compare'
+import CompareFloatingBar from '@/components/CompareFloatingBar.vue'
+
 
 const router = useRouter()
 const route = useRoute()
+const compareStore = useCompareStore()
 
 const cards = ref([])
 const isLoading = ref(false)
@@ -131,6 +135,17 @@ onMounted(() => {
 
   fetchCards()
 })
+onMounted(fetchCards)
+
+function toggleCompare(card) {
+  const result = compareStore.toggleCard(card)
+
+  if (!result.ok) {
+    alert(result.message)
+  }
+}
+
+
 </script>
 
 
@@ -235,6 +250,23 @@ onMounted(() => {
             class="card-image"
             @load="handleCardImageLoad"
           />
+
+            <button
+              type="button"
+              class="card-compare-btn"
+              :class="{ active: compareStore.isCompared(card.id) }"
+              @click.stop="toggleCompare(card)"
+            >
+              <template v-if="compareStore.isCompared(card.id)">
+                    <span class="compare-plus-icon">✓</span>
+                    <!-- <span class="compare-label">담김</span> -->
+              </template>
+
+              <template v-else>
+                <span class="compare-plus-icon">+</span>
+                <span class="compare-label">비교함에 담기</span>
+              </template>
+            </button>
         </div>
 
         <div class="card-info">
@@ -256,6 +288,7 @@ onMounted(() => {
         </div>
       </article>
     </section>
+    <CompareFloatingBar />
   </main>
 </template>
 
@@ -263,7 +296,6 @@ onMounted(() => {
 <style scoped>
 /* =========================
    카드 목록 전체 페이지
-========================= */
 
 .card-list-page {
   min-height: calc(100vh - 70px);
@@ -284,7 +316,6 @@ onMounted(() => {
 
 /* =========================
    카드 필터
-========================= */
 
 .card-filter-bar {
   display: grid;
@@ -396,7 +427,6 @@ onMounted(() => {
 
 /* =========================
    카드 목록
-========================= */
 
 .card-grid {
   display: grid;
@@ -499,7 +529,6 @@ onMounted(() => {
 
 /* =========================
    반응형
-========================= */
 
 @media (max-width: 850px) {
   .card-filter-bar {
@@ -526,3 +555,4 @@ onMounted(() => {
   }
 }
 </style>
+<style scoped src="@/assets/styles/card-list.css"></style>
