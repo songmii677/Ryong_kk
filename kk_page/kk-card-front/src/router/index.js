@@ -7,6 +7,7 @@ import ResultView from '@/views/ResultView.vue'
 import SurveyView from '@/views/SurveyView.vue'
 import SignupView from '@/views/SignupView.vue'
 import LoginView from '@/views/LoginView.vue'
+import BankLocationView from '@/views/BankLocationView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,12 @@ const router = createRouter({
       path: '/mypage',
       name: 'mypage',
       component: () => import('@/views/MyPageView.vue'),
+      meta: { requiresAuth: true},
+    },
+    {
+      path: '/banklocation',
+      name: 'banklocation',
+      component: () => import('@/views/BankLocationView.vue'),
       meta: { requiresAuth: true},
     },
   ],
