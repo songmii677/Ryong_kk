@@ -1,15 +1,16 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { getCards } from '@/api/cards'
 
 const router = useRouter()
+const route = useRoute()
 
 const cards = ref([])
 const isLoading = ref(false)
 
-const selectedCardType = ref('')
-const selectedCompany = ref('')
+const selectedCardType = ref(route.query.card_type || '')
+const selectedCompany = ref(route.query.company || '')
 
 const cardTypeOptions = [
   {
@@ -45,25 +46,36 @@ const companyOptions = [
   },
 ]
 
+function getFilterParams() {
+  const params = {}
+
+  if (selectedCardType.value) {
+    params.card_type = selectedCardType.value
+  }
+
+  if (selectedCompany.value) {
+    params.company = selectedCompany.value
+  }
+
+  return params
+}
+
 async function fetchCards() {
   isLoading.value = true
 
   try {
-    const params = {}
-
-    if (selectedCardType.value) {
-      params.card_type = selectedCardType.value
-    }
-
-    if (selectedCompany.value) {
-      params.company = selectedCompany.value
-    }
-
-    console.log('필터 요청값:', params)
-
+    const params = getFilterParams()
     const response = await getCards(params)
+    const data = response?.data ?? response
 
-    cards.value = response.data.results ?? response.data
+    if (Array.isArray(data)) {
+      cards.value = data
+    } else if (Array.isArray(data?.results)) {
+      cards.value = data.results
+    } else {
+      console.error('예상하지 못한 카드 응답:', data)
+      cards.value = []
+    }
   } catch (error) {
     console.error('카드 목록 불러오기 실패:', error)
     console.error('백엔드 응답:', error.response?.data)
@@ -74,23 +86,55 @@ async function fetchCards() {
   }
 }
 
-function applyFilters() {
-  fetchCards()
+async function applyFilters() {
+  const query = getFilterParams()
+
+  await router.replace({
+    path: '/cards',
+    query,
+  })
+
+  await fetchCards()
 }
 
 async function resetFilters() {
   selectedCardType.value = ''
   selectedCompany.value = ''
 
+  await router.replace({
+    path: '/cards',
+    query: {},
+  })
+
   await fetchCards()
 }
 
 function goDetail(cardId) {
-  router.push(`/cards/${cardId}`)
+  router.push({
+    path: `/cards/${cardId}`,
+    query: {
+      ...route.query,
+    },
+  })
 }
 
-onMounted(fetchCards)
+function handleCardImageLoad(event) {
+  const image = event.currentTarget
+  const isPortrait = image.naturalHeight > image.naturalWidth
+
+  image.classList.toggle('is-portrait', isPortrait)
+}
+
+onMounted(() => {
+  selectedCardType.value = route.query.card_type || ''
+  selectedCompany.value = route.query.company || ''
+
+  fetchCards()
+})
 </script>
+
+
+
 
 
 <template>
@@ -189,6 +233,7 @@ onMounted(fetchCards)
             :src="card.image_url"
             :alt="card.name"
             class="card-image"
+            @load="handleCardImageLoad"
           />
         </div>
 
@@ -407,6 +452,15 @@ onMounted(fetchCards)
   width: 150px;
   height: 90px;
   object-fit: contain;
+}
+.card-image.is-portrait {
+  width: 90px;
+  height: 150px;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  transform: rotate(270deg);
+  transform-origin: center;
 }
 
 .card-info {
