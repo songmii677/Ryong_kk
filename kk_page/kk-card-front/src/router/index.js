@@ -52,6 +52,34 @@ const router = createRouter({
       component: () => import('@/views/MyPageView.vue'),
       meta: { requiresAuth: true},
     },
+    {
+      path:'/community',
+      name:'community',
+      component:()=>import(
+        '@/views/CommunityView.vue'
+      )
+    },
+
+    {
+      path:'/community/create',
+      name:'communityCreate',
+      component:()=>import(
+        '@/views/CommunityCreateView.vue'
+      )
+    },
+
+    {
+      path:'/community/:id',
+      name:'communityDetail',
+      component:()=>import(
+        '@/views/CommunityDetailView.vue'
+      )
+    },
+    {
+      path: '/community/edit/:id',
+      name: 'CommunityUpdateView',
+      component: () => import('@/views/CommunityUpdateView.vue')
+    },
   ],
 })
 
