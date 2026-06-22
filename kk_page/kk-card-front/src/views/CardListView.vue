@@ -296,6 +296,7 @@ function toggleCompare(card) {
 <style scoped>
 /* =========================
    카드 목록 전체 페이지
+*/
 
 .card-list-page {
   min-height: calc(100vh - 70px);
@@ -316,7 +317,7 @@ function toggleCompare(card) {
 
 /* =========================
    카드 필터
-
+*/
 .card-filter-bar {
   display: grid;
   grid-template-columns:
@@ -425,8 +426,8 @@ function toggleCompare(card) {
 }
 
 
-/* =========================
-   카드 목록
+
+/* 카드 목록 */
 
 .card-grid {
   display: grid;
@@ -527,8 +528,7 @@ function toggleCompare(card) {
 }
 
 
-/* =========================
-   반응형
+   /* 반응형 */
 
 @media (max-width: 850px) {
   .card-filter-bar {
