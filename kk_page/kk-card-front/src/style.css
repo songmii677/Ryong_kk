@@ -20,6 +20,7 @@ button {
 }
 
 .top-bar {
+  position: relative;
   max-width: 430px;
   margin: 0 auto;
   height: 56px;
@@ -38,8 +39,6 @@ button {
 }
 
 .logo {
-  width: 100%;
-  text-align: center;
   font-size: 20px;
   font-weight: 900;
   color: #2d9c7a;
@@ -52,6 +51,9 @@ button {
 }
 
 .home-main {
+  position: relative;
+  overflow: visible;
+  
   max-width: 430px;
   margin: 0 auto;
   padding: 32px 24px;
@@ -76,24 +78,18 @@ button {
 }
 
 .character-circle {
-  width: 140px;
-  height: 140px;
-  margin: 12px auto 28px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
-  background-color: #f4f4f4;
-
+  background: #e9fff6;
+  margin: 28px auto;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  overflow: hidden;
 }
 
-.dino-image {
-  width: 130px;
-  height: 130px;
-  object-fit: contain;
-  transform: scale(2);
+.dino {
+  font-size: 80px;
 }
 
 .hero-card h2,
@@ -464,4 +460,140 @@ button {
 
 .more-btn:hover {
   background: #f0fff8;
+}
+
+
+/* Youtube */
+.home-youtube-shortcut {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 40px auto;
+  padding: 24px;
+  max-width: 720px;
+  border-radius: 28px;
+  background: #fff8f1;
+  box-shadow: 0 10px 28px rgba(43, 33, 24, 0.1);
+}
+
+.home-youtube-play-button {
+  width: 72px;
+  height: 72px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b8f7a8, #48c78e);
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(72, 199, 142, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-youtube-play-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 14px 32px rgba(72, 199, 142, 0.45);
+}
+
+.home-youtube-play-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.home-youtube-text h2 {
+  margin: 0 0 8px;
+  color: #2b2118;
+  font-size: 22px;
+}
+
+.home-youtube-text p {
+  margin: 0;
+  color: #2d9c7a;
+  font-size: 15px;
+}
+
+@media (max-width: 640px) {
+  .home-youtube-shortcut {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Floating Feature Buttons */
+/* 유튜브 / 은행지도 / 금은가격 그래프 */
+
+.feature-floating-menu {
+  position: absolute;
+
+  /* 홈 카드 오른쪽에 세로 배치 */
+  top: 36px;
+  right: -84px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  z-index: 20;
+}
+
+.feature-floating-btn {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+
+  border: none;
+  border-radius: 100%;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  /* box-shadow: 0 12px 28px rgba(43, 33, 24, 0.18); */
+  box-shadow: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-floating-btn:hover {
+  transform: scale(1.05);
+  /* box-shadow: 0 16px 34px rgba(43, 33, 24, 0.25); */
+}
+
+.feature-floating-btn:focus {
+  outline: none;
+}
+
+.feature-floating-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.35);
+}
+
+/* 모바일에서는 우측 하단 고정 */
+@media (max-width: 640px) {
+  .feature-floating-menu {
+    position: fixed;
+    right: 18px;
+    bottom: 24px;
+    top: auto;
+
+    gap: 12px;
+  }
+
+  .feature-floating-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .feature-floating-icon {
+    width: 32px;
+    height: 32px;
+  }
 }
