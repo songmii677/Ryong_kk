@@ -101,3 +101,15 @@ export function deleteComment(
     }
   )
 }
+
+export const updateComment = (id, data, token) => {
+  return axios.put(
+    `${API_URL}comments/${id}/`,
+    data,
+    {
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    }
+  )
+}

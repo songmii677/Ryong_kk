@@ -17,10 +17,7 @@ onMounted(async()=>{
 })
 
 function goDetail(id){
-
-  router.push(
-    `/community/${id}`
-  )
+  router.push(`/community/${id}`)
 }
 </script>
 
@@ -52,7 +49,7 @@ class="empty-card"
 
 <div v-for="article in articles" :key="article.id"
   class="article-card"
-  @click="goDetail(article.id)"
+  @click="goDetail(article.id || article.pk)"
 >
 <h3 class="title">
 {{ article.title }}

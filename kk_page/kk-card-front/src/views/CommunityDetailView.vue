@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAccountStore } from '@/stores/accounts'
-import { getArticle, createComment, deleteArticle as deleteArticleApi } from '@/api/community'
+import { getArticle, createComment, deleteArticle as deleteArticleApi, updateComment, deleteComment as deleteCommentApi } from '@/api/community'
 
 const router = useRouter()
 const route = useRoute()
@@ -11,6 +11,8 @@ const accountStore = useAccountStore()
 const article = ref({})
 const comments = ref([])
 const commentInput = ref('')
+const editingCommentId = ref(null)
+const editText = ref('')
 
 // 게시글 불러오기
 onMounted(async () => {
@@ -54,6 +56,35 @@ const deleteArticle = async () => {
   router.push('/community')
 }
 
+// 댓글 수정
+const startEdit = (comment) => {
+  editingCommentId.value = comment.id
+  editText.value = comment.content
+}
+
+const submitEdit = async (commentId) => {
+  await updateComment(
+    commentId,
+    { content: editText.value },
+    accountStore.token
+  )
+
+  editingCommentId.value = null
+  editText.value = ''
+
+  const res = await getArticle(route.params.id)
+  comments.value = res.data.comments || []
+}
+
+// 댓글 삭제
+const deleteComment = async (id) => {
+  const ok = confirm('댓글을 삭제하시겠어요?')
+  if (!ok) return
+  await deleteCommentApi(id, accountStore.token)
+  const res = await getArticle(route.params.id)
+  comments.value = res.data.comments || []
+}
+
 </script>
 
 <template>
@@ -79,23 +110,31 @@ const deleteArticle = async () => {
 
     <!-- 댓글 영역 -->
     <section class="comment-box">
-      <div v-if="comments.length === 0" class="empty">
-        댓글이 없습니다
+    <div v-for="comment in comments" :key="comment.id" class="comment">
+
+      <!-- 수정 상태 -->
+      <div v-if="editingCommentId === comment.id">
+        <input v-model="editText" />
+        <button @click="submitEdit(comment.id)">저장</button>
+        <button @click="editingCommentId = null">취소</button>
       </div>
 
-      <div
-        v-for="comment in comments"
-        :key="comment.id"
-        class="comment"
-      >
-        <p class="comment-content">
-          {{ comment.content }}
-        </p>
-
-        <p class="comment-user">
-          {{ comment.user }}
-        </p>
+      <!-- 일반 상태 -->
+      <div v-else>
+        <p class="comment-content">{{ comment.content }}</p>
       </div>
+
+      <div class="comment-footer">
+        <p class="comment-user">{{ comment.user }}</p>
+
+        <!-- 작성자만 버튼 -->
+        <div v-if="comment.user === accountStore.username">
+          <button @click="startEdit(comment)">수정</button>
+          <button @click="deleteComment(comment.id)">삭제</button>
+        </div>
+      </div>
+
+    </div>
 
       <hr />
 
