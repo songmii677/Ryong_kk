@@ -82,6 +82,8 @@ const router = createRouter({
       path: '/community/edit/:id',
       name: 'CommunityUpdateView',
       component: () => import('@/views/CommunityUpdateView.vue')
+    },
+    {
       path: '/banklocation',
       name: 'banklocation',
       component: () => import('@/views/BankLocationView.vue'),
