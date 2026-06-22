@@ -1,14 +1,26 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import status
 from .models import Card
 from .serializers import CardSerializer
 
+from .filters import CardFilter
 
 @api_view(["GET"])
 def card_list(request):
     cards = Card.objects.all()
-    serializer = CardSerializer(cards, many=True)
+    card_filter = CardFilter(
+        request.query_params,
+        queryset=cards,
+    )
+    if not card_filter.is_valid():
+        return Response(
+            card_filter.errors,
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+    serializer = CardSerializer(card_filter.qs, many=True)
     return Response(serializer.data)
 
 

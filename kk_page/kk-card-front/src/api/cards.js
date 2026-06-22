@@ -2,8 +2,8 @@ import axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:8000/api/cards/'
 
-export function getCards() {
-  return axios.get(API_URL)
+export function getCards(params = {}) {
+  return axios.get(API_URL, {params})
 }
 
 export function getCardDetail(cardId) {
