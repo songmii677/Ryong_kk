@@ -20,16 +20,17 @@ button {
 }
 
 .top-bar {
+  position: relative;
   max-width: 430px;
   margin: 0 auto;
   height: 56px;
   padding: 0 18px;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-.icon-btn,
 .login-btn,
 .back-btn {
   border: none;
@@ -37,12 +38,26 @@ button {
   cursor: pointer;
 }
 
+.icon-btn {
+  position: absolute;
+  left: 18px;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+}
+
 .logo {
-  width: 100%;
-  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  margin: 0;
   font-size: 20px;
   font-weight: 900;
   color: #2d9c7a;
+  text-align: center;
 }
 
 .login-btn {
@@ -52,12 +67,16 @@ button {
 }
 
 .home-main {
+  position: relative;
+  overflow: visible;
+  
   max-width: 430px;
   margin: 0 auto;
   padding: 32px 24px;
 }
 
 .hero-card {
+  width: 100%;
   background: white;
   border-radius: 32px;
   padding: 36px 24px;
@@ -76,11 +95,11 @@ button {
 }
 
 .character-circle {
-  width: 140px;
-  height: 140px;
-  margin: 12px auto 28px;
+  width: 170px;
+  height: 170px;
+  margin: 18px auto 28px;
   border-radius: 50%;
-  background-color: #f4f4f4;
+  background: #e9fff6;
 
   display: flex;
   align-items: center;
@@ -90,10 +109,12 @@ button {
 }
 
 .dino-image {
-  width: 130px;
-  height: 130px;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
-  transform: scale(2);
+  display: block;
+
+  transform: scale(1.35);
 }
 
 .hero-card h2,
@@ -466,6 +487,151 @@ button {
   background: #f0fff8;
 }
 
+
+/* Youtube */
+.home-youtube-shortcut {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 40px auto;
+  padding: 24px;
+  max-width: 720px;
+  border-radius: 28px;
+  background: #fff8f1;
+  box-shadow: 0 10px 28px rgba(43, 33, 24, 0.1);
+}
+
+.home-youtube-play-button {
+  width: 72px;
+  height: 72px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b8f7a8, #48c78e);
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(72, 199, 142, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-youtube-play-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 14px 32px rgba(72, 199, 142, 0.45);
+}
+
+.home-youtube-play-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.home-youtube-text h2 {
+  margin: 0 0 8px;
+  color: #2b2118;
+  font-size: 22px;
+}
+
+.home-youtube-text p {
+  margin: 0;
+  color: #2d9c7a;
+  font-size: 15px;
+}
+
+@media (max-width: 640px) {
+  .home-youtube-shortcut {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Floating Feature Buttons */
+/* 유튜브 / 은행지도 / 금은가격 그래프 */
+
+.feature-floating-menu {
+  position: absolute;
+
+  /* 카드 오른쪽에 배치 */
+  top: 40px;
+  right: -82px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  z-index: 20;
+}
+
+.feature-floating-btn {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+  box-shadow: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  overflow: visible;
+
+  transition: transform 0.2s ease;
+}
+
+.feature-floating-btn:hover {
+  transform: scale(1.06);
+}
+
+.feature-floating-btn:focus {
+  outline: none;
+}
+
+.feature-floating-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
+
+  filter: drop-shadow(0 8px 10px rgba(45, 156, 122, 0.28));
+}
+
+/* 유튜브 아이콘은 실제 그림이 작아서 조금 키움 */
+.youtube-icon {
+  transform: scale(1.25);
+}
+
+/* 은행 아이콘은 실제 그림이 커서 살짝 줄임 */
+.bank-icon {
+  transform: scale(0.9);
+}
+
+/* 모바일에서는 우측 하단 고정 */
+@media (max-width: 640px) {
+  .feature-floating-menu {
+    position: fixed;
+    right: 18px;
+    bottom: 24px;
+    top: auto;
+
+    gap: 12px;
+  }
+
+  .feature-floating-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .feature-floating-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+
 /* 은행 위치 제공 */
 .bank-page {
   min-height: calc(100vh - 70px);
@@ -474,13 +640,13 @@ button {
   box-sizing: border-box;
 }
 
-.page-header {
+.bank-page .page-header {
   max-width: 1200px;
   margin: 0 auto 30px;
   text-align: center;
 }
 
-.page-badge {
+.bank-page .page-badge {
   display: inline-block;
   margin: 0 0 12px;
   padding: 7px 14px;
@@ -492,20 +658,20 @@ button {
   letter-spacing: 0.08em;
 }
 
-.page-header h1 {
+.bank-page .page-header h1 {
   margin: 0;
   color: #222;
   font-size: 32px;
   font-weight: 900;
 }
 
-.page-description {
+.bank-page .page-description {
   margin: 12px 0 0;
   color: #6b756f;
   font-size: 15px;
 }
 
-.bank-layout {
+.bank-page .bank-layout {
   display: grid;
   grid-template-columns: 300px minmax(0, 1fr);
   gap: 24px;
@@ -515,7 +681,7 @@ button {
   align-items: stretch;
 }
 
-.search-panel {
+.bank-page .search-panel {
   display: flex;
   flex-direction: column;
   padding: 28px 24px;
@@ -525,42 +691,42 @@ button {
   box-shadow: 0 10px 30px rgba(45, 156, 122, 0.1);
 }
 
-.panel-header {
+.bank-page .panel-header {
   margin-bottom: 28px;
 }
 
-.panel-header h2 {
+.bank-page .panel-header h2 {
   margin: 0;
   color: #222;
   font-size: 23px;
   font-weight: 900;
 }
 
-.panel-header p {
+.bank-page .panel-header p {
   margin: 8px 0 0;
   color: #7a827d;
   font-size: 13px;
 }
 
-.search-form {
+.bank-page .search-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.form-group {
+.bank-page .form-group {
   display: flex;
   flex-direction: column;
   gap: 9px;
 }
 
-.form-group label {
+.bank-page .form-group label {
   color: #303833;
   font-size: 14px;
   font-weight: 800;
 }
 
-.form-group select {
+.bank-page .form-group select {
   width: 100%;
   height: 48px;
   padding: 0 40px 0 14px;
@@ -573,24 +739,21 @@ button {
   outline: none;
   cursor: pointer;
   box-sizing: border-box;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s,
-    background-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
-.form-group select:focus {
+.bank-page .form-group select:focus {
   border-color: #2d9c7a;
   box-shadow: 0 0 0 3px rgba(45, 156, 122, 0.12);
 }
 
-.form-group select:disabled {
+.bank-page .form-group select:disabled {
   background-color: #f3f6f4;
   color: #adb5b0;
   cursor: not-allowed;
 }
 
-.search-button {
+.bank-page .search-button {
   width: 100%;
   height: 50px;
   margin-top: 6px;
@@ -602,23 +765,20 @@ button {
   font-size: 15px;
   font-weight: 800;
   cursor: pointer;
-  transition:
-    background-color 0.2s,
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
-.search-button:hover {
+.bank-page .search-button:hover {
   background-color: #238667;
   box-shadow: 0 8px 18px rgba(45, 156, 122, 0.22);
   transform: translateY(-1px);
 }
 
-.search-button:active {
+.bank-page .search-button:active {
   transform: translateY(0);
 }
 
-.search-guide {
+.bank-page .search-guide {
   display: flex;
   align-items: flex-start;
   gap: 9px;
@@ -629,11 +789,11 @@ button {
   line-height: 1.55;
 }
 
-.search-guide p {
+.bank-page .search-guide p {
   margin: 0;
 }
 
-.guide-icon {
+.bank-page .guide-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -647,7 +807,7 @@ button {
   font-weight: 900;
 }
 
-.map-card {
+.bank-page .map-card {
   min-width: 0;
   height: 620px;
   border: 1px solid #e4eee8;
@@ -657,53 +817,27 @@ button {
   overflow: hidden;
 }
 
-.map {
+.bank-page .map {
   width: 100%;
   height: 100%;
   min-height: 620px;
 }
 
-/* 카드상세페이지 */
-.detail-page {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
+/* 반응형 */
+@media (max-width: 900px) {
+  .bank-page {
+    padding: 32px 18px 48px;
+  }
 
-.top-section {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  margin-bottom: 40px;
-}
+  .bank-page .bank-layout {
+    grid-template-columns: 1fr;
+  }
 
-.card-image {
-  width: 160px;
-  height: 220px;
-  object-fit: contain;
-}
+  .bank-page .map-card {
+    height: 480px;
+  }
 
-.company {
-  color: #777;
-}
-
-.section {
-  margin-bottom: 32px;
-}
-
-.benefit-box {
-  padding: 18px;
-  margin-bottom: 16px;
-  border-radius: 16px;
-  background-color: #f7f7f7;
-}
-
-.detail-link {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 14px 24px;
-  border-radius: 999px;
-  background-color: #222;
-  color: white;
-  text-decoration: none;
+  .bank-page .map {
+    min-height: 480px;
+  }
 }

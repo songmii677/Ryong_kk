@@ -8,6 +8,8 @@ import SurveyView from '@/views/SurveyView.vue'
 import SignupView from '@/views/SignupView.vue'
 import LoginView from '@/views/LoginView.vue'
 import BankLocationView from '@/views/BankLocationView.vue'
+import YoutubeSearchView from '@/views/YoutubeSearchView.vue'
+import YoutubeDetailView from '@/views/YoutubeDetailView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,10 +56,50 @@ const router = createRouter({
       meta: { requiresAuth: true},
     },
     {
+      path:'/community',
+      name:'community',
+      component:()=>import(
+        '@/views/CommunityView.vue'
+      )
+    },
+
+    {
+      path:'/community/create',
+      name:'communityCreate',
+      component:()=>import(
+        '@/views/CommunityCreateView.vue'
+      )
+    },
+
+    {
+      path:'/community/:id',
+      name:'communityDetail',
+      component:()=>import(
+        '@/views/CommunityDetailView.vue'
+      )
+    },
+    {
+      path: '/community/edit/:id',
+      name: 'CommunityUpdateView',
+      component: () => import('@/views/CommunityUpdateView.vue')
+    },
+    {
       path: '/banklocation',
       name: 'banklocation',
-      component: () => import('@/views/BankLocationView.vue'),
-      meta: { requiresAuth: true},
+      component: BankLocationView
+      // component: () => import('@/views/BankLocationView.vue'),
+      // meta: { requiresAuth: true},
+    },
+    {
+      path: '/youtube',
+      name: 'youtube',
+      component: YoutubeSearchView,
+    },
+    {
+      path: '/youtube/:videoId',
+      name: 'youtube-detail',
+      component: YoutubeDetailView,
+      props: true,
     },
   ],
 })
