@@ -8,6 +8,8 @@ import SurveyView from '@/views/SurveyView.vue'
 import SignupView from '@/views/SignupView.vue'
 import LoginView from '@/views/LoginView.vue'
 import BankLocationView from '@/views/BankLocationView.vue'
+import YoutubeSearchView from '@/views/YoutubeSearchView.vue'
+import YoutubeDetailView from '@/views/YoutubeDetailView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,6 +60,17 @@ const router = createRouter({
       name: 'banklocation',
       component: () => import('@/views/BankLocationView.vue'),
       meta: { requiresAuth: true},
+    },
+    {
+      path: '/youtube',
+      name: 'youtube',
+      component: YoutubeSearchView,
+    },
+    {
+      path: '/youtube/:videoId',
+      name: 'youtube-detail',
+      component: YoutubeDetailView,
+      props: true,
     },
   ],
 })

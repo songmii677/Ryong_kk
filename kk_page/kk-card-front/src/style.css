@@ -20,6 +20,7 @@ button {
 }
 
 .top-bar {
+  position: relative;
   max-width: 430px;
   margin: 0 auto;
   height: 56px;
@@ -38,8 +39,6 @@ button {
 }
 
 .logo {
-  width: 100%;
-  text-align: center;
   font-size: 20px;
   font-weight: 900;
   color: #2d9c7a;
@@ -52,6 +51,9 @@ button {
 }
 
 .home-main {
+  position: relative;
+  overflow: visible;
+  
   max-width: 430px;
   margin: 0 auto;
   padding: 32px 24px;
@@ -76,24 +78,18 @@ button {
 }
 
 .character-circle {
-  width: 140px;
-  height: 140px;
-  margin: 12px auto 28px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
-  background-color: #f4f4f4;
-
+  background: #e9fff6;
+  margin: 28px auto;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  overflow: hidden;
 }
 
-.dino-image {
-  width: 130px;
-  height: 130px;
-  object-fit: contain;
-  transform: scale(2);
+.dino {
+  font-size: 80px;
 }
 
 .hero-card h2,
@@ -466,244 +462,138 @@ button {
   background: #f0fff8;
 }
 
-/* 은행 위치 제공 */
-.bank-page {
-  min-height: calc(100vh - 70px);
-  padding: 44px 32px 60px;
-  background-color: #f7fbf6;
-  box-sizing: border-box;
-}
 
-.page-header {
-  max-width: 1200px;
-  margin: 0 auto 30px;
-  text-align: center;
-}
-
-.page-badge {
-  display: inline-block;
-  margin: 0 0 12px;
-  padding: 7px 14px;
-  border-radius: 999px;
-  background-color: #e2f7ea;
-  color: #2d9c7a;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
-.page-header h1 {
-  margin: 0;
-  color: #222;
-  font-size: 32px;
-  font-weight: 900;
-}
-
-.page-description {
-  margin: 12px 0 0;
-  color: #6b756f;
-  font-size: 15px;
-}
-
-.bank-layout {
-  display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
-  gap: 24px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  align-items: stretch;
-}
-
-.search-panel {
+/* Youtube */
+.home-youtube-shortcut {
   display: flex;
-  flex-direction: column;
-  padding: 28px 24px;
-  border: 1px solid #e4eee8;
-  border-radius: 24px;
-  background-color: #ffffff;
-  box-shadow: 0 10px 30px rgba(45, 156, 122, 0.1);
+  align-items: center;
+  gap: 18px;
+  margin: 40px auto;
+  padding: 24px;
+  max-width: 720px;
+  border-radius: 28px;
+  background: #fff8f1;
+  box-shadow: 0 10px 28px rgba(43, 33, 24, 0.1);
 }
 
-.panel-header {
-  margin-bottom: 28px;
-}
-
-.panel-header h2 {
-  margin: 0;
-  color: #222;
-  font-size: 23px;
-  font-weight: 900;
-}
-
-.panel-header p {
-  margin: 8px 0 0;
-  color: #7a827d;
-  font-size: 13px;
-}
-
-.search-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-}
-
-.form-group label {
-  color: #303833;
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.form-group select {
-  width: 100%;
-  height: 48px;
-  padding: 0 40px 0 14px;
-  border: 1px solid #dce8e1;
-  border-radius: 12px;
-  background-color: #ffffff;
-  color: #303833;
-  font-family: inherit;
-  font-size: 14px;
-  outline: none;
-  cursor: pointer;
-  box-sizing: border-box;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s,
-    background-color 0.2s;
-}
-
-.form-group select:focus {
-  border-color: #2d9c7a;
-  box-shadow: 0 0 0 3px rgba(45, 156, 122, 0.12);
-}
-
-.form-group select:disabled {
-  background-color: #f3f6f4;
-  color: #adb5b0;
-  cursor: not-allowed;
-}
-
-.search-button {
-  width: 100%;
-  height: 50px;
-  margin-top: 6px;
+.home-youtube-play-button {
+  width: 72px;
+  height: 72px;
   border: none;
-  border-radius: 999px;
-  background-color: #2d9c7a;
-  color: #ffffff;
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 800;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b8f7a8, #48c78e);
   cursor: pointer;
-  transition:
-    background-color 0.2s,
-    transform 0.2s,
-    box-shadow 0.2s;
-}
+  box-shadow: 0 10px 24px rgba(72, 199, 142, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-.search-button:hover {
-  background-color: #238667;
-  box-shadow: 0 8px 18px rgba(45, 156, 122, 0.22);
-  transform: translateY(-1px);
-}
-
-.search-button:active {
-  transform: translateY(0);
-}
-
-.search-guide {
-  display: flex;
-  align-items: flex-start;
-  gap: 9px;
-  margin-top: auto;
-  padding-top: 28px;
-  color: #718078;
-  font-size: 12px;
-  line-height: 1.55;
-}
-
-.search-guide p {
-  margin: 0;
-}
-
-.guide-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: #e2f7ea;
-  color: #2d9c7a;
-  font-size: 11px;
-  font-weight: 900;
 }
 
-.map-card {
-  min-width: 0;
-  height: 620px;
-  border: 1px solid #e4eee8;
-  border-radius: 24px;
-  background-color: #ffffff;
-  box-shadow: 0 10px 30px rgba(45, 156, 122, 0.1);
-  overflow: hidden;
+.home-youtube-play-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 14px 32px rgba(72, 199, 142, 0.45);
 }
 
-.map {
-  width: 100%;
-  height: 100%;
-  min-height: 620px;
-}
-
-/* 카드상세페이지 */
-.detail-page {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.top-section {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  margin-bottom: 40px;
-}
-
-.card-image {
-  width: 160px;
-  height: 220px;
+.home-youtube-play-icon {
+  width: 32px;
+  height: 32px;
   object-fit: contain;
 }
 
-.company {
-  color: #777;
+.home-youtube-text h2 {
+  margin: 0 0 8px;
+  color: #2b2118;
+  font-size: 22px;
 }
 
-.section {
-  margin-bottom: 32px;
+.home-youtube-text p {
+  margin: 0;
+  color: #2d9c7a;
+  font-size: 15px;
 }
 
-.benefit-box {
-  padding: 18px;
-  margin-bottom: 16px;
-  border-radius: 16px;
-  background-color: #f7f7f7;
+@media (max-width: 640px) {
+  .home-youtube-shortcut {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
-.detail-link {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 14px 24px;
-  border-radius: 999px;
-  background-color: #222;
-  color: white;
-  text-decoration: none;
+/* Floating Feature Buttons */
+/* 유튜브 / 은행지도 / 금은가격 그래프 */
+
+.feature-floating-menu {
+  position: absolute;
+
+  /* 홈 카드 오른쪽에 세로 배치 */
+  top: 36px;
+  right: -84px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  z-index: 20;
+}
+
+.feature-floating-btn {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+
+  border: none;
+  border-radius: 100%;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  /* box-shadow: 0 12px 28px rgba(43, 33, 24, 0.18); */
+  box-shadow: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-floating-btn:hover {
+  transform: scale(1.05);
+  /* box-shadow: 0 16px 34px rgba(43, 33, 24, 0.25); */
+}
+
+.feature-floating-btn:focus {
+  outline: none;
+}
+
+.feature-floating-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.35);
+}
+
+/* 모바일에서는 우측 하단 고정 */
+@media (max-width: 640px) {
+  .feature-floating-menu {
+    position: fixed;
+    right: 18px;
+    bottom: 24px;
+    top: auto;
+
+    gap: 12px;
+  }
+
+  .feature-floating-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .feature-floating-icon {
+    width: 32px;
+    height: 32px;
+  }
 }
