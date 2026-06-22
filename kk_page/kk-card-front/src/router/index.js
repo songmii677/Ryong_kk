@@ -10,6 +10,7 @@ import LoginView from '@/views/LoginView.vue'
 import BankLocationView from '@/views/BankLocationView.vue'
 import YoutubeSearchView from '@/views/YoutubeSearchView.vue'
 import YoutubeDetailView from '@/views/YoutubeDetailView.vue'
+import GoldSilverChartView from '@/views/GoldSilverChartView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -101,6 +102,11 @@ const router = createRouter({
       component: YoutubeDetailView,
       props: true,
     },
+    {
+    path: '/price',
+    name: 'price',
+    component: GoldSilverChartView
+    }
   ],
 })
 
