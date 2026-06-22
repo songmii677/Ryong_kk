@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django_filters',
+    'community',
     'accounts',
     "rest_framework",
     "rest_framework.authtoken",

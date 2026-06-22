@@ -19,15 +19,18 @@ const handleLogout = async () => {
       <RouterLink to="/cards">전체 카드</RouterLink>
       <RouterLink to="/result">추천 결과</RouterLink>
 
-      <template v-if="accountStore.isLogin">
-        <RouterLink to="/mypage">마이페이지</RouterLink>
-        <button class="nav-link-button" @click="handleLogout">로그아웃</button>
-      </template>
-      <template v-else>
-        <RouterLink to="/signup">회원가입</RouterLink>
-        <RouterLink to="/login">로그인</RouterLink>
-      </template>
-    </nav>
+      <div class="nav-right">
+        <template v-if="accountStore.isLogin">
+          <RouterLink to="/mypage">마이페이지</RouterLink>
+          <button class="nav-link-button" @click="handleLogout">로그아웃</button>
+          <RouterLink to="/community">커뮤니티</RouterLink>
+        </template>
+        <template v-else>
+          <RouterLink to="/signup">회원가입</RouterLink>
+          <RouterLink to="/login">로그인</RouterLink>
+        </template>
+      </div>
+      </nav>
 
     <RouterView />
   </div>
@@ -49,6 +52,13 @@ const handleLogout = async () => {
   font-size: 16px;
   font-weight: 700;
   text-decoration: none;
+}
+
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 22px;
 }
 
 .nav a.router-link-active {
