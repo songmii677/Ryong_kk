@@ -2,7 +2,8 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAccountStore } from '@/stores/accounts'
-import { getArticle, createComment, deleteArticle as deleteArticleApi, updateComment, deleteComment as deleteCommentApi } from '@/api/community'
+import { getArticle, createComment, deleteArticle as deleteArticleApi, 
+        updateComment, deleteComment as deleteCommentApi, toggleArticleLike, toggleCommentLike } from '@/api/community'
 
 const router = useRouter()
 const route = useRoute()
@@ -18,8 +19,17 @@ const editText = ref('')
 onMounted(async () => {
   const res = await getArticle(route.params.id)
 
-  article.value = res.data
-  comments.value = res.data.comments || []
+  article.value = {
+    ...res.data,
+    like_count: res.data.like_count ?? 0,
+    is_liked: res.data.is_liked ?? false
+  }
+
+  comments.value = (res.data.comments || []).map(c => ({
+    ...c,
+    like_count: c.like_count ?? 0,
+    is_liked: c.is_liked ?? false
+  }))
 })
 
 // 작성자 체크
@@ -85,28 +95,64 @@ const deleteComment = async (id) => {
   comments.value = res.data.comments || []
 }
 
+// 게시글 좋아요
+const toggleArticleLikeHandler = async () => {
+  const res = await toggleArticleLike(
+    article.value.id,
+    accountStore.token
+  )
+
+  article.value.like_count = res.data.like_count
+  article.value.is_liked = res.data.liked
+}
+
+// 댓글 좋아요
+const toggleCommentLikeHandler = async (comment) => {
+  const res = await toggleCommentLike(
+    comment.id,
+    accountStore.token
+  )
+
+  comment.like_count = res.data.like_count
+  comment.is_liked = res.data.liked
+}
+
+
 </script>
 
 <template>
   <div class="detail-page">
 
     <!-- 게시글 -->
-    <section class="article-box">
-      <div class="article-header">
-        <h2>{{ article.title }}</h2>
-        <p class="writer">{{ article.user }}</p>
-        <!-- 작성자만 수정/삭제 -->
-        <div v-if="isAuthor" class="btn-group">
-          <button class="btn" @click="goEdit">수정</button>
-          <button class="btn delete" @click="deleteArticle">삭제</button>
-        </div>
+  <section class="article-box">
+
+    <!-- TOP: 제목 + 유저 -->
+    <div class="article-top">
+      <h2>{{ article.title }}</h2>
+      <p class="writer">{{ article.user }}</p>
+    </div>
+    <div v-if="isAuthor" class="article-actions">
+      <button class="btn" @click="goEdit">수정</button>
+      <button class="btn delete" @click="deleteArticle">삭제</button>
+    </div>
+
+    <!-- MIDDLE: 내용 -->
+    <p class="content">
+      {{ article.content }}
+    </p>
+
+    <!-- BOTTOM RIGHT: 좋아요 -->
+    <div class="article-bottom">
+      <div class="like-box">
+        <button @click="toggleArticleLikeHandler">
+          {{ article.is_liked ? '💚' : '🤍' }}
+        </button>
+        <span>{{ article.like_count }}</span>
       </div>
+    </div>
 
-      <p class="content">
-        {{ article.content }}
-      </p>
 
-    </section>
+  </section>
 
     <!-- 댓글 영역 -->
     <section class="comment-box">
@@ -126,11 +172,17 @@ const deleteComment = async (id) => {
 
       <div class="comment-footer">
         <p class="comment-user">{{ comment.user }}</p>
-
+        
         <!-- 작성자만 버튼 -->
         <div v-if="comment.user === accountStore.username">
-          <button @click="startEdit(comment)">수정</button>
-          <button @click="deleteComment(comment.id)">삭제</button>
+          <button class="btn" @click="startEdit(comment)">수정</button>   
+          <button class="btn delete" @click="deleteComment(comment.id)">삭제</button>
+        </div>
+        <div class="like-box">
+          <button @click="toggleCommentLikeHandler(comment)">
+            {{ comment.is_liked ? '💚' : '🤍' }}
+          </button>
+          <span>{{ comment.like_count }}</span>
         </div>
       </div>
 
@@ -156,6 +208,46 @@ const deleteComment = async (id) => {
 </template>
 
 <style scoped>
+.article-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.article-top h2 {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 800;
+}
+
+.article-top .writer {
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+}
+
+/* 내용 */
+.content {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* 좋아요 오른쪽 아래 */
+.article-bottom {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+/* 수정 삭제 따로 줄 */
+.article-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
 .detail-page {
   min-height: 100vh;
   max-width: 430px;

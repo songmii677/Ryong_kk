@@ -52,6 +52,7 @@ export function updateArticle(
   )
 }
 
+
 // 게시글 삭제
 export function deleteArticle(
   articleId,
@@ -67,6 +68,20 @@ export function deleteArticle(
     }
   )
 }
+
+// 게시글 좋아요
+export function toggleArticleLike(articleId, token) {
+  return axios.post(
+    `${API_URL}articles/${articleId}/like/`,
+    {},
+    {
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    }
+  )
+}
+
 
 // 댓글 작성
 export function createComment(
@@ -102,10 +117,24 @@ export function deleteComment(
   )
 }
 
+//댓글 수정
 export const updateComment = (id, data, token) => {
   return axios.put(
     `${API_URL}comments/${id}/`,
     data,
+    {
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    }
+  )
+}
+
+// 댓글 좋아요
+export function toggleCommentLike(commentId, token) {
+  return axios.post(
+    `${API_URL}comments/${commentId}/like/`,
+    {},
     {
       headers: {
         Authorization: `Token ${token}`
