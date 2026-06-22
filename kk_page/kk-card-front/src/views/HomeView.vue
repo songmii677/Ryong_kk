@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import banklocation from '@/assets/banklocation.png'
+import banklocation from '@/assets/bank-icon.png'
 import kkImage from '@/assets/kk.jpg'
 import playIcon from '@/assets/play-icon.png'
 
@@ -24,7 +24,7 @@ function goYoutube() {
 }
 
 function goBankMap() {
-  router.push({ name: 'bank-map' })
+  router.push({ name: 'banklocation' })
 }
 
 
@@ -78,16 +78,16 @@ function goBankMap() {
           <img
             :src="playIcon"
             alt="금융 콘텐츠 검색"
-            class="feature-floating-icon"
+            class="feature-floating-icon youtube-icon"
           />
         </button>
 
         <!-- 카카오맵 이동 버튼 -->
         <button class="feature-floating-btn" @click="goBankMap">
           <img
-            :src="backlocation"
+            :src="banklocation"
             alt="은행 지도 검색"
-            class="feature-floating-icon"
+            class="feature-floating-icon bank-icon"
           />
         </button>
 

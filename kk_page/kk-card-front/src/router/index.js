@@ -86,8 +86,9 @@ const router = createRouter({
     {
       path: '/banklocation',
       name: 'banklocation',
-      component: () => import('@/views/BankLocationView.vue'),
-      meta: { requiresAuth: true},
+      component: BankLocationView
+      // component: () => import('@/views/BankLocationView.vue'),
+      // meta: { requiresAuth: true},
     },
     {
       path: '/youtube',
