@@ -48,7 +48,7 @@ function goBankMap() {
 
         <h2>
           나에게 가장 잘 맞는<br />
-          카드는 뭘까?
+          카드는 무엇일까?
         </h2>
 
         <p class="description">
