@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import kkImage from '@/assets/kk.png'
+import banklocation from '@/assets/banklocation.png'
 
 const router = useRouter()
 
