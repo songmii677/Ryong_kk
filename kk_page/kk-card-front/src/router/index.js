@@ -18,6 +18,7 @@ import CommunityDetailView from '@/views/CommunityDetailView.vue'
 import CommunityCreateView from '@/views/CommunityCreateView.vue'
 import MyPageView from '@/views/MyPageView.vue'
 import MyCommunityView from '@/views/MyCommunityView.vue'
+import MyRecommendResultVeiw from '@/views/MyRecommendResultVeiw.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -122,6 +123,11 @@ const router = createRouter({
     path:'/my-community',
     name:'myCommunity',
     component: MyCommunityView
+    },
+    {
+    path:'/myrecommendresult',
+    name:'myrecommendresult',
+    component: MyRecommendResultVeiw
     }
   ],
 })

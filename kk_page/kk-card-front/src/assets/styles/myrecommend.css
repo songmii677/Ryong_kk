@@ -1,0 +1,229 @@
+.myrecommend-page {
+  min-height: 100vh;
+  padding: 28px 32px 70px;
+  background-color: #eaf8ff;
+  box-sizing: border-box;
+}
+
+/* 상단 제목 */
+.page-header {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 22px;
+  padding: 16px 24px;
+
+  border-radius: 18px;
+  background-color: #ffffff;
+
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #1f2421;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+/* 결과 목록 */
+.result-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* 저장 결과 한 건 */
+.result-box {
+  width: 100%;
+  padding: 20px;
+
+  border: 1px solid #dce9e3;
+  border-radius: 18px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 20px rgba(63, 107, 88, 0.08);
+
+  box-sizing: border-box;
+}
+
+/* 결과 제목과 카드 3개를 한 줄로 배치 */
+.result-row {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 18px;
+}
+
+/* 왼쪽 설문 결과 */
+.persona-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 180px;
+  padding: 18px 14px;
+
+  border: 1px solid #dce9e3;
+  border-radius: 14px;
+  background-color: #f7fcf9;
+
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.persona-label {
+  margin: 0 0 10px;
+  color: #7a8580;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.persona-title {
+  margin: 0;
+  color: #222222;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.persona-description {
+  margin: 10px 0 0;
+  color: #66716b;
+  font-size: 12px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+/* 오른쪽 카드 3개 */
+.recommended-card-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* 카드 한 개 */
+.recommended-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+  padding: 14px 10px;
+
+  border: 1px solid #e2ebe6;
+  border-radius: 14px;
+  background-color: #ffffff;
+
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* 이미지 크기를 고정하는 영역 */
+.card-image-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 150px;
+  height: 110px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* 원본 이미지 크기에 영향받지 않도록 제한 */
+.card-image {
+  display: block;
+
+  width: 132px;
+  height: 84px;
+  max-width: none;
+  max-height: none;
+
+  object-fit: contain;
+  object-position: center;
+}
+
+.image-placeholder {
+  color: #a1aaa5;
+  font-size: 12px;
+}
+
+.card-company {
+  margin: 10px 0 4px;
+  color: #2d9c7a;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.card-name {
+  margin: 0;
+  color: #252a27;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.state-message {
+  margin: 80px auto;
+  color: #7b8580;
+  text-align: center;
+}
+/* 카드 이미지 가로로 */
+.card-image.is-portrait {
+  width: 84px;
+  height: 132px;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  transform: rotate(270deg);
+  transform-origin: center;
+}
+.card-detail-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.card-detail-link .card-image-box {
+  cursor: pointer;
+  transition:
+  transform 0.2s,
+  opacity 0.2s;
+}
+
+.card-detail-link:hover .card-image-box {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+.card-detail-link:focus-visible {
+  border-radius: 12px;
+  outline: 2px solid #2d9c7a;
+  outline-offset:4px ;
+}
+/* 태블릿 이하 */
+@media (max-width: 760px) {
+  .result-row {
+    grid-template-columns: 1fr;
+  }
+
+  .persona-area {
+    min-height: auto;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 560px) {
+  .myrecommend-page {
+    padding: 24px 18px 60px;
+  }
+
+  .recommended-card-list {
+    grid-template-columns: 1fr;
+  }
+}

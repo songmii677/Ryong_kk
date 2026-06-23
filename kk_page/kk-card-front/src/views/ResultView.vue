@@ -1,9 +1,13 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, unref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getRecommendCards } from '@/api/cards'
+import axios from 'axios'
+import { useAccountStore } from '@/stores/accounts'
 
 const router = useRouter()
+const accountStore = useAccountStore()
+const isSaving = ref(false)
 
 const selectedCategory = ref('')
 const persona = ref({
@@ -113,6 +117,50 @@ const handleCardimageLoad = (event) => {
   image.classList.toggle('is-landscape-card', !isPortrait)
 }
 
+const saveResult = async () => {
+  const personaData = unref(persona)
+  const cardData = unref(recommendedCards) || []
+  if (!accountStore.token) {
+    alert('로그인 후 결과를 저장할 수 있습니다.')
+     return
+  }
+  if (!personaData?.title || !personaData?.desc) {
+    alert('추천 결과 정보를 찾을 수 없습니다.')
+    return
+  }
+  const requestData = {
+    persona_title: personaData.title,
+    personda_description: personaData.desc,
+    card_ids: cardData
+      .slice(0,3)
+      .map((card) => card.id),
+  }
+  try {
+    isSaving.value = true
+    await axios.post(
+      'http://127.0.0.1:8000/api/cards/results/',
+      requestData,
+      {
+        headers: {
+          Authorization: `Token ${accountStore.token}`,
+        },
+      },
+    )
+    alert('검사 결과가 저장되었습니다.')
+    router.push('/myrecommendresult')
+  } catch (error) {
+    console.error(
+      '추천 결과 저장 실패:',
+      error.response?.data || error,
+    )
+    alert ('검사 결과를 저장하지 못했습니다.')
+  } finally {
+    isSaving.value = false
+  }
+}
+
+</script>
+
 const goDetail = (cardId) => {
   router.push(`/cards/${cardId}`)
 }
@@ -122,6 +170,30 @@ const getCardBenefits = (card) => {
     return []
   }
 
+          <ul v-if="card.benefits && card.benefits[selectedCategory]">
+            <li
+              v-for="benefit in card.benefits[selectedCategory]"
+              :key="benefit"
+            >
+              {{ benefit }}
+            </li>
+          </ul>
+        </div>
+      </article>
+    </section>
+    <div class="button-group">
+      <button @click="router.push('/cards')" class="more-button">
+        다른 카드 더보기
+      </button>
+      <button @click="router.push('/')" class="resurvey-button">
+        검사 다시하기
+      </button>
+      <button @click="saveResult" class="saveresult-button">
+        검사 결과 저장하기
+      </button>
+    </div>
+  </main>
+</template>
   const benefits = card.benefits[selectedCategory.value]
 
   if (!Array.isArray(benefits)) {
@@ -154,6 +226,35 @@ const getCardTypeText = (cardType) => {
             {{ persona.title }}
           </h1>
 
+.card-image.is-portrait {
+  width: 170px;
+  height: 120px;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  transform: rotate(270deg);
+  transform-origin: center;
+}
+.button-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 28px;
+  /* gap: 16x; */
+}
+.more-button,
+.resurvey-button,
+.saveresult-button
+ {
+  margin-top: 0;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 999px;
+  background-color: #2d9c7a;
+  color: white;
+  cursor: pointer;
+}
           <p class="type-desc">
             {{ persona.desc }}
           </p>

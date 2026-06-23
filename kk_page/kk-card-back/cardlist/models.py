@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class Card(models.Model):
@@ -19,3 +20,20 @@ class Card(models.Model):
 
     def __str__(self):
         return f"{self.company} - {self.name}"
+    
+class RecommendResult(models.Model):
+    persona_title = models.CharField(max_length=100)
+    persona_description = models.TextField(blank=True)
+    card_list = models.ManyToManyField(
+        Card,
+        related_name="recommend_results",
+    )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="recommend_results",
+    )
+    class Meta:
+        ordering = ["-id"]
+    def __str__(self):
+        return f"{self.user.username} - {self.persona_title}"
