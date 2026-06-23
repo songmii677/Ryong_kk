@@ -11,6 +11,13 @@ import BankLocationView from '@/views/BankLocationView.vue'
 import YoutubeSearchView from '@/views/YoutubeSearchView.vue'
 import YoutubeDetailView from '@/views/YoutubeDetailView.vue'
 import GoldSilverChartView from '@/views/GoldSilverChartView.vue'
+import ProfileEditView from '@/views/ProfileEditView.vue'
+import CommunityView from '@/views/CommunityView.vue'
+import CommunityUpdateView from '@/views/CommunityUpdateView.vue'
+import CommunityDetailView from '@/views/CommunityDetailView.vue'
+import CommunityCreateView from '@/views/CommunityCreateView.vue'
+import MyPageView from '@/views/MyPageView.vue'
+import MyCommunityView from '@/views/MyCommunityView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,36 +60,29 @@ const router = createRouter({
     {
       path: '/mypage',
       name: 'mypage',
-      component: () => import('@/views/MyPageView.vue'),
-      meta: { requiresAuth: true},
+      component: MyPageView
     },
     {
       path:'/community',
       name:'community',
-      component:()=>import(
-        '@/views/CommunityView.vue'
-      )
+      component: CommunityView
     },
 
     {
       path:'/community/create',
       name:'communityCreate',
-      component:()=>import(
-        '@/views/CommunityCreateView.vue'
-      )
+      component: CommunityCreateView
     },
 
     {
       path:'/community/:id',
       name:'communityDetail',
-      component:()=>import(
-        '@/views/CommunityDetailView.vue'
-      )
+      component: CommunityDetailView
     },
     {
       path: '/community/edit/:id',
       name: 'CommunityUpdateView',
-      component: () => import('@/views/CommunityUpdateView.vue')
+      component: CommunityUpdateView
     },
     {
       path: '/banklocation',
@@ -106,6 +106,16 @@ const router = createRouter({
     path: '/price',
     name: 'price',
     component: GoldSilverChartView
+    },
+    {
+    path:'/profile-edit',
+    name:'profileEdit',
+    component: ProfileEditView 
+    },
+    {
+    path:'/my-community',
+    name:'myCommunity',
+    component: MyCommunityView
     }
   ],
 })

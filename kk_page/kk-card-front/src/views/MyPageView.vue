@@ -40,11 +40,11 @@ function goGoldChart() {
 }
 
 function goCommunity() {
-  router.push({ name: 'community' })
+  router.push({name:'myCommunity'})
 }
 
 function goProfileEdit() {
-  alert('회원정보 수정 기능은 여기에 연결하면 됩니다.')
+  router.push({name:'profileEdit'})
 }
 </script>
 

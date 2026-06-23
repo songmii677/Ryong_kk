@@ -50,6 +50,40 @@ def article_detail(request, article_pk):
         article.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
+
+## 내가 작성한 글 + 댓글
+@api_view(['GET'])
+def my_community(request):
+
+    my_articles = Article.objects.filter(
+        user=request.user
+    )
+
+    my_comments = Comment.objects.filter(
+        user=request.user
+    )
+
+    article_data = ArticleSerializer(
+        my_articles,
+        many=True,
+        context={'request': request}
+    ).data
+
+    comment_data = []
+
+    for comment in my_comments:
+        comment_data.append({
+            'id': comment.id,
+            'content': comment.content,
+            'article_id': comment.article.id,
+            'article_title': comment.article.title
+        })
+
+    return Response({
+        'articles': article_data,
+        'comments': comment_data
+    })
+
 ## 좋아요
 @api_view(['POST'])
 def toggle_article_like(request, article_pk):
