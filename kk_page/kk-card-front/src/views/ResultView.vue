@@ -5,6 +5,9 @@ import { getAiRecommendCards } from '@/api/cards'
 import LoadingScreen from '@/components/LoadingScreen.vue'
 
 const router = useRouter()
+const accountStore = useAccountStore()
+const isSaving = ref(false)
+const isSaved = ref(false)
 
 const selectedCategory = ref('')
 const persona = ref({
@@ -51,6 +54,59 @@ onMounted(async () => {
   } catch (error) {
     console.error('AI 추천 API 오류:', error)
     errorMessage.value = 'AI 추천 결과를 불러오는 중 오류가 발생했습니다.'
+    console.error(error)
+  }
+})
+
+const handleCardImageLoad = (event) => {
+  const image = event.currentTarget
+  const isPortrait = image.naturalHeight > image.naturalWidth
+  image.classList.toggle('is-portrait', isPortrait)
+}
+
+
+const saveResult = async () => {
+  if (isSaving.value || isSaved.value) return
+
+  const personaData = unref(persona)
+  const cardData = unref(recommendedCards) || []
+
+  const requestData = {
+    persona_title: personaData.title,
+    persona_description: personaData.desc,
+    card_ids: cardData
+      .slice(0, 3)
+      .map((card) => card.id),
+  }
+
+  try {
+    isSaving.value = true
+
+    const response = await axios.post(
+      'http://127.0.0.1:8000/api/cards/results/',
+      requestData,
+      {
+        headers: {
+          Authorization: `Token ${accountStore.token}`,
+        },
+      },
+    )
+
+    isSaved.value = true
+
+    if (response.data.already_saved) {
+      alert('이미 저장된 추천 결과입니다.')
+      return
+    }
+
+    alert('추천 결과가 저장되었습니다.')
+  } catch (error) {
+    console.error(
+      '추천 결과 저장 실패:',
+      error.response?.data || error,
+    )
+
+    alert('추천 결과를 저장하지 못했습니다.')
   } finally {
     loadingDone.value = true
 
@@ -59,6 +115,7 @@ onMounted(async () => {
     }, 700)
   }
 })
+
 
 const goDetail = (cardId) => {
   router.push(`/cards/${cardId}`)
@@ -92,6 +149,38 @@ const handleCardimageLoad = (event) => {
             <h1 class="type-title">
               {{ persona.title }}
             </h1>
+      <section
+        v-else
+        class="recommend-list"
+      >
+        <article
+          v-for="card in recommendedCards"
+          :key="card.id"
+          class="recommend-card"
+          @click="goDetail(card.id)"
+        >
+          <div class="card-image-area">
+            <img
+              v-if="card.image_url"
+              :src="card.image_url"
+              :alt="card.name"
+              class="card-image"
+              @load="handleCardImageLoad"
+            />
+
+            <span
+              v-else
+              class="image-placeholder"
+            >
+              카드
+            </span>
+          </div>
+
+          <div class="card-info-area">
+            <p class="company">
+              <span class="card-type-text">
+                {{ card.card_type === 'credit' ? '신용' : '체크' }}
+              </span>
 
             <p class="type-desc">
               {{ persona.desc }}
@@ -239,7 +328,25 @@ const handleCardimageLoad = (event) => {
         </div>
       </template>
     </section>
+          테스트 다시하기
+        </button>
+        <button
+        type="button"
+          class="saveresult-button"
+          :disabled="isSaving || isSaved"
+          @click="saveResult"
+        >
+          결과 저장하기
+        </button>
+      </div>
+    </section>    
+      <p class="card-notice">
+      * 본 서비스는 카드 추천을 제공하는 플랫폼이며, 모든 선택과 이용에 대한 최종 책임은 사용자에게 있습니다. <br />
+      * 본 카드의 혜택 서비스 내용은 카드사 사정에 따라 사전 고지 후 변경 또는 중단될 수 있습니다.<br />
+      * 카드 신청 전 반드시 상품설명서와 약관을 읽어 보시기 바랍니다.
+      </p>
   </main>
+
 </template>
 
 
