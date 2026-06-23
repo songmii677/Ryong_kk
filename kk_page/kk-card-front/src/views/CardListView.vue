@@ -15,6 +15,7 @@ const isLoading = ref(false)
 
 const selectedCardType = ref(route.query.card_type || '')
 const selectedCompany = ref(route.query.company || '')
+const keyword = ref(route.query.card_name || '')
 
 const cardTypeOptions = [
   {
@@ -61,6 +62,10 @@ function getFilterParams() {
     params.company = selectedCompany.value
   }
 
+  if (keyword.value) {
+    params.card_name = keyword.value
+  }
+
   return params
 }
 
@@ -104,6 +109,7 @@ async function applyFilters() {
 async function resetFilters() {
   selectedCardType.value = ''
   selectedCompany.value = ''
+  keyword.value = ''
 
   await router.replace({
     path: '/cards',
@@ -132,6 +138,7 @@ function handleCardImageLoad(event) {
 onMounted(() => {
   selectedCardType.value = route.query.card_type || ''
   selectedCompany.value = route.query.company || ''
+  keyword.value = route.query.card_name || ''
 
   fetchCards()
 })
@@ -144,13 +151,7 @@ function toggleCompare(card) {
     alert(result.message)
   }
 }
-
-
 </script>
-
-
-
-
 
 <template>
   <main class="card-list-page">
@@ -161,59 +162,80 @@ function toggleCompare(card) {
   class="card-filter-bar"
   @submit.prevent="applyFilters"
 >
-  <div class="card-filter-field">
-    <label for="card-type">카드 종류</label>
+  <!-- 첫 번째 줄: 카드 종류 / 카드사 / 초기화 -->
+  <div class="card-filter-top-row">
+    <div class="card-filter-field">
+      <label for="card-type">카드 종류</label>
 
-    <select
-      id="card-type"
-      v-model="selectedCardType"
-    >
-      <option value="">전체</option>
-
-      <option
-        v-for="option in cardTypeOptions"
-        :key="option.value"
-        :value="option.value"
+      <select
+        id="card-type"
+        v-model="selectedCardType"
       >
-        {{ option.label }}
-      </option>
-    </select>
+        <option value="">전체</option>
+
+        <option
+          v-for="option in cardTypeOptions"
+          :key="option.value"
+          :value="option.value"
+        >
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+
+    <div class="card-filter-field">
+      <label for="company">카드사</label>
+
+      <select
+        id="company"
+        v-model="selectedCompany"
+      >
+        <option value="">전체</option>
+
+        <option
+          v-for="option in companyOptions"
+          :key="option.value"
+          :value="option.value"
+        >
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+
+    <button
+      type="button"
+      class="card-filter-reset-button"
+      @click="resetFilters"
+    >
+      필터 초기화
+    </button>
   </div>
 
-  <div class="card-filter-field">
-    <label for="company">카드사</label>
+  <!-- 두 번째 줄: 카드 이름 / 검색 -->
+  <div class="card-name-filter-field">
+    <label for="card-name">
+      카드 이름으로 검색해보세요.
+    </label>
 
-    <select
-      id="company"
-      v-model="selectedCompany"
-    >
-      <option value="">전체</option>
+    <div class="card-name-input-row">
+      <input
+        id="card-name"
+        v-model.trim="keyword"
+        type="text"
+        placeholder="예: ALL, American Express"
+      />
 
-      <option
-        v-for="option in companyOptions"
-        :key="option.value"
-        :value="option.value"
+      <button
+        type="submit"
+        class="card-filter-search-button"
       >
-        {{ option.label }}
-      </option>
-    </select>
+        검색
+      </button>
+    </div>
   </div>
-
-  <button
-    type="submit"
-    class="card-filter-search-button"
-  >
-    검색
-  </button>
-
-  <button
-    type="button"
-    class="card-filter-reset-button"
-    @click="resetFilters"
-  >
-    필터 초기화
-  </button>
 </form>
+
+
 
     <!-- 로딩 중 -->
     <p
@@ -297,7 +319,6 @@ function toggleCompare(card) {
 /* =========================
    카드 목록 전체 페이지
 */
-
 .card-list-page {
   min-height: calc(100vh - 70px);
   padding: 46px 32px 70px;
@@ -314,19 +335,14 @@ function toggleCompare(card) {
   font-weight: 900;
 }
 
-
 /* =========================
-   카드 필터
-*/
+   카드 필터 전체
+========================= */
+
 .card-filter-bar {
-  display: grid;
-  grid-template-columns:
-    minmax(180px, 1fr)
-    minmax(180px, 1fr)
-    100px
-    130px;
-  align-items: end;
-  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 
   width: 100%;
   max-width: 820px;
@@ -337,7 +353,27 @@ function toggleCompare(card) {
   border-radius: 20px;
   background-color: #ffffff;
   box-shadow: 0 8px 24px rgba(45, 156, 122, 0.08);
+
   box-sizing: border-box;
+}
+
+
+/* =========================
+   첫 번째 줄
+   카드 종류 / 카드사 / 초기화
+========================= */
+
+.card-filter-bar > .card-filter-top-row {
+  display: grid;
+  grid-template-columns:
+    minmax(180px, 1fr)
+    minmax(180px, 1fr)
+    130px;
+  align-items: end;
+  gap: 14px;
+
+  width: 100%;
+  padding-bottom: 20px;
 }
 
 .card-filter-field {
@@ -347,11 +383,15 @@ function toggleCompare(card) {
   min-width: 0;
 }
 
-.card-filter-field label {
+.card-filter-field label,
+.card-name-filter-field label {
   color: #303833;
   font-size: 14px;
   font-weight: 800;
 }
+
+
+/* 카드 종류 / 카드사 select */
 
 .card-filter-field select {
   width: 100%;
@@ -384,11 +424,76 @@ function toggleCompare(card) {
   box-shadow: 0 0 0 3px rgba(45, 156, 122, 0.12);
 }
 
+
+/* =========================
+   두 번째 줄
+   카드 이름 검색
+========================= */
+
+.card-filter-bar > .card-name-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 100%;
+  padding-top: 5px;
+  /* border-top: 1px solid #e8efeb; */
+}
+
+.card-name-input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 100px;
+  gap: 14px;
+
+  width: 100%;
+}
+
+.card-name-input-row input {
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  padding: 0 14px;
+
+  border: 1px solid #dce8e1;
+  border-radius: 12px;
+  background-color: #ffffff;
+
+  color: #303833;
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.card-name-input-row input::placeholder {
+  color: #a0aaa4;
+}
+
+.card-name-input-row input:hover {
+  border-color: #b8d7c7;
+}
+
+.card-name-input-row input:focus {
+  border-color: #2d9c7a;
+  box-shadow: 0 0 0 3px rgba(45, 156, 122, 0.12);
+}
+
+
+/* =========================
+   검색 / 초기화 버튼
+========================= */
+
 .card-filter-search-button,
 .card-filter-reset-button {
   width: 100%;
   height: 48px;
   padding: 0 14px;
+
   border-radius: 12px;
 
   font-family: inherit;
@@ -398,8 +503,17 @@ function toggleCompare(card) {
 
   cursor: pointer;
   box-sizing: border-box;
-  transition: 0.2s;
+
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
 }
+
+
+/* 검색 버튼 */
 
 .card-filter-search-button {
   border: 1px solid #2d9c7a;
@@ -413,6 +527,9 @@ function toggleCompare(card) {
   transform: translateY(-1px);
 }
 
+
+/* 필터 초기화 버튼 */
+
 .card-filter-reset-button {
   border: 1px solid #cfe1d7;
   background-color: #ffffff;
@@ -425,10 +542,7 @@ function toggleCompare(card) {
   color: #2d9c7a;
 }
 
-
-
-/* 카드 목록 */
-
+/* 카드목록 */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -528,31 +642,120 @@ function toggleCompare(card) {
 }
 
 
-   /* 반응형 */
-
-@media (max-width: 850px) {
-  .card-filter-bar {
+/* 반응형 */
+@media (max-width: 700px) {
+  .card-filter-bar > .card-filter-top-row {
     grid-template-columns: 1fr 1fr;
   }
 
-  .card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .card-filter-reset-button {
+    grid-column: 1 / -1;
   }
 }
 
 @media (max-width: 560px) {
-  .card-list-page {
-    padding: 32px 18px 50px;
-  }
-
   .card-filter-bar {
-    grid-template-columns: 1fr;
     padding: 20px;
   }
 
-  .card-grid {
+  .card-filter-bar > .card-filter-top-row {
+    grid-template-columns: 1fr;
+  }
+
+  .card-filter-reset-button {
+    grid-column: auto;
+  }
+  .card-name-input-row {
     grid-template-columns: 1fr;
   }
 }
+
+
+
+
+
+/* =========================
+   카드 비교함 담기 버튼
+========================= */
+
+.card-image-box {
+  position: relative;
+  overflow: visible;
+}
+
+.card-compare-btn {
+  position: absolute;
+  right: -8px;
+  bottom: -10px;
+
+  width: 34px;
+  height: 34px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+
+  border: none;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #2d9c7a;
+
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+
+  box-shadow: 0 8px 18px rgba(45, 156, 122, 0.22);
+  transition: width 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  z-index: 10;
+
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.card-compare-btn:hover {
+  width: 118px;
+  padding: 0 10px;
+  gap: 6px;
+  background: #e5fff4;
+  transform: translateY(-2px);
+}
+
+.card-compare-btn.active {
+  width: 70px;
+  padding: 0 10px;
+  gap: 6px;
+  background: #2d9c7a;
+  color: white;
+}
+
+.compare-plus-icon {
+  flex-shrink: 0;
+
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.compare-label {
+  display: none;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.card-compare-btn:hover .compare-label,
+.card-compare-btn.active .compare-label {
+  display: inline;
+}
+
 </style>
-<style scoped src="@/assets/styles/card-list.css"></style>
+<!-- <style scoped src="@/assets/styles/card-list.css"></style> -->

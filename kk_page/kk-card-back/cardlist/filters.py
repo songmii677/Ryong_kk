@@ -27,9 +27,15 @@ class CardFilter(filters.FilterSet):
         choices=COMPANY_CHOICES,
     )
 
+    card_name = filters.CharFilter(
+        field_name="name",
+        lookup_expr="icontains"
+    )
+
     class Meta:
         model = Card
         fields = [
             "card_type",
             "company",
+            "card_name",
         ]
