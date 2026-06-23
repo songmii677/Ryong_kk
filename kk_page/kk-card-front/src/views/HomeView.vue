@@ -67,7 +67,7 @@ function goPrice() {
         /> -->
         
         <button class="start-btn" @click="goSurvey">
-          크크
+          시작하기
         </button>
 
         <p class="count-text">
