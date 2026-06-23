@@ -99,7 +99,7 @@ onMounted(fetchCardDetail)
             :key="brand"
           >
             <span>
-              {{ brand }}: {{ fee }}원
+              {{ brand }} {{ fee }}원
             </span>
 
             <span
@@ -215,7 +215,14 @@ onMounted(fetchCardDetail)
         >
           카드 신청하기
         </a>
+
+        <p class="card-notice">
+        * 본 카드의 혜택 서비스 내용은 카드사 사정에 따라 사전 고지 후 변경 또는 중단될 수 있습니다.<br />
+        * 카드 신청 전 반드시 상품설명서와 약관을 읽어 보시기 바랍니다.
+        </p>
+
       </template>
+      
 
       <p
         v-else

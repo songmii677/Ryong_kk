@@ -322,8 +322,14 @@ const getCardTypeText = (cardType) => {
           결과 저장하기
         </button>
       </div>
-    </section>
+    </section>    
+      <p class="card-notice">
+      * 본 서비스는 카드 추천을 제공하는 플랫폼이며, 모든 선택과 이용에 대한 최종 책임은 사용자에게 있습니다. <br />
+      * 본 카드의 혜택 서비스 내용은 카드사 사정에 따라 사전 고지 후 변경 또는 중단될 수 있습니다.<br />
+      * 카드 신청 전 반드시 상품설명서와 약관을 읽어 보시기 바랍니다.
+      </p>
   </main>
+
 </template>
 
 <style scoped src="@/assets/styles/result.css"></style>
