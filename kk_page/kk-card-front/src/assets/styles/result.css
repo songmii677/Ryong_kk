@@ -1,0 +1,397 @@
+/* Result - Web Layout */
+
+.result-page {
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
+  margin: 0;
+  padding: 56px 32px 72px;
+  background: linear-gradient(180deg, #f4fbff 0%, #f7fcff 100%);
+  box-sizing: border-box;
+}
+
+.result-container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.result-page-title {
+  margin: 0 0 22px;
+  text-align: center;
+  color: #2d9c7a;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+/* 상단 전체 */
+.result-top {
+  display: grid;
+
+  /* 왼쪽 유형 박스 넓게 / 오른쪽 AI 박스 고정 */
+  grid-template-columns: minmax(0, 2fr) 180px;
+
+  gap: 22px;
+  margin-bottom: 20px;
+}
+
+/* 왼쪽 유형 박스 */
+.persona-box {
+  min-height: 150px;
+  padding: 34px 42px;
+  border-radius: 32px;
+  background: #ffffff;
+  box-shadow: 0 14px 30px rgba(74, 143, 180, 0.14);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 오른쪽 AI 박스 */
+.ai-box {
+  min-height: 150px;
+  padding: 28px 30px;
+  border-radius: 32px;
+  background: #ffffff;
+  box-shadow: 0 14px 30px rgba(74, 143, 180, 0.14);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.type-title {
+  margin: 0;
+  color: #222;
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.type-desc {
+  margin: 14px 0 0;
+  color: #2d9c7a;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.ai-button {
+  width: 104px;
+  height: 42px;
+  border: 1.5px solid #48c78e;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #2d9c7a;
+  font-size: 14px;
+  font-weight: 900;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.ai-caption {
+  margin: 0;
+  color: #6b756f;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* 가운데 안내 문구 */
+.result-message {
+  margin: 0 0 32px;
+  text-align: center;
+  color: #666;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+
+/* 추천 카드 3개 */
+.recommend-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+.recommend-card {
+  min-width: 0;
+  background: white;
+  border-radius: 30px;
+  padding: 28px;
+  box-shadow: 0 10px 24px rgba(74, 143, 180, 0.14);
+  border: 1px solid #e4f4ee;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recommend-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(74, 143, 180, 0.2);
+}
+
+/* 이미지 */
+.card-image-area {
+  width: 100%;
+  height: 180px;
+  margin-bottom: 22px;
+
+  background: transparent;
+  border-radius: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* 공통 이미지 */
+.card-image {
+  display: block;
+  object-fit: contain;
+  transform-origin: center;
+}
+
+/* 가로형 카드 */
+.card-image.is-landscape-card {
+  width: 250px;
+  height: 155px;
+}
+
+/* 세로형 카드 원본은 가로 카드처럼 회전 */
+.card-image.is-portrait-card {
+  width: 155px;
+  height: 250px;
+  transform: rotate(90deg) scale(2.5);
+}
+
+.image-placeholder {
+  color: #2d9c7a;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+/* 카드 정보 */
+.card-info-area {
+  width: 100%;
+}
+
+.company {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.card-type-text {
+  color: #8b949e;
+}
+
+.company-divider {
+  color: #c3ccd3;
+}
+
+.company-name-text {
+  color: #2d9c7a;
+}
+
+.card-name {
+  margin: 0 0 18px;
+  color: #222;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.35;
+  word-break: keep-all;
+}
+
+.benefit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.benefit-list li {
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: #f7fcff;
+  color: #555;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.reason {
+  margin: 0;
+  padding: 14px 12px;
+  border-radius: 16px;
+  background: #f7fcff;
+  color: #555;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* 카드 아래 다른 카드 더보기 */
+.more-card-row {
+  display: flex;
+  justify-content: center;
+  margin: 6px 0 22px;
+}
+
+.more-button {
+  width: 186px;
+  height: 42px;
+
+  border-radius: 999px;
+  border: 1.5px solid #dcecf5;
+  background: #ffffff;
+  color: #2d9c7a;
+  font-size: 14px;
+  font-weight: 900;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(160, 205, 144, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.more-button:hover {
+  background: #f4fce9;
+  transform: translateY(-2px);
+}
+
+/* 하단 버튼 2개 */
+.bottom-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* 테스트 다시하기 / 결과 저장하기: 더 작고 연하게 */
+.sub-button {
+  width: 140px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1.5px solid #dcecf5;
+  background: #ffffff;
+  color: #2d9c7a;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(74, 143, 180, 0.1);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.sub-button:hover {
+  transform: translateY(-2px);
+  border-color: #9de6c8;
+  background: #f7fffb;
+}
+
+.empty-message {
+  padding: 80px 0;
+  text-align: center;
+  color: #777;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* 태블릿 */
+@media (max-width: 900px) {
+  .result-page {
+    padding: 40px 20px 60px;
+  }
+
+  .result-hero {
+    padding: 28px 24px;
+  }
+
+  .recommend-list {
+    gap: 16px;
+  }
+
+  .recommend-card {
+    padding: 22px 16px;
+  }
+
+  .card-image-area {
+    width: 120px;
+    height: 120px;
+  }
+
+  .card-image {
+    max-width: 92px;
+    max-height: 92px;
+  }
+
+  .card-name {
+    font-size: 17px;
+  }
+
+  .benefit-list li {
+    font-size: 12px;
+  }
+
+  .result-actions {
+    grid-template-columns: 1fr 1.4fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .result-top {
+    grid-template-columns: 1fr;
+  }
+
+  .persona-box,
+  .ai-box {
+    padding: 24px 20px;
+  }
+
+  .type-title {
+    font-size: 26px;
+    text-align: center;
+  }
+
+  .type-desc {
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .result-message {
+    margin: 0 0 24px;
+    text-align: center;
+  }
+
+  .ai-button {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .bottom-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .more-button,
+  .sub-button {
+    width: 100%;
+    max-width: 260px;
+  }
+}
