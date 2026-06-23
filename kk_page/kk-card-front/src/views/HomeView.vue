@@ -11,10 +11,10 @@ const router = useRouter()
 const nickname = ref('')
 
 function goSurvey() {
-  if (!nickname.value.trim()) {
-    alert('닉네임을 입력해주세요!')
-    return
-  }
+  // if (!nickname.value.trim()) {
+  //   alert('닉네임을 입력해주세요!')
+  //   return
+  // }
 
   localStorage.setItem('nickname', nickname.value)
   router.push('/survey')
@@ -59,12 +59,12 @@ function goPrice() {
           나에게 딱 맞는 카드를 찾아보세요.
         </p>
 
-        <input
+        <!-- <input
           v-model="nickname"
           class="nickname-input"
           type="text"
           placeholder="닉네임을 입력해주세요"
-        />
+        /> -->
         
         <button class="start-btn" @click="goSurvey">
           크크

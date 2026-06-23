@@ -8,8 +8,10 @@ from rest_framework import status
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 def delete_account(request):
-    request.user.delete()
+    user = request.user
+    user.delete()
+
     return Response(
-        {'message': '회원탈퇴 완료'},
+        {'message':'회원탈퇴 완료'},
         status=status.HTTP_204_NO_CONTENT
     )
