@@ -3,11 +3,13 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAccountStore } from '@/stores/accounts'
 import { useCompareStore } from '@/stores/compare'
+import { useFavoriteStore } from '@/stores/favorite'
 import kkImage from '@/assets/kk.jpg'
 
 const router = useRouter()
 const accountStore = useAccountStore()
 const compareStore = useCompareStore()
+const favoriteStore = useFavoriteStore()
 
 const username = computed(() => {
   return (
@@ -46,6 +48,15 @@ function goCommunity() {
 function goProfileEdit() {
   alert('회원정보 수정 기능은 여기에 연결하면 됩니다.')
 }
+
+function goCardDetail(cardId) {
+  router.push(`/cards/${cardId}`)
+}
+
+function goFavoriteCards() {
+  router.push({ name: 'favorites' })
+}
+
 </script>
 
 <template>
@@ -85,13 +96,13 @@ function goProfileEdit() {
         </button>
 
         <button
-          type="button"
-          class="mypage-action-card"
-          @click="goCards"
-        >
-          <span class="mypage-action-icon">📌</span>
-          <strong>나의 카드 비교함</strong>
-          <p>담긴 카드 {{ compareCount }}개</p>
+            type="button"
+            class="mypage-action-card"
+            @click="goFavoriteCards"
+            >
+            <span class="mypage-action-icon">❤️</span>
+            <strong>나의 관심카드</strong>
+            <p>담긴 카드 {{ favoriteStore.count }}개</p>
         </button>
 
         <button

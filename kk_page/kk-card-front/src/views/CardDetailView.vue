@@ -4,10 +4,12 @@ import { useRoute, useRouter } from 'vue-router'
 import { getCardDetail } from '@/api/cards'
 import { useCompareStore } from '@/stores/compare'
 import CompareFloatingBar from '@/components/CompareFloatingBar.vue'
+import { useFavoriteStore } from '@/stores/favorite'
 
 const route = useRoute()
 const router = useRouter()
 const compareStore = useCompareStore()
+const favoriteStore = useFavoriteStore()
 
 const card = ref(null)
 
@@ -40,6 +42,19 @@ function toggleCompare() {
     alert(result.message)
   }
 }
+
+function toggleFavorite() {
+  if (!card.value) {
+    return
+  }
+
+  const result = favoriteStore.toggleCard(card.value)
+
+  if (result.ok) {
+    console.log(result.message)
+  }
+}
+
 
 function handleCardDetailImageLoad(event) {
   const image = event.currentTarget
@@ -111,6 +126,19 @@ onMounted(fetchCardDetail)
                 <span class="detail-compare-icon">+</span>
                 <span>비교함에 담기</span>
               </template>
+            </button>
+
+            <button
+              v-if="card"
+              type="button"
+              class="detail-favorite-circle-btn"
+              :class="{ active: favoriteStore.isFavorite(card.id) }"
+              @click.stop="toggleFavorite"
+            >
+              <span class="detail-heart-icon">
+                {{ favoriteStore.isFavorite(card.id) ? '♥' : '♡' }}
+              </span>
+
             </button>
         </section>
 

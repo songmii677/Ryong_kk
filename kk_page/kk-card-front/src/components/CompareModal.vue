@@ -1,9 +1,11 @@
 <script setup>
 import { useCompareStore } from '@/stores/compare'
+import { useFavoriteStore } from '@/stores/favorite'
 
 const emit = defineEmits(['close'])
 
 const compareStore = useCompareStore()
+const favoriteStore = useFavoriteStore()
 
 function formatAnnualFee(annualFee) {
   if (!annualFee) {
@@ -54,6 +56,15 @@ function formatBenefits(benefits) {
 
   return [String(benefits)]
 }
+
+function toggleFavoriteFromCompare(card) {
+  const result = favoriteStore.toggleCard(card)
+
+  if (result.ok) {
+    console.log(result.message)
+  }
+}
+
 </script>
 
 <template>
@@ -84,6 +95,23 @@ function formatBenefits(benefits) {
                 <h3>{{ card.name }}</h3>
                 <p>{{ card.company }}</p>
                 <img :src="card.image_url" :alt="card.name" />
+                
+                <button
+                  type="button"
+                  class="compare-favorite-btn"
+                  :class="{ active: favoriteStore.isFavorite(card.id) }"
+                  @click="toggleFavoriteFromCompare(card)"
+                >
+                  <span>
+                    {{ favoriteStore.isFavorite(card.id) ? '♥' : '♡' }}
+                  </span>
+
+                  <!-- {{
+                    favoriteStore.isFavorite(card.id)
+                      ? '관심카드 담김'
+                      : '관심카드에 추가하기'
+                  }} -->
+                </button>
               </td>
             </tr>
 
