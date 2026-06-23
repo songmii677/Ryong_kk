@@ -103,13 +103,12 @@ async function changePassword(){
     alert('모든 항목을 입력해주세요.')
     return
   }
-
+  
   if(!validatePassword()){
     return
   }
 
-  try{
-
+    try {
     await changePasswordAPI(
       {
         old_password: currentPassword.value,
@@ -120,30 +119,19 @@ async function changePassword(){
     )
 
     alert('비밀번호가 변경되었습니다.')
-
-    currentPassword.value=''
-    newPassword.value=''
-    confirmPassword.value=''
-
-  }catch(err){
-
-  const errorData =
-    err.response?.data
-
-  // 현재 비밀번호 틀림
-  if(errorData?.old_password){
-    currentPasswordError.value =
-      errorData.old_password[0]
   }
+  catch(err) {
+    const data = err.response?.data
 
-  // 서버 비밀번호 에러
-  else{
+    // 현재 비밀번호 틀림
+    if (data?.old_password) {
+      currentPasswordError.value = '현재 비밀번호가 올바르지 않습니다.'
+      return
+    }
+
     newPasswordError.value =
-      Object.values(errorData || {})
-      .flat()
-      .join('\n')
+      Object.values(data || {}).flat().join('\n')
   }
-}
 }
 
 // 새 비번 확인

@@ -99,6 +99,10 @@ DATABASES = {
     }
 }
 
+REST_AUTH = {
+    'OLD_PASSWORD_FIELD_ENABLED': True,
+    'USE_JWT': False,
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
