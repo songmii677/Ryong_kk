@@ -138,6 +138,11 @@ onMounted(async () => {
   }
 })
 
+const handleCardimageLoad = (event) => {
+  const image = event.currentTarget
+  const isPortrait = image.naturalHeight > image.naturalWidth
+  image.classList.toggle('is-portrait', isPortrait)
+}
 </script>
 
 <template>
@@ -156,15 +161,18 @@ onMounted(async () => {
         class="recommend-card"
         @click="goDetail(card.id)"
       >
+      <div class="card-image-area">
         <img
           v-if="card.image_url"
           :src="card.image_url"
           :alt="card.name"
           class="card-image"
+          @load="handleCardimageLoad"
         />
+        <p class="company">{{ card.company }}카드</p>
+      </div>
 
         <div>
-          <p class="company">{{ card.company }}</p>
           <h2>{{ card.name }}</h2>
 
           <ul v-if="card.benefits && card.benefits[selectedCategory]">
@@ -178,10 +186,17 @@ onMounted(async () => {
         </div>
       </article>
     </section>
-
-    <button @click="router.push('/cards')" class="more-button">
-      다른 카드 더보기
-    </button>
+    <div class="button-group">
+      <button @click="router.push('/cards')" class="more-button">
+        다른 카드 더보기
+      </button>
+      <button @click="router.push('/')" class="resurvey-button">
+        검사 다시하기
+      </button>
+      <button @click="router.push('/')" class="saveresult-button">
+        검사 결과 저장하기
+      </button>
+    </div>
   </main>
 </template>
 
@@ -214,17 +229,59 @@ onMounted(async () => {
 }
 
 .card-image {
+  display: block;
   width: 120px;
   height: 170px;
   object-fit: contain;
 }
 
 .company {
+  margin: 10px 0 4px;
+  display: block;
   color: #777;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  word-break: keep-all;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
 }
 
-.more-button {
+.card-image-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  overflow: visible;
+  text-align: center;
+  justify-content: center;
+  width: 150px;
+  min-height: 210px;
+}
+
+.card-image.is-portrait {
+  width: 170px;
+  height: 120px;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  transform: rotate(270deg);
+  transform-origin: center;
+}
+.button-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   margin-top: 28px;
+  /* gap: 16x; */
+}
+.more-button,
+.resurvey-button,
+.saveresult-button
+ {
+  margin-top: 0;
   padding: 14px 24px;
   border: none;
   border-radius: 999px;
@@ -232,4 +289,5 @@ onMounted(async () => {
   color: white;
   cursor: pointer;
 }
+
 </style>
