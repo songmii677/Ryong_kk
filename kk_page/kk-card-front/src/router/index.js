@@ -63,6 +63,12 @@ const router = createRouter({
       component: MyPageView
     },
     {
+      path: '/favorites',
+      name: 'favorites',
+      component: () => import('@/views/FavoriteCardsView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
       path:'/community',
       name:'community',
       component: CommunityView
