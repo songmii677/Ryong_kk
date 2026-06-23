@@ -80,6 +80,7 @@ onMounted(fetchCardDetail)
 
       <template v-if="card">
         <section class="card-detail-top-section">
+        <div class="card-left-area">
           <div class="card-detail-image-box">
             <img
               v-if="card.image_url"
@@ -89,7 +90,29 @@ onMounted(fetchCardDetail)
               @load="handleCardDetailImageLoad"
             />
           </div>
+          
+          <div v-if="card.card_type !== 'check'" class="card-fee-row">
+          [연회비]
+          <template
+            v-for="([brand, fee], index) in Object.entries(card.annual_fee)
+              .filter(([brand, fee]) => fee)"
+            :key="brand"
+          >
+            <span>
+              {{ brand }}: {{ fee }}원
+            </span>
 
+            <span
+              v-if="index !== Object.entries(card.annual_fee)
+                .filter(([brand, fee]) => fee).length - 1"
+            >
+              |
+            </span>
+          </template>
+          </div>
+        </div>
+
+          <!-- 오른쪽 -->
           <div class="card-detail-summary">
             <p class="card-detail-company">
               {{ card.company }}
@@ -142,7 +165,7 @@ onMounted(fetchCardDetail)
             </button>
         </section>
 
-        <section class="card-detail-section">
+        <!-- <section class="card-detail-section">
           <h2>연회비</h2>
 
           <ul class="card-detail-fee-list">
@@ -156,7 +179,7 @@ onMounted(fetchCardDetail)
               </li>
             </template>
           </ul>
-        </section>
+        </section> -->
 
         <section class="card-detail-section">
           <h2>혜택</h2>
