@@ -23,22 +23,24 @@
         </button>
       </div>
 
-      <div class="row mt-4">
-        <div class="col-md-4">
-          <label class="form-label">시작일</label>
-          <input type="date" class="form-control" v-model="startDate" />
+      <div class="date-row">
+
+        <div class="date-group">
+          <div class="field">
+            <label>시작일</label>
+            <input type="date" v-model="startDate" />
+          </div>
+
+          <div class="field">
+            <label>종료일</label>
+            <input type="date" v-model="endDate" />
+          </div>
         </div>
 
-        <div class="col-md-4">
-          <label class="form-label">종료일</label>
-          <input type="date" class="form-control" v-model="endDate" />
-        </div>
+        <button class="search-btn" @click="fetchPrices">
+          조회
+        </button>
 
-        <div class="col-md-4 d-flex align-items-end">
-          <button class="btn btn-primary w-100" @click="fetchPrices">
-            조회
-          </button>
-        </div>
       </div>
 
       <p v-if="errorMessage" class="text-danger mt-3">
