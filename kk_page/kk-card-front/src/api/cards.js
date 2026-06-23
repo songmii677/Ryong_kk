@@ -18,3 +18,7 @@ export function getRecommendCards(category, limit = 3) {
     },
   })
 }
+
+export const getAiRecommendCards = function (payload) {
+  return axios.post('http://127.0.0.1:8000/api/cards/ai-recommend/', payload)
+}
