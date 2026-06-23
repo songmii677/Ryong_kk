@@ -1,9 +1,13 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, unref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getRecommendCards } from '@/api/cards'
+import axios from 'axios'
+import { useAccountStore } from '@/stores/accounts'
 
 const router = useRouter()
+const accountStore = useAccountStore()
+const isSaving = ref(false)
 
 const selectedCategory = ref('')
 const persona = ref({
@@ -143,6 +147,49 @@ const handleCardimageLoad = (event) => {
   const isPortrait = image.naturalHeight > image.naturalWidth
   image.classList.toggle('is-portrait', isPortrait)
 }
+
+const saveResult = async () => {
+  const personaData = unref(persona)
+  const cardData = unref(recommendedCards) || []
+  if (!accountStore.token) {
+    alert('로그인 후 결과를 저장할 수 있습니다.')
+     return
+  }
+  if (!personaData?.title || !personaData?.desc) {
+    alert('추천 결과 정보를 찾을 수 없습니다.')
+    return
+  }
+  const requestData = {
+    persona_title: personaData.title,
+    personda_description: personaData.desc,
+    card_ids: cardData
+      .slice(0,3)
+      .map((card) => card.id),
+  }
+  try {
+    isSaving.value = true
+    await axios.post(
+      'http://127.0.0.1:8000/api/cards/results/',
+      requestData,
+      {
+        headers: {
+          Authorization: `Token ${accountStore.token}`,
+        },
+      },
+    )
+    alert('검사 결과가 저장되었습니다.')
+    router.push('/myrecommendresult')
+  } catch (error) {
+    console.error(
+      '추천 결과 저장 실패:',
+      error.response?.data || error,
+    )
+    alert ('검사 결과를 저장하지 못했습니다.')
+  } finally {
+    isSaving.value = false
+  }
+}
+
 </script>
 
 <template>
@@ -193,7 +240,7 @@ const handleCardimageLoad = (event) => {
       <button @click="router.push('/')" class="resurvey-button">
         검사 다시하기
       </button>
-      <button @click="router.push('/')" class="saveresult-button">
+      <button @click="saveResult" class="saveresult-button">
         검사 결과 저장하기
       </button>
     </div>
@@ -285,7 +332,7 @@ const handleCardimageLoad = (event) => {
   padding: 14px 24px;
   border: none;
   border-radius: 999px;
-  background-color: #222;
+  background-color: #2d9c7a;
   color: white;
   cursor: pointer;
 }

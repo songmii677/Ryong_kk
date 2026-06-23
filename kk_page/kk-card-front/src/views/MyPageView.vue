@@ -57,6 +57,10 @@ function goFavoriteCards() {
   router.push({ name: 'favorites' })
 }
 
+function goMyResult(){
+  router.push({name:'myrecommendresult'})
+}
+
 </script>
 
 <template>
@@ -88,7 +92,7 @@ function goFavoriteCards() {
         <button
           type="button"
           class="mypage-action-card"
-          @click="goResult"
+          @click="goMyResult"
         >
           <span class="mypage-action-icon">💳</span>
           <strong>나의 추천 결과</strong>
