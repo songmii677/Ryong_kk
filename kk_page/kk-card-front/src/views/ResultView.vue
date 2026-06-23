@@ -1,9 +1,13 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, unref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getRecommendCards } from '@/api/cards'
+import axios from 'axios'
+import { useAccountStore } from '@/stores/accounts'
 
 const router = useRouter()
+const accountStore = useAccountStore()
+const isSaving = ref(false)
 
 const selectedCategory = ref('')
 const persona = ref({
@@ -113,6 +117,48 @@ const handleCardimageLoad = (event) => {
   image.classList.toggle('is-landscape-card', !isPortrait)
 }
 
+const saveResult = async () => {
+  const personaData = unref(persona)
+  const cardData = unref(recommendedCards) || []
+  if (!accountStore.token) {
+    alert('로그인 후 결과를 저장할 수 있습니다.')
+     return
+  }
+  if (!personaData?.title || !personaData?.desc) {
+    alert('추천 결과 정보를 찾을 수 없습니다.')
+    return
+  }
+  const requestData = {
+    persona_title: personaData.title,
+    personda_description: personaData.desc,
+    card_ids: cardData
+      .slice(0,3)
+      .map((card) => card.id),
+  }
+  try {
+    isSaving.value = true
+    await axios.post(
+      'http://127.0.0.1:8000/api/cards/results/',
+      requestData,
+      {
+        headers: {
+          Authorization: `Token ${accountStore.token}`,
+        },
+      },
+    )
+    alert('검사 결과가 저장되었습니다.')
+    router.push('/myrecommendresult')
+  } catch (error) {
+    console.error(
+      '추천 결과 저장 실패:',
+      error.response?.data || error,
+    )
+    alert ('검사 결과를 저장하지 못했습니다.')
+  } finally {
+    isSaving.value = false
+  }
+}
+
 const goDetail = (cardId) => {
   router.push(`/cards/${cardId}`)
 }
@@ -121,7 +167,6 @@ const getCardBenefits = (card) => {
   if (!card.benefits || !selectedCategory.value) {
     return []
   }
-
   const benefits = card.benefits[selectedCategory.value]
 
   if (!Array.isArray(benefits)) {

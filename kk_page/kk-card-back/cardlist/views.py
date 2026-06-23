@@ -1,10 +1,11 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
-from .models import Card
-from .serializers import CardSerializer
+from .models import Card, RecommendResult
+from .serializers import CardSerializer, ResultSerializer
+from rest_framework.permissions import IsAuthenticated
 
 from .filters import CardFilter
 
@@ -61,3 +62,41 @@ def recommend_cards(request):
     serializer = CardSerializer(recommended_cards, many=True)
 
     return Response(serializer.data)
+
+@api_view(["GET","POST"])
+@permission_classes([IsAuthenticated])
+def recommend_results(request):
+    if request.method =="GET":
+        results = (
+            RecommendResult.objects
+            .filter(user=request.user)
+            .prefetch_related("card_list")
+            .order_by("-id")
+        )
+        serializer = ResultSerializer(
+            results,
+            many=True
+        )
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK,
+        )
+    if request.method == "POST":
+        serializer = ResultSerializer(
+            data=request.data,
+        )
+        if serializer.is_valid():
+            result = serializer.save(
+                user=request.user,
+            )
+            Response_serizlier = ResultSerializer(
+                result,
+            )
+            return Response(
+                Response_serizlier.data,
+                status=status.HTTP_201_CREATED,
+            )
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST,
+        )
