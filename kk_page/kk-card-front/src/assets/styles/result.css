@@ -313,6 +313,15 @@
   font-weight: 700;
 }
 
+.card-notice {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 12px;
+  color: #999;
+  line-height: 1.5;
+}
+
+
 /* 태블릿 */
 @media (max-width: 900px) {
   .result-page {
