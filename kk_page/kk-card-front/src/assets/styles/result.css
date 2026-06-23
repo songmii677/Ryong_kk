@@ -1,4 +1,6 @@
-/* Result - Web Layout */
+/* =========================
+   Result - 전체 페이지
+========================= */
 
 .result-page {
   width: 100%;
@@ -6,7 +8,13 @@
   min-height: 100vh;
   margin: 0;
   padding: 56px 32px 72px;
-  background: linear-gradient(180deg, #f4fbff 0%, #f7fcff 100%);
+
+  background: linear-gradient(
+    180deg,
+    #f4fbff 0%,
+    #f7fcff 100%
+  );
+
   box-sizing: border-box;
 }
 
@@ -18,55 +26,65 @@
 
 .result-page-title {
   margin: 0 0 22px;
-  text-align: center;
+
   color: #2d9c7a;
   font-size: 24px;
   font-weight: 900;
+  text-align: center;
 }
 
-/* 상단 전체 */
+
+/* =========================
+   상단 결과 유형 영역
+========================= */
+
 .result-top {
   display: grid;
-
-  /* 왼쪽 유형 박스 넓게 / 오른쪽 AI 박스 고정 */
   grid-template-columns: minmax(0, 2fr) 180px;
-
   gap: 22px;
+
   margin-bottom: 20px;
 }
 
 /* 왼쪽 유형 박스 */
 .persona-box {
-  min-height: 150px;
-  padding: 34px 42px;
-  border-radius: 32px;
-  background: #ffffff;
-  box-shadow: 0 14px 30px rgba(74, 143, 180, 0.14);
-
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  min-height: 150px;
+  padding: 34px 42px;
+
+  border-radius: 32px;
+  background-color: #ffffff;
+  box-shadow: 0 14px 30px rgba(74, 143, 180, 0.14);
+
+  box-sizing: border-box;
 }
 
 /* 오른쪽 AI 박스 */
 .ai-box {
-  min-height: 150px;
-  padding: 28px 30px;
-  border-radius: 32px;
-  background: #ffffff;
-  box-shadow: 0 14px 30px rgba(74, 143, 180, 0.14);
-
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+
+  min-height: 150px;
+  padding: 28px 30px;
+
+  border-radius: 32px;
+  background-color: #ffffff;
+  box-shadow: 0 14px 30px rgba(74, 143, 180, 0.14);
+
+  box-sizing: border-box;
   text-align: center;
 }
 
 .type-title {
   margin: 0;
-  color: #222;
+
+  color: #222222;
   font-size: 34px;
   font-weight: 900;
   line-height: 1.25;
@@ -74,6 +92,7 @@
 
 .type-desc {
   margin: 14px 0 0;
+
   color: #2d9c7a;
   font-size: 18px;
   font-weight: 900;
@@ -83,58 +102,85 @@
 .ai-button {
   width: 104px;
   height: 42px;
+
   border: 1.5px solid #48c78e;
   border-radius: 999px;
-  background: #ffffff;
+  background-color: #ffffff;
+
   color: #2d9c7a;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 900;
-  font-family: inherit;
+
   cursor: pointer;
+
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
+}
+
+.ai-button:hover {
+  background-color: #f2fcf7;
+  transform: translateY(-2px);
 }
 
 .ai-caption {
   margin: 0;
+
   color: #6b756f;
   font-size: 13px;
   font-weight: 700;
   line-height: 1.5;
 }
 
-/* 가운데 안내 문구 */
+
+/* =========================
+   안내 문구
+========================= */
+
 .result-message {
   margin: 0 0 32px;
-  text-align: center;
-  color: #666;
+
+  color: #666666;
   font-size: 15px;
   font-weight: 600;
   line-height: 1.6;
+  text-align: center;
 }
 
 
-/* 추천 카드 3개 */
+/* =========================
+   추천 카드 목록
+========================= */
+
 .recommend-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+
   margin-bottom: 34px;
 }
 
 .recommend-card {
-  min-width: 0;
-  background: white;
-  border-radius: 30px;
-  padding: 28px;
-  box-shadow: 0 10px 24px rgba(74, 143, 180, 0.14);
-  border: 1px solid #e4f4ee;
-  cursor: pointer;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
 
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 0;
+  padding: 28px;
+
+  border: 1px solid #e4f4ee;
+  border-radius: 30px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 24px rgba(74, 143, 180, 0.14);
+
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .recommend-card:hover {
@@ -142,40 +188,91 @@
   box-shadow: 0 16px 32px rgba(74, 143, 180, 0.2);
 }
 
-/* 이미지 */
-.card-image-area {
+
+/* =========================
+   카드 상세 링크
+========================= */
+
+.card-detail-link {
+  display: block;
+
   width: 100%;
-  height: 180px;
-  margin-bottom: 22px;
 
-  background: transparent;
-  border-radius: 0;
+  color: inherit;
+  text-decoration: none;
+}
 
+.card-detail-link:focus-visible {
+  border-radius: 16px;
+  outline: 2px solid #2d9c7a;
+  outline-offset: 4px;
+}
+
+
+/* =========================
+   카드 이미지 크기 통일
+========================= */
+
+/*
+  모든 이미지가 들어가는 영역의 크기는 동일하게 고정
+*/
+.card-image-area {
   display: flex;
   align-items: center;
   justify-content: center;
 
+  width: 100%;
+  height: 170px;
+  margin-bottom: 22px;
+
   overflow: hidden;
 }
 
-/* 공통 이미지 */
-.card-image {
+/*
+  기본 가로형 이미지
+  최종 화면 크기: 220px × 136px
+*/
+.card-image-area .card-image {
   display: block;
+
+  width: 220px;
+  height: 136px;
+
+  max-width: none;
+  max-height: none;
+
   object-fit: contain;
+  object-position: center;
+  transform: none;
   transform-origin: center;
 }
 
-/* 가로형 카드 */
-.card-image.is-landscape-card {
-  width: 250px;
-  height: 155px;
+/*
+  원본이 세로형인 카드
+
+  회전 전 크기를 136px × 220px로 지정하면
+  270도 회전 후 화면에서는 220px × 136px로 보임
+*/
+.card-image-area .card-image.is-portrait{
+  width: 136px;
+  height: 220px;
+
+  max-width: none;
+  max-height: none;
+
+  object-fit: contain;
+  object-position: center;
+
+  transform: rotate(270deg);
+  transform-origin: center;
 }
 
-/* 세로형 카드 원본은 가로 카드처럼 회전 */
-.card-image.is-portrait-card {
-  width: 155px;
-  height: 250px;
-  transform: rotate(90deg) scale(2.5);
+.card-detail-link:hover .card-image:not(.is-portrait) {
+  transform: scale(1.03);
+}
+
+.card-detail-link:hover .card-image.is-portrait {
+  transform: rotate(270deg) scale(1.03);
 }
 
 .image-placeholder {
@@ -184,13 +281,18 @@
   font-weight: 900;
 }
 
-/* 카드 정보 */
+
+/* =========================
+   카드 정보
+========================= */
+
 .card-info-area {
   width: 100%;
 }
 
 .company {
   margin: 0 0 12px;
+
   font-size: 14px;
   font-weight: 900;
   line-height: 1.4;
@@ -210,147 +312,223 @@
 
 .card-name {
   margin: 0 0 18px;
-  color: #222;
+
+  color: #222222;
   font-size: 22px;
   font-weight: 900;
   line-height: 1.35;
+
   word-break: keep-all;
 }
+
+
+/* =========================
+   카드 혜택
+========================= */
 
 .benefit-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
+
   margin: 0;
   padding: 0;
+
   list-style: none;
 }
 
 .benefit-list li {
   padding: 10px 12px;
+
   border-radius: 16px;
-  background: #f7fcff;
-  color: #555;
+  background-color: #f7fcff;
+
+  color: #555555;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.45;
+
   word-break: keep-all;
 }
 
 .reason {
   margin: 0;
   padding: 14px 12px;
+
   border-radius: 16px;
-  background: #f7fcff;
-  color: #555;
+  background-color: #f7fcff;
+
+  color: #555555;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.5;
 }
 
-/* 카드 아래 다른 카드 더보기 */
+
+/* =========================
+   다른 카드 더보기
+========================= */
+
 .more-card-row {
   display: flex;
   justify-content: center;
+
   margin: 6px 0 22px;
 }
 
-.more-button {
+.more-card-row .more-button {
   width: 186px;
   height: 42px;
+  padding: 0;
 
-  border-radius: 999px;
   border: 1.5px solid #dcecf5;
-  background: #ffffff;
-  color: #2d9c7a;
+  border-radius: 999px;
+  background-color: #2d9c7a;
+  box-shadow: 0 8px 18px rgba(160, 205, 144, 0.18);
+
+  color: #dcecf5;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 900;
-  font-family: inherit;
+
   cursor: pointer;
-  box-shadow: 0 8px 18px rgba(160, 205, 144, 0.18);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
-.more-button:hover {
-  background: #f4fce9;
+.more-card-row .more-button:hover {
+  background-color: #f4fce9;
   transform: translateY(-2px);
 }
 
-/* 하단 버튼 2개 */
+
+/* =========================
+   하단 버튼
+========================= */
+
+.button-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  width: 100%;
+  margin-top: 28px;
+}
+
+.button-group > .more-button,
+.button-group > .resurvey-button,
+.button-group > .saveresult-button {
+  min-width: 150px;
+  margin: 0;
+  padding: 14px 24px;
+
+  border: none;
+  border-radius: 999px;
+  background-color: #2d9c7a;
+
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.button-group > .more-button:hover,
+.button-group > .resurvey-button:hover,
+.button-group > .saveresult-button:hover {
+  background-color: #238667;
+  box-shadow: 0 8px 18px rgba(45, 156, 122, 0.2);
+  transform: translateY(-2px);
+}
+
+.button-group button:disabled {
+  background-color: #a8cfc0;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+
+/* 기존 bottom-actions를 사용하는 경우 */
 .bottom-actions {
   display: flex;
   justify-content: center;
   gap: 12px;
 }
 
-/* 테스트 다시하기 / 결과 저장하기: 더 작고 연하게 */
 .sub-button {
   width: 140px;
   height: 40px;
-  border-radius: 999px;
+
   border: 1.5px solid #dcecf5;
-  background: #ffffff;
+  border-radius: 999px;
+  background-color: #ffffff;
+  box-shadow: 0 6px 14px rgba(74, 143, 180, 0.1);
+
   color: #2d9c7a;
+  font-family: inherit;
   font-size: 13px;
   font-weight: 800;
-  font-family: inherit;
+
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(74, 143, 180, 0.1);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .sub-button:hover {
-  transform: translateY(-2px);
   border-color: #9de6c8;
-  background: #f7fffb;
+  background-color: #f7fffb;
+  transform: translateY(-2px);
 }
+
+
+/* =========================
+   빈 결과
+========================= */
 
 .empty-message {
   padding: 80px 0;
-  text-align: center;
-  color: #777;
+
+  color: #777777;
   font-size: 15px;
   font-weight: 700;
+  text-align: center;
 }
 
-.card-image.is-portrait {
-  width: 170px;
-  height: 120px;
-  max-width: none;
-  max-height: none;
-  object-fit: contain;
-  transform: rotate(270deg);
-  transform-origin: center;
-}
-.button-group {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 28px;
-  /* gap: 16x; */
-}
-.more-button,
-.resurvey-button,
-.saveresult-button
- {
-  margin-top: 0;
-  padding: 14px 24px;
-  border: none;
-  border-radius: 999px;
-  background-color: #2d9c7a;
-  color: white;
-  cursor: pointer;
-}
 
-/* 태블릿 */
+/* =========================
+   태블릿
+========================= */
+
 @media (max-width: 900px) {
   .result-page {
     padding: 40px 20px 60px;
   }
 
-  .result-hero {
+  .result-top {
+    grid-template-columns: minmax(0, 1fr) 170px;
+    gap: 16px;
+  }
+
+  .persona-box {
     padding: 28px 24px;
+  }
+
+  .ai-box {
+    padding: 24px 18px;
   }
 
   .recommend-list {
@@ -361,14 +539,22 @@
     padding: 22px 16px;
   }
 
-  .card-image-area {
-    width: 120px;
-    height: 120px;
+  .card-image {
+    width: 180px;
+    height: 112px;
   }
 
-  .card-image {
-    max-width: 92px;
-    max-height: 92px;
+  .card-image.is-portrait {
+    width: 112px;
+    height: 180px;
+  }
+
+  .card-detail-link:hover .card-image:not(.is-portrait) {
+    transform: scale(1.03);
+  }
+
+  .card-detail-link:hover .card-image.is-portrait {
+    transform: rotate(270deg) scale(1.03);
   }
 
   .card-name {
@@ -378,19 +564,62 @@
   .benefit-list li {
     font-size: 12px;
   }
-
-  .result-actions {
-    grid-template-columns: 1fr 1.4fr 1fr;
-  }
 }
 
+.saveresult-button {
+  width: 140px;
+  height: 40px;
+  padding: 0;
+
+  border: 1.5px solid #dcecf5;
+  border-radius: 999px;
+  background-color: #ffffff;
+  box-shadow: 0 6px 14px rgba(74, 143, 180, 0.1);
+
+  color: #2d9c7a;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.saveresult-button:hover {
+  border-color: #9de6c8;
+  background-color: #f7fffb;
+  transform: translateY(-2px);
+}
+
+.saveresult-button:disabled {
+  color: #8ca99e;
+  border-color: #dfe9e5;
+  background-color: #f2f6f4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* =========================
+   모바일
+========================= */
+
 @media (max-width: 640px) {
+  .result-page {
+    padding: 30px 18px 50px;
+  }
+
   .result-top {
     grid-template-columns: 1fr;
   }
 
   .persona-box,
   .ai-box {
+    min-height: auto;
     padding: 24px 20px;
   }
 
@@ -400,13 +629,12 @@
   }
 
   .type-desc {
-    text-align: center;
     font-size: 16px;
+    text-align: center;
   }
 
   .result-message {
-    margin: 0 0 24px;
-    text-align: center;
+    margin-bottom: 24px;
   }
 
   .ai-button {
@@ -414,12 +642,40 @@
     max-width: 220px;
   }
 
+  .recommend-list {
+    grid-template-columns: 1fr;
+  }
+
+  .recommend-card {
+    width: 100%;
+  }
+  .card-image {
+    width: 200px;
+    height: 124px;
+  }
+
+  .card-image.is-portrait {
+    width: 124px;
+    height: 200px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .button-group > .more-button,
+  .button-group > .resurvey-button,
+  .button-group > .saveresult-button {
+    width: 100%;
+    max-width: 280px;
+  }
+
   .bottom-actions {
     flex-direction: column;
     align-items: center;
   }
 
-  .more-button,
+  .more-card-row .more-button, .saveresult-button
   .sub-button {
     width: 100%;
     max-width: 260px;
