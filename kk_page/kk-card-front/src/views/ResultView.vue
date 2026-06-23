@@ -8,6 +8,7 @@ import { useAccountStore } from '@/stores/accounts'
 const router = useRouter()
 const accountStore = useAccountStore()
 const isSaving = ref(false)
+const isSaved = ref(false)
 
 const selectedCategory = ref('')
 const persona = ref({
@@ -110,34 +111,31 @@ onMounted(async () => {
   }
 })
 
-const handleCardimageLoad = (event) => {
+const handleCardImageLoad = (event) => {
   const image = event.currentTarget
   const isPortrait = image.naturalHeight > image.naturalWidth
-  image.classList.toggle('is-portrait-card', isPortrait)
-  image.classList.toggle('is-landscape-card', !isPortrait)
+  image.classList.toggle('is-portrait', isPortrait)
 }
 
+
 const saveResult = async () => {
+  if (isSaving.value || isSaved.value) return
+
   const personaData = unref(persona)
   const cardData = unref(recommendedCards) || []
-  if (!accountStore.token) {
-    alert('로그인 후 결과를 저장할 수 있습니다.')
-     return
-  }
-  if (!personaData?.title || !personaData?.desc) {
-    alert('추천 결과 정보를 찾을 수 없습니다.')
-    return
-  }
+
   const requestData = {
     persona_title: personaData.title,
-    personda_description: personaData.desc,
+    persona_description: personaData.desc,
     card_ids: cardData
-      .slice(0,3)
+      .slice(0, 3)
       .map((card) => card.id),
   }
+
   try {
     isSaving.value = true
-    await axios.post(
+
+    const response = await axios.post(
       'http://127.0.0.1:8000/api/cards/results/',
       requestData,
       {
@@ -146,18 +144,27 @@ const saveResult = async () => {
         },
       },
     )
-    alert('검사 결과가 저장되었습니다.')
-    router.push('/myrecommendresult')
+
+    isSaved.value = true
+
+    if (response.data.already_saved) {
+      alert('이미 저장된 추천 결과입니다.')
+      return
+    }
+
+    alert('추천 결과가 저장되었습니다.')
   } catch (error) {
     console.error(
       '추천 결과 저장 실패:',
       error.response?.data || error,
     )
-    alert ('검사 결과를 저장하지 못했습니다.')
+
+    alert('추천 결과를 저장하지 못했습니다.')
   } finally {
     isSaving.value = false
   }
 }
+
 
 const goDetail = (cardId) => {
   router.push(`/cards/${cardId}`)
@@ -244,7 +251,7 @@ const getCardTypeText = (cardType) => {
               :src="card.image_url"
               :alt="card.name"
               class="card-image"
-              @load="handleCardimageLoad"
+              @load="handleCardImageLoad"
             />
 
             <span
@@ -306,10 +313,11 @@ const getCardTypeText = (cardType) => {
         >
           테스트 다시하기
         </button>
-
         <button
-          @click="router.push('/')"
-          class="sub-button"
+        type="button"
+          class="saveresult-button"
+          :disabled="isSaving || isSaved"
+          @click="saveResult"
         >
           결과 저장하기
         </button>

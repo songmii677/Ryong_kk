@@ -1,8 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
-
 import { useAccountStore } from '@/stores/accounts'
+import deleteIcon from '@/assets/delete-icon.png'
+// import { P } from 'vue-router/dist/index-BQLwgiyK.js'
 
 const accountStore = useAccountStore()
 
@@ -38,6 +39,44 @@ const getMyResults = async () => {
     isLoading.value = false
   }
 }
+
+
+const removeResult = async (resultId) => {
+  const confirmed = window.confirm(
+    '저장된 추천 결과를 삭제하시겠습니까?',
+  )
+
+  // Confirmed가 아니라 confirmed
+  if (!confirmed) return
+
+  try {
+    await axios.delete(
+      `http://127.0.0.1:8000/api/cards/results/${resultId}/`,
+      {
+        headers: {
+          Authorization: `Token ${accountStore.token}`,
+        },
+      },
+    )
+
+    // 삭제된 결과를 화면에서도 즉시 제거
+    results.value = results.value.filter(
+      (result) => result.id !== resultId,
+    )
+
+    alert('추천 결과가 삭제되었습니다.')
+  } catch (error) {
+    console.error(
+      '추천 결과 삭제 실패:',
+      error.response?.status,
+      error.response?.data || error,
+    )
+
+    alert('추천 결과를 삭제하지 못했습니다.')
+  }
+}
+
+
 
 // 마이페이지가 열릴 때 GET 요청
 onMounted(() => {
@@ -83,11 +122,24 @@ function handleCardImageLoad(event) {
       v-else
       class="result-list"
     >
-      <article
-        v-for="result in results"
-        :key="result.id"
-        class="result-box"
+
+    <article
+      v-for="result in results"
+      :key="result.id"
+      class="result-box"
+    >
+      <button
+        type="button"
+        class="result-remove-button"
+        aria-label="추천 결과 삭제"
+        @click.stop="removeResult(result.id)"
       >
+        <img
+          :src="deleteIcon"
+          alt=""
+        />
+      </button>
+
         <div class="result-row">
           <!-- 왼쪽: 설문 결과 -->
           <div class="persona-area">
@@ -124,7 +176,7 @@ function handleCardImageLoad(event) {
                     class="card-image"
                     @load="handleCardImageLoad"
                   />
-
+                
                   <span
                     v-else
                     class="image-placeholder"
@@ -133,7 +185,6 @@ function handleCardImageLoad(event) {
                   </span>
                 </div>
             </RouterLink>
-
               <p class="card-company">
                 {{ card.company }}카드
               </p>
