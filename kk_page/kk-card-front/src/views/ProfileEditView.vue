@@ -10,16 +10,90 @@ const accountStore = useAccountStore()
 const currentPassword = ref('')
 const newPassword = ref('')
 const confirmPassword = ref('')
-const passwordError = ref('')
+
+const currentPasswordError = ref('')
+const newPasswordError = ref('')
+function validatePassword() {
+
+  const password = newPassword.value
+  const userId =
+    accountStore.user?.username ||
+    localStorage.getItem('username') ||
+    ''
+
+  const hasLetter =
+    /[A-Za-z]/.test(password)
+
+  const hasNumber =
+    /[0-9]/.test(password)
+
+  const hasSpecial =
+    /[!@#$%^&*(),.?":{}|<>_\-+=\/\\[\]]/.test(password)
+
+  if(password.length < 8){
+    newPasswordError.value =
+      '비밀번호는 8자 이상이어야 합니다.'
+    return false
+  }
+
+  if(
+    !hasLetter ||
+    !hasNumber ||
+    !hasSpecial
+  ){
+    newPasswordError.value =
+      '비밀번호는 영문, 숫자, 특수문자를 모두 포함해야 합니다.'
+    return false
+  }
+
+  if(
+    password.includes('1234') ||
+    password.includes('0000') ||
+    password.includes('1111') ||
+    password.toLowerCase().includes('password') ||
+    password.toLowerCase().includes('qwer') ||
+    password.toLowerCase().includes('abcd')
+  ){
+    newPasswordError.value =
+      '1234, password, qwer 같은 쉬운 비밀번호는 사용할 수 없습니다.'
+    return false
+  }
+
+  if(/(.)\1{3,}/.test(password)){
+    newPasswordError.value =
+      '같은 문자가 4번 이상 반복될 수 없습니다.'
+    return false
+  }
+
+  if(
+    userId.length >=3 &&
+    password
+    .toLowerCase()
+    .includes(userId.toLowerCase())
+  ){
+    newPasswordError.value =
+      '아이디와 비슷한 비밀번호는 사용할 수 없습니다.'
+    return false
+  }
+
+  if(
+    newPassword.value !==
+    confirmPassword.value
+  ){
+    newPasswordError.value =
+      '비밀번호가 일치하지 않습니다.'
+    return false
+  }
+
+  newPasswordError.value=''
+  return true
+}
 
 // 비밀번호 변경
 async function changePassword(){
-  
-  console.log('store token:', accountStore.token)
-  console.log(
-    'local token:',
-    localStorage.getItem('token')
-  )
+
+  currentPasswordError.value=''
+  newPasswordError.value=''
 
   if(
     !currentPassword.value ||
@@ -30,10 +104,7 @@ async function changePassword(){
     return
   }
 
-  if(
-    newPassword.value !== confirmPassword.value
-  ){
-    alert('새 비밀번호가 일치하지 않습니다.')
+  if(!validatePassword()){
     return
   }
 
@@ -56,19 +127,23 @@ async function changePassword(){
 
   }catch(err){
 
-    console.log(err)
+  const errorData =
+    err.response?.data
 
-    console.log(err.response?.data)
+  // 현재 비밀번호 틀림
+  if(errorData?.old_password){
+    currentPasswordError.value =
+      errorData.old_password[0]
+  }
 
-    const message =
-      Object.values(
-        err.response?.data || {}
-      )
+  // 서버 비밀번호 에러
+  else{
+    newPasswordError.value =
+      Object.values(errorData || {})
       .flat()
       .join('\n')
-
-    alert(message || '비밀번호 변경 실패')
   }
+}
 }
 
 // 새 비번 확인
@@ -80,11 +155,11 @@ watch(
       confirmPassword.value &&
       newPassword.value !== confirmPassword.value
     ){
-      passwordError.value =
+      newPasswordError.value =
       '비밀번호가 일치하지 않습니다.'
     }
     else{
-      passwordError.value=''
+      newPasswordError.value=''
     }
 
   }
@@ -109,7 +184,7 @@ async function deleteAccount(){
 
     alert('회원 탈퇴가 완료되었습니다.')
 
-    router.push('/')
+    window.location.href='/'
 
   }catch(err){
 
@@ -121,14 +196,12 @@ async function deleteAccount(){
 
 </script>
 
-
 <template>
 <main class="mypage-page">
 
 <section class="mypage-container">
 
 <div class="profile-card">
-
 
 <h1>
 회원 정보 수정
@@ -143,6 +216,8 @@ class="password-form"
 @submit.prevent="changePassword"
 >
 
+<!-- 현재 비밀번호 -->
+
 <div class="form-group">
 
 <label>
@@ -155,8 +230,17 @@ v-model="currentPassword"
 placeholder="현재 비밀번호 입력"
 />
 
+<p
+v-if="currentPasswordError"
+class="password-error"
+>
+{{ currentPasswordError }}
+</p>
+
 </div>
 
+
+<!-- 새 비밀번호 -->
 
 <div class="form-group">
 
@@ -170,8 +254,24 @@ v-model="newPassword"
 placeholder="새 비밀번호 입력"
 />
 
+<ul class="password-guide">
+<li>비밀번호는 8자 이상이어야 합니다.</li>
+<li>영문, 숫자, 특수문자를 모두 포함해야 합니다.</li>
+<li>1234, password, qwer 같은 쉬운 비밀번호는 사용할 수 없습니다.</li>
+<li>아이디와 비슷한 비밀번호는 사용할 수 없습니다.</li>
+</ul>
+
+<p
+v-if="newPasswordError"
+class="password-error"
+>
+{{ newPasswordError }}
+</p>
+
 </div>
 
+
+<!-- 새 비밀번호 확인 -->
 
 <div class="form-group">
 
@@ -185,15 +285,8 @@ v-model="confirmPassword"
 placeholder="새 비밀번호 다시 입력"
 />
 
-<p
-v-if="passwordError"
-class="password-error"
->
-{{ passwordError }}
-</p>
-
-
 </div>
+
 
 <button
 type="submit"
@@ -204,7 +297,9 @@ class="save-btn"
 
 </form>
 
+
 <!-- 회원 탈퇴 -->
+
 <button
 class="delete-btn"
 @click="deleteAccount"
@@ -217,7 +312,6 @@ class="delete-btn"
 </p>
 
 </div>
-
 
 </section>
 
@@ -337,6 +431,32 @@ font-size:14px;
 color:#ff5757;
 margin-top:6px;
 font-weight:600;
+}
+
+.password-guide{
+margin:4px 0 0;
+padding:12px 14px 12px 28px;
+border-radius:14px;
+background:#e5fff4;
+color:#3f6257;
+font-size:12px;
+line-height:1.6;
+}
+
+.password-guide li{
+margin-bottom:3px;
+}
+
+.password-error{
+margin-top:6px;
+padding:10px 12px;
+border-radius:12px;
+background:#fff0f0;
+color:#d93025;
+font-size:13px;
+font-weight:700;
+line-height:1.5;
+white-space:pre-line;
 }
 
 </style>
