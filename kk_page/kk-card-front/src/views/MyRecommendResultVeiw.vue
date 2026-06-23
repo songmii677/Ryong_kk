@@ -137,6 +137,7 @@ function handleCardImageLoad(event) {
         <img
           :src="deleteIcon"
           alt=""
+
         />
       </button>
 
