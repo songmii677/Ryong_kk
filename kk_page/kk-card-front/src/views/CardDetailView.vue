@@ -182,7 +182,7 @@ onMounted(fetchCardDetail)
         </section> -->
 
         <section class="card-detail-section">
-          <h2>혜택</h2>
+          <h2>주요 혜택</h2>
 
           <template
             v-for="(items, category) in card.benefits"
