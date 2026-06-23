@@ -69,6 +69,18 @@ export function deleteArticle(
   )
 }
 
+// 내가 작성한 글/댓글
+export function getMyCommunity(token) {
+  return axios.get(
+    `${API_URL}my/`,
+    {
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    }
+  )
+}
+
 // 게시글 좋아요
 export function toggleArticleLike(articleId, token) {
   return axios.post(
