@@ -36,7 +36,7 @@ const normalizeComments = (commentList = []) => {
 
 // 게시글 불러오기
 onMounted(async () => {
-  const res = await getArticle(route.params.id)
+  const res = await getArticle(route.params.id, accountStore.token)
 
   article.value = {
     ...res.data,
@@ -66,7 +66,7 @@ const submitComment = async () => {
 
   commentInput.value = ''
 
-  const res = await getArticle(route.params.id)
+  const res = await getArticle(route.params.id, accountStore.token)
   comments.value = normalizeComments(res.data.comments)
 }
 
@@ -115,7 +115,7 @@ const submitEdit = async (commentId) => {
 
   cancelEdit()
 
-  const res = await getArticle(route.params.id)
+  const res = await getArticle(route.params.id, accountStore.token)
   comments.value = normalizeComments(res.data.comments)
 }
 
@@ -130,7 +130,7 @@ const deleteComment = async (id) => {
     accountStore.token,
   )
 
-  const res = await getArticle(route.params.id)
+  const res = await getArticle(route.params.id, accountStore.token)
   comments.value = normalizeComments(res.data.comments)
 }
 
@@ -573,7 +573,6 @@ const toggleCommentLikeHandler = async (comment) => {
   border-bottom: 1px solid #edf2ef;
 }
 
-/* 마지막 댓글 아래 선 제거 */
 .comment.is-last-comment {
   border-bottom: none;
 }

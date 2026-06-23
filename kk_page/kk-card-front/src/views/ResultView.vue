@@ -16,19 +16,14 @@ const persona = ref({
 })
 const recommendedCards = ref([])
 
-// 카테고리 점수 계산 함수
 function analyzeAnswers() {
   const answers =
-    JSON.parse(
-      localStorage.getItem('surveyAnswers')
-    ) || []
+    JSON.parse(localStorage.getItem('surveyAnswers')) || []
 
   const categoryScore = {}
-
   let cardType = 'credit'
 
   answers.forEach(answer => {
-
     if (answer.key === 'card_type') {
       cardType = answer.value
     }
@@ -50,51 +45,35 @@ function analyzeAnswers() {
 }
 
 function getPersona(cardType, category) {
-
-  if (
-    cardType === 'check' &&
-    category === '음식/카페'
-  ) {
+  if (cardType === 'check' && category === '음식/카페') {
     return {
       title: '☕ 카페 러버',
       desc: '카페와 외식, 배달을 즐기는 소비형'
     }
   }
 
-  if (
-    cardType === 'check' &&
-    category === '통신'
-  ) {
+  if (cardType === 'check' && category === '통신') {
     return {
       title: '💸 알뜰한 생활러',
       desc: '고정 지출을 아끼는 실속형'
     }
   }
 
-  if (
-    cardType === 'credit' &&
-    category === '쇼핑/간편결제'
-  ) {
+  if (cardType === 'credit' && category === '쇼핑/간편결제') {
     return {
       title: '🛍️ 혜택 사냥꾼',
       desc: '쇼핑 할인과 적립을 적극 활용하는 타입'
     }
   }
 
-  if (
-    cardType === 'credit' &&
-    category === '여행'
-  ) {
+  if (cardType === 'credit' && category === '여행') {
     return {
       title: '✈️ 여행 준비러',
       desc: '항공과 숙박 혜택을 중요하게 생각하는 타입'
     }
   }
 
-  if (
-    cardType === 'credit' &&
-    category === '문화/생활'
-  ) {
+  if (cardType === 'credit' && category === '문화/생활') {
     return {
       title: '🎬 OTT 마스터',
       desc: '넷플릭스와 구독 서비스를 즐기는 타입'
@@ -108,35 +87,24 @@ function getPersona(cardType, category) {
 }
 
 onMounted(async () => {
-
   const result = analyzeAnswers()
 
-  selectedCategory.value =
-    result.topCategory
+  selectedCategory.value = result.topCategory
 
   persona.value =
-    getPersona(
-      result.cardType,
-      result.topCategory
-    )
+    getPersona(result.cardType, result.topCategory)
 
   try {
-
     const response =
-      await getRecommendCards(
-        selectedCategory.value,
-        3
-      )
+      await getRecommendCards(selectedCategory.value, 3)
 
-    const data =
-      response?.data ?? response
+    const data = response?.data ?? response
 
     if (Array.isArray(data)) {
       recommendedCards.value = data
     } else if (Array.isArray(data.cards)) {
       recommendedCards.value = data.cards
     }
-
   } catch (error) {
     console.error(error)
   }
@@ -145,7 +113,8 @@ onMounted(async () => {
 const handleCardimageLoad = (event) => {
   const image = event.currentTarget
   const isPortrait = image.naturalHeight > image.naturalWidth
-  image.classList.toggle('is-portrait', isPortrait)
+  image.classList.toggle('is-portrait-card', isPortrait)
+  image.classList.toggle('is-landscape-card', !isPortrait)
 }
 
 const saveResult = async () => {
@@ -192,35 +161,14 @@ const saveResult = async () => {
 
 </script>
 
-<template>
-  <main class="result-page">
-    <h1>당신은 {{ persona.title }} !</h1>
-    <p><strong>{{ persona.desc }}</strong></p>
+const goDetail = (cardId) => {
+  router.push(`/cards/${cardId}`)
+}
 
-    <p v-if="recommendedCards.length === 0">
-      추천 카드가 없습니다. API 응답 또는 카드 데이터를 확인해주세요.
-    </p>
-
-    <section v-else class="recommend-list">
-      <article
-        v-for="card in recommendedCards"
-        :key="card.id"
-        class="recommend-card"
-        @click="goDetail(card.id)"
-      >
-      <div class="card-image-area">
-        <img
-          v-if="card.image_url"
-          :src="card.image_url"
-          :alt="card.name"
-          class="card-image"
-          @load="handleCardimageLoad"
-        />
-        <p class="company">{{ card.company }}카드</p>
-      </div>
-
-        <div>
-          <h2>{{ card.name }}</h2>
+const getCardBenefits = (card) => {
+  if (!card.benefits || !selectedCategory.value) {
+    return []
+  }
 
           <ul v-if="card.benefits && card.benefits[selectedCategory]">
             <li
@@ -246,66 +194,37 @@ const saveResult = async () => {
     </div>
   </main>
 </template>
+  const benefits = card.benefits[selectedCategory.value]
 
-<style scoped>
-.result-page {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 20px;
+  if (!Array.isArray(benefits)) {
+    return []
+  }
+
+  return benefits.slice(0, 2)
 }
 
-.desc {
-  margin-bottom: 28px;
-}
+const getCardTypeText = (cardType) => {
+  if (cardType === 'credit') {
+    return '신용'
+  }
 
-.recommend-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
+  if (cardType === 'check') {
+    return '체크'
+  }
 
-.recommend-card {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 24px;
-  border-radius: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
+  return cardType || '카드'
 }
+</script>
 
-.card-image {
-  display: block;
-  width: 120px;
-  height: 170px;
-  object-fit: contain;
-}
+<template>
+  <main class="result-page">
+    <section class="result-container">
 
-.company {
-  margin: 10px 0 4px;
-  display: block;
-  color: #777;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.4;
-  word-break: keep-all;
-  padding: 20px;
-  width: 100%;
-  text-align: center;
-}
-
-.card-image-area {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: auto;
-  overflow: visible;
-  text-align: center;
-  justify-content: center;
-  width: 150px;
-  min-height: 210px;
-}
+      <section class="result-top">
+        <div class="persona-box">
+          <h1 class="type-title">
+            {{ persona.title }}
+          </h1>
 
 .card-image.is-portrait {
   width: 170px;
@@ -336,5 +255,123 @@ const saveResult = async () => {
   color: white;
   cursor: pointer;
 }
+          <p class="type-desc">
+            {{ persona.desc }}
+          </p>
+        </div>
 
-</style>
+        <div class="ai-box">
+          <button class="ai-button">
+            AI
+          </button>
+
+          <p class="ai-caption">
+            AI로 똑똑하게 <br/>
+            내 카드를 추천받자
+          </p>
+        </div>
+      </section>
+
+
+      <p class="result-message">
+            당신의 소비성향에 맞는 Top3 카드를 보여드립니다.
+      </p>
+      
+      <p
+        v-if="recommendedCards.length === 0"
+        class="empty-message"
+      >
+        추천 카드가 없습니다. API 응답 또는 카드 데이터를 확인해주세요.
+      </p>
+
+      <section
+        v-else
+        class="recommend-list"
+      >
+        <article
+          v-for="card in recommendedCards"
+          :key="card.id"
+          class="recommend-card"
+          @click="goDetail(card.id)"
+        >
+          <div class="card-image-area">
+            <img
+              v-if="card.image_url"
+              :src="card.image_url"
+              :alt="card.name"
+              class="card-image"
+              @load="handleCardimageLoad"
+            />
+
+            <span
+              v-else
+              class="image-placeholder"
+            >
+              카드
+            </span>
+          </div>
+
+          <div class="card-info-area">
+            <p class="company">
+              <span class="card-type-text">
+                {{ card.card_type === 'credit' ? '신용' : '체크' }}
+              </span>
+
+              <span class="company-divider"> | </span>
+              <span class="company-name-text">
+                {{ card.company }}카드
+              </span>
+            </p>
+
+            <h2 class="card-name">
+              {{ card.name }}
+            </h2>
+
+            <ul
+              v-if="card.benefits && card.benefits[selectedCategory]"
+              class="benefit-list"
+            >
+              <li
+                v-for="benefit in card.benefits[selectedCategory].slice(0, 3)"
+                :key="benefit"
+              >
+                {{ benefit }}
+              </li>
+            </ul>
+
+            <p v-else class="reason">
+              선택한 소비 성향과 잘 맞는 카드입니다.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <div class="more-card-row">
+        <button
+          @click="router.push('/cards')"
+          class="more-button"
+        >
+          다른 카드 더보기
+        </button>
+      </div>
+
+      <div class="bottom-actions">
+        <button
+          @click="router.push('/')"
+          class="sub-button"
+        >
+          테스트 다시하기
+        </button>
+
+        <button
+          @click="router.push('/')"
+          class="sub-button"
+        >
+          결과 저장하기
+        </button>
+      </div>
+    </section>
+  </main>
+</template>
+
+<style scoped src="@/assets/styles/result.css"></style>

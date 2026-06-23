@@ -11,9 +11,18 @@ export function getArticles() {
 }
 
 // 게시글 상세 조회
-export function getArticle(articleId) {
+export function getArticle(
+  articleId,
+  token
+) {
   return axios.get(
-    `${API_URL}articles/${articleId}/`
+    `${API_URL}articles/${articleId}/`,
+    {
+      headers: {
+        Authorization:
+          `Token ${token}`
+      }
+    }
   )
 }
 

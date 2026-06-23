@@ -56,7 +56,7 @@ function goArticle(id){
 <section class="activity-card">
 
 <h2>
-{{ username }} 님이 작성한 글
+{{ username }}님이 작성한 글
 </h2>
 
 <div
@@ -95,7 +95,7 @@ class="empty-text"
 <section class="activity-card">
 
 <h2>
-{{ username }} 님이 작성한 댓글
+{{ username }}님이 작성한 댓글
 </h2>
 
 <div v-if="comments.length">
