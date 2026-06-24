@@ -33,7 +33,7 @@ const login = async () => {
 <template>
   <main class="login-page">
     <section class="login-card">
-      <p class="badge">룡크크 로그인</p>
+      <!-- <p class="badge">룡크크 로그인</p> -->
 
       <h1>로그인</h1>
 

@@ -134,35 +134,35 @@ onMounted(fetchCardDetail)
             <p>대상: {{ card.target }}</p>
           </div>
 
-            <button
-              type="button"
-              class="detail-compare-btn"
-              :class="{ active: compareStore.isCompared(card.id) }"
-              @click.stop="toggleCompare"
-            >
-              <template v-if="compareStore.isCompared(card.id)">
-                <span class="detail-compare-icon">✓</span>
-                <span>비교함 담김</span>
-              </template>
+            <div class="detail-action-area">
+              <button
+                type="button"
+                class="detail-compare-btn"
+                :class="{ active: compareStore.isCompared(card.id) }"
+                @click.stop="toggleCompare"
+              >
+                <template v-if="compareStore.isCompared(card.id)">
+                  <span class="detail-compare-icon">✓</span>
+                  <span>비교함 담김</span>
+                </template>
 
-              <template v-else>
-                <span class="detail-compare-icon">+</span>
-                <span>비교함에 담기</span>
-              </template>
-            </button>
+                <template v-else>
+                  <span class="detail-compare-icon">+</span>
+                  <span>비교함에 담기</span>
+                </template>
+              </button>
 
-            <button
-              v-if="card"
-              type="button"
-              class="detail-favorite-circle-btn"
-              :class="{ active: favoriteStore.isFavorite(card.id) }"
-              @click.stop="toggleFavorite"
-            >
-              <span class="detail-heart-icon">
-                {{ favoriteStore.isFavorite(card.id) ? '♥' : '♡' }}
-              </span>
-
-            </button>
+              <button
+                type="button"
+                class="detail-favorite-circle-btn"
+                :class="{ active: favoriteStore.isFavorite(card.id) }"
+                @click.stop="toggleFavorite"
+              >
+                <span class="detail-heart-icon">
+                  {{ favoriteStore.isFavorite(card.id) ? '❤️' : '🤍' }}
+                </span>
+              </button>
+            </div>
         </section>
 
         <!-- <section class="card-detail-section">
