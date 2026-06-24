@@ -77,6 +77,12 @@ const handleCardImageLoad = (event) => {
 const saveResult = async () => {
   if (isSaving.value || isSaved.value) return
 
+  // 로그인하지 않은 경우 요청 자체를 보내지 않음
+  if (!accountStore.token) {
+    alert('로그인하시면 추천 결과를 저장할 수 있습니다.')
+    return
+  }
+
   const personaData = unref(persona)
   const cardData = unref(recommendedCards) || []
 
@@ -115,24 +121,31 @@ const saveResult = async () => {
       error.response?.data || error,
     )
 
+    // 토큰이 만료됐거나 유효하지 않은 경우도 로그인 안내
+    if (error.response?.status === 401) {
+      alert('로그인하시면 추천 결과를 저장할 수 있습니다.')
+      return
+    }
+
     alert('추천 결과를 저장하지 못했습니다.')
   } finally {
-  isSaving.value = false
+    isSaving.value = false
   }
 }
+
 
 
 const goDetail = (cardId) => {
   router.push(`/cards/${cardId}`)
 }
 
-const handleCardimageLoad = (event) => {
-  const image = event.currentTarget
-  const isPortrait = image.naturalHeight > image.naturalWidth
+// const handleCardimageLoad = (event) => {
+//   const image = event.currentTarget
+//   const isPortrait = image.naturalHeight > image.naturalWidth
 
-  image.classList.toggle('is-portrait-card', isPortrait)
-  image.classList.toggle('is-landscape-card', !isPortrait)
-}
+//   image.classList.toggle('is-portrait-card', isPortrait)
+//   image.classList.toggle('is-landscape-card', !isPortrait)
+// }
 </script>
 
 <template>
@@ -254,7 +267,7 @@ const handleCardimageLoad = (event) => {
                 :src="card.image_url"
                 :alt="card.name"
                 class="card-image"
-                @load="handleCardimageLoad"
+                @load="handleCardImageLoad"
               />
 
               <span
