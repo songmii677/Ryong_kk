@@ -1,8 +1,11 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, unref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getAiRecommendCards } from '@/api/cards'
 import LoadingScreen from '@/components/LoadingScreen.vue'
+import { useAccountStore } from '@/stores/accounts'
+import axios from 'axios'
+
 
 const router = useRouter()
 const accountStore = useAccountStore()
@@ -55,6 +58,12 @@ onMounted(async () => {
     console.error('AI 추천 API 오류:', error)
     errorMessage.value = 'AI 추천 결과를 불러오는 중 오류가 발생했습니다.'
     console.error(error)
+  }finally {
+    loadingDone.value = true
+
+    setTimeout(() => {
+      isLoading.value = false
+    }, 700)
   }
 })
 
@@ -108,13 +117,9 @@ const saveResult = async () => {
 
     alert('추천 결과를 저장하지 못했습니다.')
   } finally {
-    loadingDone.value = true
-
-    setTimeout(() => {
-      isLoading.value = false
-    }, 700)
+  isSaving.value = false
   }
-})
+}
 
 
 const goDetail = (cardId) => {
@@ -149,10 +154,58 @@ const handleCardimageLoad = (event) => {
             <h1 class="type-title">
               {{ persona.title }}
             </h1>
-      <section
-        v-else
-        class="recommend-list"
-      >
+
+            <p class="type-desc">
+              {{ persona.desc }}
+            </p>
+          </div>
+
+          <div class="ai-box">
+            <button class="ai-button"
+             @click="toggleAiSummary">
+              {{ showAiSummary ? '닫기' : 'AI 추천' }}
+            </button>
+
+            <p class="ai-caption">
+              AI로 똑똑하게<br />
+              추천받았어요
+            </p>
+          </div>
+        </section>
+
+        <p class="result-message">
+          당신의 소비성향에 맞는 Top3 카드를 보여드립니다.
+        </p>
+
+         <section
+          v-if="showAiSummary && aiSummary"
+          class="ai-summary-section"
+        >
+          <div class="ai-summary-header">
+            <span class="ai-summary-badge">AI 분석</span>
+          </div>
+
+          <div class="ai-summary-grid two-columns">
+            <article class="ai-summary-card">
+              <h4>유형 분석</h4>
+              <p>
+                {{ aiSummary.type_reason }}
+              </p>
+            </article>
+
+            <article class="ai-summary-card">
+              <h4>추천 이유</h4>
+              <p>
+                {{ aiSummary.recommend_reason }}
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- <section
+            v-else
+            class="recommend-list"
+            >
         <article
           v-for="card in recommendedCards"
           :key="card.id"
@@ -181,53 +234,9 @@ const handleCardimageLoad = (event) => {
               <span class="card-type-text">
                 {{ card.card_type === 'credit' ? '신용' : '체크' }}
               </span>
-
-            <p class="type-desc">
-              {{ persona.desc }}
             </p>
-          </div>
+          </div> -->
 
-          <div class="ai-box">
-            <button class="ai-button"
-             @click="toggleAiSummary">
-              {{ showAiSummary ? '닫기' : 'AI 추천' }}
-            </button>
-
-            <p class="ai-caption">
-              AI로 똑똑하게<br />
-              추천받았어요
-            </p>
-          </div>
-        </section>
-
-        <p class="result-message">
-          당신의 소비성향에 맞는 Top3 카드를 보여드립니다.
-        </p>
-
-        <section
-          v-if="showAiSummary && aiSummary"
-          class="ai-summary-section"
-        >
-          <div class="ai-summary-header">
-            <span class="ai-summary-badge">AI 분석</span>
-          </div>
-
-          <div class="ai-summary-grid two-columns">
-            <article class="ai-summary-card">
-              <h4>유형 분석</h4>
-              <p>
-                {{ aiSummary.type_reason }}
-              </p>
-            </article>
-
-            <article class="ai-summary-card">
-              <h4>추천 이유</h4>
-              <p>
-                {{ aiSummary.recommend_reason }}
-              </p>
-            </article>
-          </div>
-        </section>
 
         <section
           v-if="recommendedCards.length"
@@ -320,25 +329,15 @@ const handleCardimageLoad = (event) => {
           </button>
 
           <button
-            @click="router.push('/')"
-            class="sub-button"
+          type="button"
+            class="saveresult-button"
+            :disabled="isSaving || isSaved"
+            @click="saveResult"
           >
             결과 저장하기
           </button>
         </div>
       </template>
-    </section>
-          테스트 다시하기
-        </button>
-        <button
-        type="button"
-          class="saveresult-button"
-          :disabled="isSaving || isSaved"
-          @click="saveResult"
-        >
-          결과 저장하기
-        </button>
-      </div>
     </section>    
       <p class="card-notice">
       * 본 서비스는 카드 추천을 제공하는 플랫폼이며, 모든 선택과 이용에 대한 최종 책임은 사용자에게 있습니다. <br />
