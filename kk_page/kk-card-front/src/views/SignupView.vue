@@ -117,7 +117,7 @@ const signup = async () => {
 <template>
   <main class="signup-page">
     <section class="signup-card">
-      <p class="badge">룡크크 시작하기</p>
+      <!-- <p class="badge">룡크크 시작하기</p> -->
 
       <h1>회원가입</h1>
 
