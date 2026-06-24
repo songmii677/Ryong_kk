@@ -1,126 +1,115 @@
 [
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2 SUPER",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": 30000,
-      "etc": 30000
+      "국내": 30000
     },
     "benefits": {
       "음식/카페": [],
       "주유/교통": [],
       "쇼핑/간편결제": [],
       "여행": [
-        "해외수수료 면제 서비스",
         "국제브랜드사 수수료 1.0% 면제",
         "해외이용 수수료 0.3% 면제"
       ],
       "교육/건강": [],
       "통신": [],
       "문화/생활": [],
-      "결제": [
-        "국내외 가맹점 2.0% 청구할인"
-      ],
       "기타": [
-        "2~3개월 무이자 할부 서비스"
+        "국내외 가맹점 2.0% 청구할인",
+        "2~3개월 무이자 할부 서비스",
+        "Mastercard Platinum 서비스"
       ]
     },
     "image_url": "https://m.wooricard.com/webcontent/cdPrdImgFileList/2026/4/23/366b88ed-449b-4d86-be6d-d00afb026fb9.gif",
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=500044"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2 ROUTINE",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
-      "mastercard": 22000,
-      "etc": 22000
+      "mastercard": 28000,
+      "국내": 28000
     },
     "benefits": {
       "음식/카페": [],
       "주유/교통": [],
-      "쇼핑/간편결제": [],
+      "쇼핑/간편결제": [
+        "우리WON페이/네이버페이/카카오페이 간편결제 1,000원 청구할인",
+        "코웨이/SK인텔릭스/LG전자 가전구독 15% 할인"
+      ],
       "여행": [],
       "교육/건강": [
-        "결제선생(학원업종), 학습지업종, 밀리의서재, 교보문고 sam, YES24 크레마클럽 15% 할인"
+        "학원/학습지 15% 할인"
       ],
       "통신": [
-        "생활/통신 15% 할인",
-        "SKT, KT, LG U+, 우리WON모바일, KT M모바일, U+유모바일, SK세븐모바일 15% 할인"
+        "통신 15% 할인"
       ],
       "문화/생활": [
-        "디지털구독 30% 할인",
-        "아파트관리비, 전기·가스요금 15% 할인",
-        "코웨이, SK인텔릭스(구. SK매직), LG전자 가전구독 15% 할인",
-        "유튜브 프리미엄, 넷플릭스, 디즈니플러스, 티빙, ChatGPT 30% 할인",
-        "쿠팡 와우멤버십, 네이버플러스 멤버십, 배민클럽,컬리멤버스, T우주패스 30% 할인"
+        "아파트 관리비/전기/가스 요금 15% 할인",
+        "인터넷 서점 15% 할인",
+        "디지털콘텐츠/ChatGPT 30% 할인",
+        "쿠팡 와우/네이버플러스/배민클럽/컬리/T우주패스 멤버십 30% 할인"
       ],
-      "결제": [],
       "기타": [
         "2~3개월 무이자 할부 서비스",
-        "1,000원 통합 3회 할인",
-        "1.5% 반기별(1~6월 / 7~12월) 각 6만원 할인"
+        "해외 가맹점 및 직접결제 이용건 1.5% 청구할인"
       ]
     },
     "image_url": "https://m.wooricard.com/webcontent/cdPrdImgFileList/2026/5/12/a1245179-7166-4646-8d04-aaa4fe0a7472.gif",
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=500045"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2 SHOPPER",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": 28000,
       "mastercard": 28000,
-      "etc": 28000
+      "국내": 28000
     },
     "benefits": {
       "음식/카페": [],
       "주유/교통": [],
       "쇼핑/간편결제": [
-        "쇼핑 기본할인 10%",
-        "쇼핑 추가할인 5%",
-        "쿠팡, 네이버플러스 스토어, 마켓컬리 10% 할인",
-        "롯데/신세계/현대백화점 10% 할인",
-        "이마트, 롯데마트,트레이더스 홀세일 클럽 10% 할인",
-        "올리브영, 다이소 10% 할인",
-        "온라인 쇼핑 주중(월~금)결제 시 추가 청구할인 +5% 할인",
-        "오프라인 쇼핑 주말(토,일)결제 시 추가 청구할인 +5% 할인"
+        "온라인쇼핑몰 10% 할인",
+        "백화점/프리미엄 아울렛/면세점/마트 10% 할인",
+        "올리브영/다이소 10% 할인",
+        "온라인 쇼핑 주중(월~금)결제 시 추가 5% 청구할인",
+        "오프라인 쇼핑 주말(토,일)결제 시 추가 5% 청구할인"
       ],
-      "여행": [
-        "롯데/신세계/신라면세점 10% 할인"
-      ],
+      "여행": [],
       "교육/건강": [],
       "통신": [],
       "문화/생활": [
-        "쇼핑 멤버십 할인 50%",
-        "쿠팡 와우, 네이버플러스,컬리멤버스 50% 할인"
+        "쿠팡 와우/네이버플러스/컬리 멤버십 50% 할인"
       ],
       "결제": [],
       "기타": [
-        "롯데/신세계사이먼/현대프리미엄 아울렛 10% 할인",
-        "스타필드, 스타필드 시티 10% 할인",
-        "GS더프레시,롯데슈퍼(롯데프레시) 10% 할인"
+        "Mastercard/VISA Platinum 서비스"
       ]
     },
     "image_url": "https://m.wooricard.com/webcontent/cdPrdImgFileList/2026/3/30/5bbf6cdf-7445-4d20-9a0b-27b1f53feaf6.png",
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=104151"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": 22000,
-      "etc": 22000
+      "국내": 22000
     },
     "benefits": {
       "음식/카페": [],
@@ -130,269 +119,255 @@
       "교육/건강": [],
       "통신": [],
       "문화/생활": [],
-      "결제": [
-        "국내외 가맹점 1.2% 청구할인"
-      ],
       "기타": [
-        "300만원 이상 5,000원 할인",
-        "600만원 이상 10,000원 할인",
-        "900만원 이상 15,000원 할인"
+        "국내외 가맹점 1.2% 청구할인",
+        "분기별 이용 실적에 따른 최대 15,000원 추가 청구할인"
       ]
     },
     "image_url": "https://m.wooricard.com/webcontent/cdPrdImgFileList/2025/10/30/a36c67ec-8057-4571-9ad9-1513de0e50a0.gif",
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=102997"
   },
   {
-    "company": "우리카드",
-    "name": "카드명 우리카드 UniMile",
+    "company": "우리",
+    "name": "카드명 우리 UniMile",
     "card_type": "credit",
     "target": "특정지역",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": 33000
+      "국내": 33000,
+      "unionpay": 33000
     },
     "benefits": {
       "음식/카페": [],
       "주유/교통": [],
-      "쇼핑/간편결제": [],
+      "쇼핑/간편결제": [
+        "우리WON페이/네이버페이/카카오페이 간편결제 3% 할인",
+        "인앱결제 3% 할인",
+        "면세점 2% UniMile 적립"
+      ],
       "여행": [
-        "해외/여행준비 2~6% 적립",
         "국내 공항 라운지 무료 이용",
-        "그 외 해외 온/오프라인 3% 적립",
-        "항공권 진에어, 제주항공, 티웨이항공, 이스타항공,에어부산,에어서울 적립",
-        "마이리얼트립, 클룩, NOL(야놀자), 여기어때 2% 적립",
-        "롯데면세점, 신세계면세점, 신라면세점, 현대면세점, JDC면세점 2% 적립"
+        "국내항공사 3% UniMile 적립",
+        "마이리얼트립/클룩/NOL(야놀자)/여기어때 2% UniMile 적립"
       ],
       "교육/건강": [],
       "통신": [],
       "문화/생활": [],
-      "결제": [
-        "우리WON페이, 네이버페이, 카카오페이 3% 할인",
-        "구글플레이, 애플 앱스토어 3% 할인"
-      ],
       "기타": [
-        "특화지역 일본, 베트남, 태국, 인도네시아, 말레이시아, 싱가포르, 필리핀 온/오프라인 적립",
-        "50만원 이상: 2회"
+        "해외 특화/기타지역 6%/3% UniMile 적립",
+        "국내 가맹점 0.7% UniMile 적립",
+        "UnionPay Platinum 서비스"
       ]
     },
     "image_url": "https://m.wooricard.com/webcontent/cdPrdImgFileList/2025/11/17/727a70f8-a9a9-4e52-a15a-366526aed600.png",
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=104153"
   },
   {
-    "company": "우리카드",
-    "name": "카드명 우리카드 7CORE",
+    "company": "우리",
+    "name": "카드명 우리 7CORE",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": 50000,
-      "etc": 50000
+      "국내": 50000
     },
     "benefits": {
       "음식/카페": [
-        "배달앱, 커피 10% 청구할인",
-        "쿠팡이츠, 요기요 10% 할인",
-        "투썸플레이스, 폴바셋, 이디야 10% 할인"
+        "커피전문점 10% 청구할인",
+        "배달의 민족/쿠팡이츠/요기요 10% 할인"
       ],
       "주유/교통": [
-        "교육, 병원, 주유 10% 청구할인",
-        "GS칼텍스, HD현대오일뱅크, S-OIL 10% 할인"
+        "주유소 10% 할인"
       ],
       "쇼핑/간편결제": [
-        "온라인쇼핑, 대형마트 10% 청구할인",
-        "SSG.COM, 컬리, 인터넷면세점(롯데/신라/신세계/현대) 10% 할인",
-        "트레이더스 홀세일 클럽, 롯데마트 10% 할인"
+        "온라인쇼핑몰/대형마트 10% 청구할인"
       ],
       "여행": [],
       "교육/건강": [
-        "입시/보습학원, 예체능학원 업종교보문고, 영풍문고 10% 할인",
-        "일반 병원, 치과의원/병원, 한방병원, 한의원, 동물병원 업종 10% 할인"
+        "학원 10% 할인",
+        "병원 10% 할인(병·의원/동물병원)"
       ],
       "통신": [],
-      "문화/생활": [],
-      "결제": [],
+      "문화/생활": [
+        "서점(교보문고/영풍문고) 10% 할인"
+        ],
       "기타": [
+        "Mastercard Platinum 서비스"
       ]
     },
     "image_url": "https://m.wooricard.com/webcontent/cdPrdImgFileList/2025/6/2/0a3a72fb-3d70-4b4e-898c-176667501c54.gif",
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=103755"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2 원더라이프",
     "card_type": "credit",
     "target": "법인",
     "annual_fee": {
       "visa": null,
       "mastercard": 25000,
-      "etc": 25000
+      "국내": 25000
     },
     "benefits": {
       "음식/카페": [],
       "주유/교통": [
-        "보험, 레저/여가, 주유, 해외 2.5% 청구할인"
+        "주유소/LPG충전소 2.5% 청구할인"
       ],
       "쇼핑/간편결제": [
-        "온라인/TV홈쇼핑, 생활/편의, 건강/의료 1.5% 청구할인"
+        "온라인쇼핑몰/홈쇼핑/마트 1.5% 청구할인"
       ],
       "여행": [],
-      "교육/건강": [],
+      "교육/건강": [
+        "병원 1.5% 할인(병·의원/동물병원)"
+      ],
       "통신": [],
-      "문화/생활": [],
-      "결제": [
-        "국내외 가맹점 1% 청구할인"
+      "문화/생활": [
+        "편의점 1.5% 청구할인",
+        "골프장/헬스장/사우나/찜질방 2.5% 청구할인",
+        "동양생명보험 2.5% 청구할인"
       ],
       "기타": [
+        "국내외 가맹점 1% 청구할인",
+        "해외 가맹점 2.5% 청구할인",
+        "전월 실적 50만원 이상 시 추가 청구할인 제공"
       ]
     },
     "image_url": "https://m.wooricard.com/webcontent/cdPrdImgFileList/2026/3/12/77f3f772-545e-405b-8556-5a065dad86a2.png",
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=500001"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2 EVERY DISCOUNT",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
-      "mastercard": 6000,
-      "etc": 6000
+      "mastercard": 12000,
+      "국내": 12000
     },
     "benefits": {
       "음식/카페": [],
       "주유/교통": [],
-      "쇼핑/간편결제": [],
+      "쇼핑/간편결제": [
+        "우리WON페이/네이버페이/카카오페이 간편결제 2% 추가 할인"
+      ],
       "여행": [],
       "교육/건강": [],
       "통신": [],
       "문화/생활": [],
-      "결제": [
-        "국내외 가맹점 0.8% 청구할인",
-        "국내 온라인 간편결제 2% 추가 청구할인"
-      ],
       "기타": [
+        "국내외 가맹점 0.8% 청구할인",
+        "Two-in-One 결제서비스(사전 지정금액은 체크/초과분은 신용결제)"
       ]
     },
     "image_url": "https://m.wooricard.com/webcontent/cdPrdImgFileList/2026/6/1/20b9e186-55f2-46b8-a788-123c5b13df95.png",
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=103729"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2 EVERY POINT",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": 12000,
       "mastercard": 12000,
-      "etc": 12000
+      "국내": 12000
     },
     "benefits": {
       "음식/카페": [],
       "주유/교통": [],
-      "쇼핑/간편결제": [],
+      "쇼핑/간편결제": [
+        "우리WON페이/네이버페이/카카오페이 간편결제 2% 추가 할인"
+      ],
       "여행": [],
       "교육/건강": [],
       "통신": [],
       "문화/생활": [],
-      "결제": [
-        "국내외 가맹점 0.8% 적립",
-        "국내 온라인 간편결제 2% 추가적립"
-      ],
       "기타": [
-        "40만원 이상 1만 포인트 적립",
-        "2만 포인트 1만 포인트 적립"
+        "국내외 가맹점 0.8% 적립",
+        "Two-in-One 결제서비스(사전 지정금액은 체크/초과분은 신용결제)"
       ]
     },
     "image_url": "https://m.wooricard.com/webcontent/cdPrdImgFileList/2026/5/29/ce87f0e8-9931-4a68-a23e-363c52def9bf.png",
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=102718"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석 TEN",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": 12000,
-      "etc": 12000
+      "국내": 12000
     },
     "benefits": {
       "음식/카페": [
-        "음식점/주점 및 온라인 간편결제 1% 청구할인",
-        "스타벅스, 투썸플레이스, 이디야커피, 메가MGC커피, 컴포즈커피, 매머드커피, 스타벅스(사이렌오더) 및 커피브랜드 공식 앱을 통한 결제 건 포함, 커피브랜드의 상품권, 선불카드 구매/충전 등의 이용금액은 할인 제외, 백화점/대형할인점/면세점/공항/미군부대/리조트 등 일부 입점 매장은 할인 제외 10% 할인",
-        "음식점, 주점, 할인 및 제외 업종/가맹점은 우리카드 전산상 등록 기준임 1% 할인"
+        "커피전문점 10% 청구할인",
+        "음식점/주점 1% 청구할인"
       ],
       "주유/교통": [
-        "버스, 지하철, 택시, 버스, 지하철 : 후불교통요금 이용 건에 한하여 할인 제공(고속버스, 시외버스, 공항버스, 공항철도(직통열차) 이용금액은 할인 제외), 택시 : 오프라인 결제 및 카카오T(택시) 이용 건에 한하여 할인 제공 10% 할인"
+        "대중교통/택시 10% 청구할인"
       ],
       "쇼핑/간편결제": [
-        "CU, GS25, 세븐일레븐, 오프라인 일반 결제 건에 한함, 백화점/대형할인점/면세점/공항/미군부대/리조트 등 일부 입점 매장은 할인 제외 10% 할인"
+        "우리WON페이/네이버페이/카카오페이 간편결제 1% 할인"
       ],
       "여행": [],
       "교육/건강": [],
       "통신": [
-        "SKT, KT, LGU+, 휴대전화 요금에 한하며, 본 카드로 대상 통신사에 자동납부 신청 후 결제한 건에 대해서만 할인 제공, 인터넷, 유선전화 등 결합상품 신청 시에는 할인 제외 10% 할인"
+        "통신 10% 청구할인"
       ],
       "문화/생활": [
-        "5대 일상영역 10% 청구할인"
-      ],
-      "결제": [
-        "우리WON페이, 네이버페이, 카카오페이, 해당 간편결제에 본 카드를 등록하여 온라인에서 결제 시 할인 제공, 모바일 단말을 이용한 국내 오프라인 결제 건(매장 내 QR, 바코드, 스마트폰 MST/NFC 기능 등)은 할인 미제공 1% 할인"
+        "편의점 10% 청구할인"
       ],
       "기타": [
-        "5천원 1만원 할인",
-        "1만원 2만원 할인",
-        "1만원 1% 할인",
-        "2만원 1% 할인"
+        "해외 가맹점 및 직접결제 이용건 10% 청구할인"
       ]
     },
     "image_url": "https://m.wooricard.com/webcontent/cdPrdImgFileList/2024/5/16/78ed6fa8-743a-46f5-8f55-b3246229db59.png",
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=103686"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석 EVERY MILE SKYPASS",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": 39000,
-      "etc": 39000
+      "국내": 39000
     },
     "benefits": {
       "음식/카페": [],
       "주유/교통": [],
       "쇼핑/간편결제": [],
       "여행": [
-        "대한항공 SKYPASS 마일리지 적립",
         "해외수수료 면제",
         "국내 공항라운지 무료이용 서비스"
       ],
       "교육/건강": [],
       "통신": [],
       "문화/생활": [],
-      "결제": [
-        "국내외 가맹점 1마일 적립",
-        "해외 가맹점 +1마일 적립"
-      ],
       "기타": [
-        "스카이허브, Matina 국제선 스카이허브 할인",
-        "스카이허브(동편/서편), Matina 국제선 스카이허브 할인"
+        "국내외 가맹점 1마일 적립",
+        "해외 가맹점 2마일 적립",
+        "Mastercard Platinum 서비스"
       ]
     },
     "image_url": "https://m.wooricard.com/webcontent/cdPrdImgFileList/2025/8/18/fd4d9cd5-1a5d-4986-ba02-852f3f81f8ae.png",
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=102488"
   },
   {
-    "company": "우리카드",
-    "name": "카드명 우리카드 MILE&POINT",
+    "company": "우리",
+    "name": "카드명 우리 MILE&POINT",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": 75000,
-      "etc": 75000
+      "국내": 75000
     },
     "benefits": {
       "음식/카페": [],
@@ -420,14 +395,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=104154"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 DA카드의정석 Ⅱ",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": 12000,
-      "etc": 12000
+      "국내": 12000
     },
     "benefits": {
       "음식/카페": [],
@@ -456,14 +431,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=102534"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 D4카드의정석Ⅱ",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": 12000,
-      "etc": 12000
+      "국내": 12000
     },
     "benefits": {
       "음식/카페": [
@@ -489,14 +464,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=103305"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석 I&U+",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": 12000,
-      "etc": 12000
+      "국내": 12000
     },
     "benefits": {
       "음식/카페": [
@@ -522,14 +497,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=102717"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석 SHOPPING+",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": 12000,
       "mastercard": 12000,
-      "etc": 10000
+      "국내": 10000
     },
     "benefits": {
       "음식/카페": [],
@@ -558,14 +533,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=102492"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2 AUTO",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": 20000,
-      "etc": 20000
+      "국내": 20000
     },
     "benefits": {
       "음식/카페": [],
@@ -589,14 +564,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=500010"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2 후불하이패스+",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": 2000
+      "국내": 2000
     },
     "benefits": {
       "음식/카페": [],
@@ -616,14 +591,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=103416"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 NU Biz",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
       "visa": 20000,
       "mastercard": 20000,
-      "etc": 20000
+      "국내": 20000
     },
     "benefits": {
       "음식/카페": [
@@ -655,14 +630,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=101655"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2 T-WON 체크",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": null
     },
     "benefits": {
       "음식/카페": [
@@ -699,14 +674,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=500053"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2 원더라이프 CHECK",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": null
     },
     "benefits": {
       "음식/카페": [],
@@ -734,14 +709,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=500002"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석 오하CHECK",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": null
     },
     "benefits": {
       "음식/카페": [
@@ -778,14 +753,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=102716"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2 칼퇴 CHECK",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": null
     },
     "benefits": {
       "음식/카페": [
@@ -812,14 +787,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=102482"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석2 ExK 체크",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": null
     },
     "benefits": {
       "음식/카페": [
@@ -847,14 +822,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=103496"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 위비트래블 체크카드",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": null
     },
     "benefits": {
       "음식/카페": [
@@ -884,14 +859,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=103489"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 위비트래블 J 체크카드",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": null
     },
     "benefits": {
       "음식/카페": [
@@ -917,14 +892,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=103490"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석 EVERYDAY CHECK",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": null
     },
     "benefits": {
       "음식/카페": [
@@ -953,14 +928,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=103734"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 KREAM 체크카드",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": null
     },
     "benefits": {
       "음식/카페": [],
@@ -980,14 +955,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=103117"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 우리WON모바일 체크카드",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": null
     },
     "benefits": {
       "음식/카페": [],
@@ -1008,14 +983,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=103687"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 카드의정석 LCK 우리체크",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": null
     },
     "benefits": {
       "음식/카페": [],
@@ -1041,14 +1016,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=103116"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 그랑블루 체크카드",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": 100000,
-      "etc": 95000
+      "국내": 95000
     },
     "benefits": {
       "음식/카페": [
@@ -1079,14 +1054,14 @@
     "detail_url": "https://m.wooricard.com/dcmw/yh1/crd/crd01/M1CRD101S02.do?recomNo=227977"
   },
   {
-    "company": "우리카드",
+    "company": "우리",
     "name": "카드명 FC EXPRESS 체크",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": null
     },
     "benefits": {
       "음식/카페": [],
