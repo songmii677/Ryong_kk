@@ -75,7 +75,6 @@ def recommend_cards(request):
 
     return Response(serializer.data)
 
-
 @api_view(["GET", "POST"])
 @permission_classes([IsAuthenticated])
 def recommend_results(request):
@@ -140,10 +139,89 @@ def recommend_results(request):
                 },
                 status=status.HTTP_200_OK,
             )
-        return Response(
-            serializer.errors,
-            status=status.HTTP_400_BAD_REQUEST,
-        )
+
+    # 동일한 결과가 없을 때만 새로 저장
+    result = serializer.save(user=request.user)
+
+    response_serializer = ResultSerializer(result)
+
+    return Response(
+        {
+            "detail": "추천 결과가 저장되었습니다.",
+            "already_saved": False,
+            "result": response_serializer.data,
+        },
+        status=status.HTTP_201_CREATED,
+    )
+
+# @api_view(["GET", "POST"])
+# @permission_classes([IsAuthenticated])
+# def recommend_results(request):
+#     # 내 저장 결과 조회
+#     if request.method == "GET":
+#         results = (
+#             RecommendResult.objects
+#             .filter(user=request.user)
+#             .prefetch_related("card_list")
+#             .order_by("-id")
+#         )
+
+#         serializer = ResultSerializer(
+#             results,
+#             many=True,
+#         )
+
+#         return Response(
+#             serializer.data,
+#             status=status.HTTP_200_OK,
+#         )
+
+#     # 추천 결과 저장
+#     serializer = ResultSerializer(data=request.data)
+#     serializer.is_valid(raise_exception=True)
+
+#     persona_title = serializer.validated_data["persona_title"]
+#     persona_description = serializer.validated_data.get(
+#         "persona_description",
+#         "",
+#     )
+
+#     selected_cards = serializer.validated_data["card_list"]
+#     selected_card_ids = sorted(
+#         card.id for card in selected_cards
+#     )
+
+#     # 같은 사용자의 동일 페르소나 결과 확인
+#     existing_results = (
+#         RecommendResult.objects
+#         .filter(
+#             user=request.user,
+#             persona_title=persona_title,
+#             persona_description=persona_description,
+#         )
+#         .prefetch_related("card_list")
+#     )
+
+#     # 추천 카드 3개까지 동일하면 중복으로 판단
+#     for existing_result in existing_results:
+#         existing_card_ids = sorted(
+#             card.id
+#             for card in existing_result.card_list.all()
+#         )
+
+#         if existing_card_ids == selected_card_ids:
+#             return Response(
+#                 {
+#                     "detail": "이미 저장된 추천 결과입니다.",
+#                     "already_saved": True,
+#                     "result_id": existing_result.id,
+#                 },
+#                 status=status.HTTP_200_OK,
+#             )
+#         return Response(
+#             serializer.errors,
+#             status=status.HTTP_400_BAD_REQUEST,
+#         )
     
 
 
@@ -263,14 +341,14 @@ def ai_recommend_cards(request):
     })
 
     # 동일한 결과가 없을 때만 새로 저장
-    result = serializer.save(user=request.user)
+    # result = serializer.save(user=request.user)
 
-    response_serializer = ResultSerializer(result)
+    # response_serializer = ResultSerializer(result)
 
-    return Response(
-        response_serializer.data,
-        status=status.HTTP_201_CREATED,
-    )
+    # return Response(
+    #     response_serializer.data,
+    #     status=status.HTTP_201_CREATED,
+    # )
 
 @api_view(["DELETE"])
 @permission_classes([IsAuthenticated])
