@@ -254,7 +254,7 @@ const handleCardimageLoad = (event) => {
                 :src="card.image_url"
                 :alt="card.name"
                 class="card-image"
-                @load="handleCardimageLoad"
+                @load="handleCardImageLoad"
               />
 
               <span
