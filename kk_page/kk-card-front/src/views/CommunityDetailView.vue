@@ -15,6 +15,25 @@ import {
 import redHeart from '@/assets/red.png'
 import whiteHeart from '@/assets/white.png'
 
+const formatDate = (dateValue) => {
+  if (!dateValue) return ''
+
+  const date = new Date(dateValue)
+
+  if (Number.isNaN(date.getTime())) {
+    return dateValue
+  }
+
+  return new Intl.DateTimeFormat('ko-KR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(date)
+}
+
 const router = useRouter()
 const route = useRoute()
 const accountStore = useAccountStore()
@@ -24,6 +43,34 @@ const comments = ref([])
 const commentInput = ref('')
 const editingCommentId = ref(null)
 const editText = ref('')
+
+const isEdited = (item) => {
+  if (!item.created_at || !item.updated_at) return false
+
+  const createdTime = new Date(item.created_at).getTime()
+  const updatedTime = new Date(item.updated_at).getTime()
+
+  if (
+    Number.isNaN(createdTime) ||
+    Number.isNaN(updatedTime)
+  ) {
+    return false
+  }
+
+  // 생성 시점과 updated_at이 미세하게 다를 수 있어서 1초 이상 차이날 때만 수정됨 처리
+  return Math.abs(updatedTime - createdTime) > 1000
+}
+
+const displayDate = (item) => {
+  if (!item) return ''
+
+  if (isEdited(item)) {
+    return `${formatDate(item.updated_at)} (수정됨)`
+  }
+
+  return formatDate(item.created_at)
+}
+
 
 // 댓글 데이터의 좋아요 기본값 정리
 const normalizeComments = (commentList = []) => {
@@ -166,12 +213,20 @@ const toggleCommentLikeHandler = async (comment) => {
           <h2>{{ article.title }}</h2>
         </div>
 
-        <!-- 게시글 작성자 -->
-        <div class="author-row">
-          <span class="author-label">작성자</span>
-          <span class="author-divider">|</span>
-          <span class="author-id">{{ article.user }}</span>
-        </div>
+    <!-- 게시글 작성자 / 작성일 -->
+    <div class="author-row">
+      <span class="author-label">작성자</span>
+      <span class="author-divider">|</span>
+      <span class="author-id">{{ article.user }}</span>
+
+      <template v-if="article.created_at">
+        <span class="author-divider">|</span>
+        <span class="article-date">
+          {{ formatDate(article.created_at) }}
+        </span>
+      </template>
+    </div>
+
 
         <!-- 게시글 수정·삭제 -->
         <div
@@ -197,8 +252,15 @@ const toggleCommentLikeHandler = async (comment) => {
 
         <!-- 게시글 내용 -->
         <p class="content">
-          {{ article.content }}
+          <span>{{ article.content }}</span>
+          <span
+            v-if="isEdited(article)"
+            class="update"
+          >
+            (수정됨)
+          </span>
         </p>
+
 
         <!-- 게시글 좋아요 -->
         <div class="article-bottom">
@@ -249,7 +311,7 @@ const toggleCommentLikeHandler = async (comment) => {
             'is-last-comment': index === comments.length - 1,
           }"
         >
-          <!-- 댓글 수정 상태 -->
+          <!-- 댓글 수정 -->
           <div
             v-if="editingCommentId === comment.id"
             class="comment-edit-area"
@@ -276,12 +338,19 @@ const toggleCommentLikeHandler = async (comment) => {
             </div>
           </div>
 
-          <!-- 댓글 일반 상태 -->
+          <!-- 댓글 -->
           <template v-else>
             <div class="comment-author-row">
               <span class="author-label">작성자</span>
               <span class="author-divider">|</span>
               <span class="author-id">{{ comment.user }}</span>
+
+              <template v-if="comment.created_at">
+                <span class="author-divider">|</span>
+                <span class="created-date">
+                  {{ displayDate(comment) }}
+                </span>
+              </template>
             </div>
 
             <p class="comment-content">
@@ -290,7 +359,6 @@ const toggleCommentLikeHandler = async (comment) => {
           </template>
 
           <div class="comment-footer">
-            <!-- 댓글 작성자만 수정·삭제 가능 -->
             <div
               v-if="comment.user === accountStore.username"
               class="comment-owner-actions"
@@ -696,5 +764,33 @@ const toggleCommentLikeHandler = async (comment) => {
 
 .comment-write button:hover {
   opacity: 0.9;
+  
 }
+
+.update {
+  display: inline;
+  margin-left: 4px;
+  color: #8a948f;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+
+.article-date {
+  color: #8a948f;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.created-date {
+  color: #8a948f;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+
 </style>
+
