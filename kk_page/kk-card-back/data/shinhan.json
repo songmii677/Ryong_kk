@@ -126,7 +126,7 @@
     "annual_fee": {
       "visa": null,
       "mastercard": 15000,
-      "etc": 15000
+      "국내": 15000
     },
     "benefits": {
       "음식/카페": [
@@ -250,7 +250,7 @@
     "annual_fee": {
       "visa": 23000,
       "mastercard": null,
-      "etc": 20000
+      "국내": 20000
     },
     "benefits": {
       "음식/카페": [
@@ -981,12 +981,13 @@
     "benefits": {
       "음식/카페": [],
       "주유/교통": [],
-      "쇼핑/간편결제": ["IKEA 이용금액 10% 결제일 할인",
-    "IDEA 사업성 경비 이용 시 이용금액의 5% 결제일 할인"],
+      "쇼핑/간편결제": [],
       "여행": [],
       "교육/건강": [],
       "통신": [],
-      "문화/생활": []
+      "문화/생활": [],
+      "기타":["IKEA 이용금액 10% 결제일 할인",
+    "IDEA 사업성 경비 이용 시 이용금액의 5% 결제일 할인"]
     },
     "image_url": "https://www.shinhancard.com/pconts/images/contents/card/plate/cdCreditBOACFX.png",
     "detail_url": "https://www.shinhancard.com/pconts/html/card/apply/credit/1201015_2207.html"
@@ -1795,8 +1796,7 @@
     "target": "일반",
     "annual_fee": {
       "visa": 5000,
-      "mastercard": null,
-      "etc": null
+      "mastercard": null
     },
     "benefits": {
       "음식/카페": [
@@ -2322,7 +2322,7 @@
     "annual_fee": {
       "visa": null,
       "mastercard": 10000,
-      "etc": 7000
+      "국내": 7000
     },
     "benefits": {
       "음식/카페": ["배달앱·커피전문점 5% 할인"],
@@ -4780,7 +4780,7 @@
     },
     "benefits": {
       "음식/카페": [
-        "레스토랑/베이커리: 10% 캐시백"
+        "레스토랑·베이커리: 10% 캐시백"
       ],
       "주유/교통": [],
       "쇼핑/간편결제": [
@@ -5396,8 +5396,8 @@
       "교육/건강": [],
       "통신": [],
       "문화/생활": [],
-      "기타":["탐마트 매장 내 결제 시 탑보너스포인트 1% 적립",
-    "서원유통 탐마트 매장 수·목요일 결제시 탑보너스포인트 0.2% 추가 적립",
+      "기타":["탑마트 매장 내 결제 시 탑보너스포인트 1% 적립",
+    "서원유통 탑마트 매장 수·목요일 결제시 탑보너스포인트 0.2% 추가 적립",
   "국내외 가맹점 탑보너스포인트 0.1% 적립"]
     },
     "image_url": "https://www.shinhancard.com/pconts/images/contents/card/plate/cdCheckBOACFF.png",
@@ -5551,7 +5551,7 @@
     "annual_fee": {
       "visa": null,
       "mastercard": 21000,
-      "etc": 18000
+      "국내": 18000
     },
     "benefits": {
       "음식/카페": [],
@@ -7660,7 +7660,6 @@
       "음식/카페": [],
       "주유/교통": [],
       "쇼핑/간편결제": [
-        "그 외 전가맹점: 0.3% 결제일 할인"
       ],
       "여행": [],
       "교육/건강": [],
@@ -7681,18 +7680,22 @@
     "annual_fee": {
       "visa": null,
       "mastercard": 33000,
-      "etc": 30000
+      "국내": 30000
     },
     "benefits": {
       "음식/카페": [],
       "주유/교통": [
-        "대중교통: 최대 5% 할인"
+        "대중교통 3~5% 할인"
       ],
       "쇼핑/간편결제": [],
       "여행": [],
       "교육/건강": [],
       "통신": [],
-      "문화/생활": []
+      "문화/생활": [],
+      "기타":["서원유통 탑마트 매장 내 결제 시 탑보너스포인트 2% 적립",
+    "서원유통 탑마트 매장 수·목요일 결제시 탑보너스포인트 0.5% 추가 적립",
+  "국내외 가맹점 탑보너스포인트 0.5% 적립",
+"연 1회 1만원 캐시백"]
     },
     "image_url": "https://www.shinhancard.com/pconts/images/contents/card/plate/cdCreditBOACFD.png",
     "detail_url": "https://www.shinhancard.com/pconts/html/card/apply/credit/1200926_2207.html"
@@ -7706,18 +7709,22 @@
     "annual_fee": {
       "visa": null,
       "mastercard": 18000,
-      "etc": 15000
+      "국내": 15000
     },
     "benefits": {
       "음식/카페": [],
       "주유/교통": [
-        "대중교통: 최대 5% 할인"
+        "대중교통 3~5% 할인"
       ],
       "쇼핑/간편결제": [],
       "여행": [],
       "교육/건강": [],
       "통신": [],
-      "문화/생활": []
+      "문화/생활": [],
+      "기타":["서원유통 탑마트 매장 내 결제 시 탑보너스포인트 1.5% 적립",
+    "서원유통 탑마트 매장 수·목요일 결제시 탑보너스포인트 0.5% 추가 적립",
+  "국내외 가맹점 탑보너스포인트 0.5% 적립",
+"연 1회 1만원 캐시백"]
     },
     "image_url": "https://www.shinhancard.com/pconts/images/contents/card/plate/cdCreditBOACFE.png",
     "detail_url": "https://www.shinhancard.com/pconts/html/card/apply/credit/1200912_2207.html"
@@ -7731,7 +7738,7 @@
     "annual_fee": {
       "visa": null,
       "mastercard": 25000,
-      "etc": 22000
+      "국내": 22000
     },
     "benefits": {
       "음식/카페": [],
@@ -7740,7 +7747,9 @@
       "여행": [],
       "교육/건강": [],
       "통신": [],
-      "문화/생활": []
+      "문화/생활": [],
+      "기타":["LG전자 베스트샵 48·60개월 할부 이용 시 연 6.5% 할부 수수료 적용",
+    "월 11,000원 캐시백"]
     },
     "image_url": "https://www.shinhancard.com/pconts/images/contents/card/plate/cdCreditBOACAO.png",
     "detail_url": "https://www.shinhancard.com/pconts/html/card/apply/credit/1211631_2207.html"
@@ -7754,7 +7763,7 @@
     "annual_fee": {
       "visa": 25000,
       "mastercard": null,
-      "etc": 22000
+      "국내": 22000
     },
     "benefits": {
       "음식/카페": [],
@@ -7763,7 +7772,9 @@
       "여행": [],
       "교육/건강": [],
       "통신": [],
-      "문화/생활": []
+      "문화/생활": [],
+      "기타":["24·46·48개월 연 7.7% 할부수수료 제공",
+    "할부 및 전월 이용금액에 다라 최대 월 4만원 캐시백"]
     },
     "image_url": "https://www.shinhancard.com/pconts/images/contents/card/plate/cdCreditBOADHN.png",
     "detail_url": "https://www.shinhancard.com/pconts/html/card/apply/credit/1226191_2207.html"
@@ -7777,7 +7788,7 @@
     "annual_fee": {
       "visa": null,
       "mastercard": null,
-      "etc": null
+      "국내": 1000
     },
     "benefits": {
       "음식/카페": [],
@@ -7786,7 +7797,7 @@
       "여행": [],
       "교육/건강": [],
       "통신": [
-        "실물없는: 모바일 단독카드"
+        ""
       ],
       "문화/생활": []
     },
@@ -7802,18 +7813,20 @@
     "annual_fee": {
       "visa": null,
       "mastercard": 23000,
-      "etc": 20000
+      "국내": 20000
     },
     "benefits": {
       "음식/카페": [],
       "주유/교통": [],
       "쇼핑/간편결제": [
-        "국내/외 가맹점: 0.7% 캐시백"
       ],
       "여행": [],
       "교육/건강": [],
-      "통신": [],
-      "문화/생활": []
+      "통신": ["이동통신 자동납부건 0.7% 추가 캐시백"],
+      "문화/생활": ["CGV·메가박스 예매 시 최대 3천원 할인"],
+      "기타":["한화이글스 정규시즌 홈경기 5천원 할인",
+    "천원 미만 결제금액 잔돈 할인",
+  "국내외 가맹점 0.7% 캐시백"]
     },
     "image_url": "https://www.shinhancard.com/pconts/images/contents/card/plate/cdCreditBA7DV7.png",
     "detail_url": "https://www.shinhancard.com/pconts/html/card/apply/credit/1235111_2207.html"
@@ -7827,7 +7840,7 @@
     "annual_fee": {
       "visa": null,
       "mastercard": 21000,
-      "etc": 18000
+      "국내": 18000
     },
     "benefits": {
       "음식/카페": [],
@@ -7838,7 +7851,8 @@
       "통신": [
         "통신요금 할인: 최대 2만원"
       ],
-      "문화/생활": []
+      "문화/생활": [],
+      "기타":["스카이라이프 월 최대 2만원 할인"]
     },
     "image_url": "https://www.shinhancard.com/pconts/images/contents/card/plate/cdCreditBOADX3.png",
     "detail_url": "https://www.shinhancard.com/pconts/html/card/apply/credit/1236601_2207.html"
