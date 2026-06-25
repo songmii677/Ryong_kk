@@ -25,17 +25,23 @@ from .ai_recommend import (
 def card_list(request):
     cards = Card.objects.all()
 
-    company = request.GET.get("company")
-    card_type = request.GET.get("card_type")
+    company = request.GET.get("company", "").strip()
+    card_type = request.GET.get("card_type", "").strip()
+    card_name = request.GET.get("card_name", "").strip()
 
     if company:
-        cards = cards.filter(company__icontains=company)
+        normalized_company = company.replace("카드", "")
+        cards = cards.filter(company__icontains=normalized_company)
 
     if card_type:
         cards = cards.filter(card_type=card_type)
 
+    if card_name:
+        cards = cards.filter(name__icontains=card_name)
+
     serializer = CardSerializer(cards, many=True)
     return Response(serializer.data)
+
 
 # @api_view(["GET"])
 # def card_list(request):
