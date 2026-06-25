@@ -20,6 +20,10 @@ import MyPageView from '@/views/MyPageView.vue'
 import MyCommunityView from '@/views/MyCommunityView.vue'
 import MyRecommendResultVeiw from '@/views/MyRecommendResultVeiw.vue'
 
+import DepositListView from '@/views/DepositListView.vue'
+import DepositDetailView from '@/views/DepositDetailView.vue'
+import MyDepositView from '@/views/MyDepositView.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -128,7 +132,25 @@ const router = createRouter({
     path:'/myrecommendresult',
     name:'myrecommendresult',
     component: MyRecommendResultVeiw
-    }
+    },
+    {
+    path: '/deposits',
+    name: 'deposits',
+    component: DepositListView,
+    },
+    {
+    path: '/deposits/:id',
+    name: 'deposit-detail',
+    component: DepositDetailView,
+    },
+    {
+    path: '/mydeposit',
+    name: 'mydeposit',
+    component: MyDepositView,
+    meta:{
+      requiresAuth:true
+    },
+    },
   ],
 })
 

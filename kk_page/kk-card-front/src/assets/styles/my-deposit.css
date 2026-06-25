@@ -1,0 +1,101 @@
+.mypage-action-card {
+  appearance: none;
+
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+
+  width: 100%;
+  padding: 22px 24px;
+
+  border: 1px solid #dce9e3;
+  border-radius: 18px;
+  background-color: #ffffff;
+
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+
+  box-shadow: 0 7px 20px rgba(45, 156, 122, 0.08);
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.mypage-action-card:hover {
+  border-color: #2d9c7a;
+  background-color: #f8fdfb;
+  box-shadow: 0 10px 24px rgba(45, 156, 122, 0.13);
+  transform: translateY(-2px);
+}
+
+.mypage-action-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  border-radius: 15px;
+  background-color: #eafff5;
+
+  font-size: 27px;
+  line-height: 1;
+}
+
+.mypage-action-text {
+  min-width: 0;
+}
+
+.mypage-action-text strong {
+  display: block;
+
+  color: #202522;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.mypage-action-text p {
+  margin: 7px 0 0;
+
+  color: #758079;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.mypage-action-arrow {
+  color: #2d9c7a;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+@media (max-width: 560px) {
+  .mypage-action-card {
+    grid-template-columns: 46px minmax(0, 1fr) auto;
+    gap: 12px;
+
+    padding: 18px;
+  }
+
+  .mypage-action-icon {
+    width: 46px;
+    height: 46px;
+
+    font-size: 23px;
+  }
+
+  .mypage-action-text strong {
+    font-size: 16px;
+  }
+
+  .mypage-action-text p {
+    font-size: 12px;
+  }
+}

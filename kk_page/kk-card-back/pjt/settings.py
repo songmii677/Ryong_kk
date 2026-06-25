@@ -13,9 +13,21 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+environ.Env.read_env(
+    BASE_DIR / ".env"
+)
+
+FINLIFE_API_KEY = env(
+    "FINLIFE_API_KEY",
+    default="",
+)
+
 load_dotenv(BASE_DIR / '.env')
 
 USE_GEMINI = True
@@ -37,6 +49,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'deposit',
     'prices',
     'django_filters',
     'community',
@@ -104,6 +117,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 REST_AUTH = {
     'OLD_PASSWORD_FIELD_ENABLED': True,
