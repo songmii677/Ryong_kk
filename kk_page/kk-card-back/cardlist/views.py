@@ -241,8 +241,10 @@ def ai_recommend_cards(request):
     selected_category = analysis['selected_category']
     category_score = analysis['category_score']
 
-    persona = get_persona(card_type, selected_category)
+    # 페르소나는 카드 타입과 무관하게 카테고리로만 결정
+    persona = get_persona(selected_category)
 
+    # 추천 후보는 카드 타입으로 필터링
     candidate_cards = get_candidate_cards(
         Card=Card,
         card_type=card_type,
@@ -250,6 +252,7 @@ def ai_recommend_cards(request):
         category_score=category_score,
         limit=30,
     )
+
 
     if not candidate_cards:
         return Response(

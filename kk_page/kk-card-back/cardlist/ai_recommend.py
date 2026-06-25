@@ -51,40 +51,58 @@ def analyze_answers(answers):
     }
 
 
-def get_persona(card_type, category):
-    if card_type == 'check' and category == '음식/카페':
+def get_persona(category):
+    if category == '음식/카페':
         return {
-            'title': '☕ 카페 러버',
-            'desc': '카페와 외식, 배달을 즐기는 소비형',
+            'title': '☕ 미식 탐험가',
+            'desc': '맛있는 한 끼로 하루를 충전하는 타입',
         }
 
-    if card_type == 'check' and category == '통신':
+    if category == '통신':
         return {
-            'title': '💸 알뜰한 생활러',
-            'desc': '고정 지출을 아끼는 실속형',
+            'title': '📱 통신비 지킴이',
+            'desc': '매달 빠져나가는 비용도 꼼꼼하게 챙기는 타입',
         }
 
-    if card_type == 'credit' and category == '쇼핑/간편결제':
+    if category == '쇼핑/간편결제':
         return {
-            'title': '🛍️ 혜택 사냥꾼',
-            'desc': '쇼핑 할인과 적립을 적극 활용하는 타입',
+            'title': '🛍️ 스마트 쇼퍼',
+            'desc': '마음에 드는 걸 발견하면 그냥 지나치지 못하는 타입',
+        }
+    
+    if category == '주유/교통':
+        return {
+            'title': '🚕 프로 이동러',
+            'desc': '시간과 이동 비용까지 효율적으로 챙기는 타입',
+        }
+    
+    if category == '교육/건강':
+        return {
+            'title': '✨ 성장형 인간',
+            'desc': '조금씩 더 나은 나를 만들어가는 타입',
         }
 
-    if card_type == 'credit' and category == '여행':
+    if category == '여행':
         return {
-            'title': '✈️ 여행 준비러',
-            'desc': '항공과 숙박 혜택을 중요하게 생각하는 타입',
+            'title': '✈️ 경험 수집가',
+            'desc': '새로운 장소와 특별한 순간을 즐기는 타입',
         }
 
-    if card_type == 'credit' and category == '문화/생활':
+    if category == '문화/생활':
         return {
-            'title': '🎬 OTT 마스터',
-            'desc': '넷플릭스와 구독 서비스를 즐기는 타입',
+            'title': '🎧 취미 수집가',
+            'desc': '소소한 즐거움으로 일상을 채우는 타입',
+        }
+
+    if category == '기타':
+        return {
+            'title': '✨ 어디서나 알뜰룡',
+            'desc': '특정 장소보다 전체 결제에서 꾸준히 혜택을 챙기는 타입',
         }
 
     return {
         'title': '🌱 사회초년생',
-        'desc': '실속 있는 소비를 추구하는 타입',
+        'desc': '다양한 관심사와 소비 패턴을 가진 타입',
     }
 
 
