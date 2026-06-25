@@ -266,7 +266,15 @@ def ai_recommend_cards(request):
     ai_provider = 'fallback'
 
     try:
-        if settings.USE_GEMINI and os.getenv('GEMINI_API_KEY'):
+        use_gemini = getattr(settings, "USE_GEMINI", False)
+        gemini_api_key = getattr(settings, "GEMINI_API_KEY", None)
+
+        print("====== Gemini 설정 확인 ======")
+        print("USE_GEMINI:", use_gemini)
+        print("GEMINI_API_KEY 있음?:", bool(gemini_api_key))
+        print("GEMINI_MODEL:", getattr(settings, "GEMINI_MODEL", None))
+
+        if use_gemini and gemini_api_key:
             ai_data = call_gemini_recommendation(
                 answers=answers,
                 card_type=card_type,
