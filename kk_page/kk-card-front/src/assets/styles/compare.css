@@ -213,14 +213,6 @@
   font-weight: 800;
 }
 
-.compare-table td img {
-  width: 150px;
-  height: 92px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
-}
-
 .pre-line {
   white-space: pre-line;
 }
@@ -256,6 +248,51 @@
 
 .compare-clear-btn:hover {
   background: #e5fff4;
+}
+
+
+/* 비교 모달 카드 이미지의 공통 표시 영역 */
+.compare-card-image-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 170px;
+  height: 110px;
+  margin: 0 auto;
+
+  background-color: #ffffff;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 가로형 카드 이미지 */
+.compare-table td .compare-card-image {
+  display: block;
+
+  width: auto;
+  height: auto;
+  max-width: 150px;
+  max-height: 90px;
+
+  object-fit: contain;
+  object-position: center;
+
+  transform: none;
+  transform-origin: center;
+}
+
+/* 세로형 원본 카드를 회전해서 같은 크기로 표시 */
+.compare-table td .compare-card-image.is-portrait {
+  width: 90px;
+  height: 150px;
+  max-width: none;
+  max-height: none;
+
+  object-fit: contain;
+
+  transform: rotate(270deg);
+  transform-origin: center;
 }
 
 @media (max-width: 768px) {
