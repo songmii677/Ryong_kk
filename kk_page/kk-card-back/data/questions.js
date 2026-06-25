@@ -92,8 +92,8 @@ export const questions = [
         value: { key: 'category', value: '문화/생활' }
       },
       {
-        text: '데이터가 느리거나 연락이 안 돼서 답답할 때',
-        value: { key: 'category', value: '통신' }
+        text: '배움이나 관리처럼 나를 위해 꾸준히 쓰는 비용',
+        value: { key: 'category', value: '교육/건강' }
       },
       {
         text: '딱히 하나만 고르기보다 전체 결제에서 새는 돈',
@@ -114,8 +114,8 @@ export const questions = [
         value: { key: 'category', value: '쇼핑/간편결제' }
       },
       {
-        text: '갑자기 멀리 가거나 예약을 잡아야 할 때',
-        value: { key: 'category', value: '여행' }
+        text: '데이터가 느리거나 연락이 안 돼서 답답할 때',
+        value: { key: 'category', value: '통신' }
       },
       {
         text: '데이터, 통화, 연결이 끊겨서 일이 막힐 때',

@@ -8,6 +8,13 @@ CATEGORY_WEIGHT = {
     '기타': 0.6,
 }
 
+TARGET_GROUP_MAP = {
+    '사업자': ['사업자', '개인사업자', '법인', '지방보조금 보조사업자'],
+    '특정지역': ['특정지역'],
+    '프리미엄': ['프리미엄', '별도의 카드 가입 자격 심사'],
+    '공공/복지': ['군인', '공무원', '소방', '장애인', '국민연금 수급자'],
+}
+
 def normalize_benefits(benefits):
     if benefits is None:
         return {}
@@ -27,6 +34,7 @@ def normalize_benefits(benefits):
 def analyze_answers(answers):
     category_score = {}
     card_type = 'credit'
+    target_group = None
 
     for answer in answers:
         key = answer.get('key')
@@ -38,12 +46,15 @@ def analyze_answers(answers):
         if key == 'category':
             category_score[value] = category_score.get(value, 0) + 1
 
+        if key == 'target_group':
+            target_group = value
+
     selected_category = None
 
     if category_score:
         selected_category = sorted(
             category_score.items(),
-            key=lambda item: item[1],
+            key=lambda item: item[1] * CATEGORY_WEIGHT.get(item[0], 1),
             reverse=True
         )[0][0]
 
@@ -51,6 +62,7 @@ def analyze_answers(answers):
         'card_type': card_type,
         'selected_category': selected_category,
         'category_score': category_score,
+        'target_group': target_group,
     }
 
 
@@ -109,7 +121,14 @@ def get_persona(category):
     }
 
 
-def get_candidate_cards(Card, card_type, selected_category, category_score, limit=30):
+def get_candidate_cards(
+    Card,
+    card_type,
+    selected_category,
+    category_score,
+    target_group=None,
+    limit=30,
+):
     queryset = Card.objects.filter(card_type=card_type)
 
     scored_cards = []
@@ -121,13 +140,22 @@ def get_candidate_cards(Card, card_type, selected_category, category_score, limi
 
         for category, count in category_score.items():
             category_benefits = benefits.get(category, [])
+            weight = CATEGORY_WEIGHT.get(category, 1)
 
             if category_benefits:
-                score += count * 3
-                score += min(len(category_benefits), 5)
+                score += count * 3 * weight
+                score += min(len(category_benefits), 5) * weight
 
         if selected_category and benefits.get(selected_category):
-            score += 5
+            selected_weight = CATEGORY_WEIGHT.get(selected_category, 1)
+            score += 5 * selected_weight
+
+        if target_group:
+            target_values = TARGET_GROUP_MAP.get(target_group, [])
+            card_target = getattr(card, 'target', '')
+
+            if card_target in target_values:
+                score += 4
 
         if score > 0:
             scored_cards.append((score, card))
