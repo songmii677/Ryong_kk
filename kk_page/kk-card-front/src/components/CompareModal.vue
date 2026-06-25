@@ -7,6 +7,12 @@ const emit = defineEmits(['close'])
 const compareStore = useCompareStore()
 const favoriteStore = useFavoriteStore()
 
+function handleCardDetailImageLoad(event) {
+  const image = event.currentTarget
+  const isPortrait = image.naturalHeight > image.naturalWidth
+  image.classList.toggle('is-portrait', isPortrait)
+}
+
 function formatAnnualFee(annualFee) {
   if (!annualFee) {
     return '-'
@@ -94,8 +100,12 @@ function toggleFavoriteFromCompare(card) {
               >
                 <h3>{{ card.name }}</h3>
                 <p>{{ card.company }}</p>
-                <img :src="card.image_url" :alt="card.name" />
-                
+                <div class="compare-card-image-box">
+                  <img :src="card.image_url" 
+                      :alt="card.name" 
+                      class="compare-card-image"
+                      @load="handleCardDetailImageLoad"/>
+                </div>
                 <button
                   type="button"
                   class="compare-favorite-btn"
