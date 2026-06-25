@@ -7,7 +7,7 @@ import CompareFloatingBar from '@/components/CompareFloatingBar.vue'
 import { useFavoriteStore } from '@/stores/favorite'
 
 // 아이콘 이미지 불러오기
-import otherIcon from '@/assets/category-icons/other.jpg'
+import otherIcon from '@/assets/category-icons/other.png'
 import foodIcon from '@/assets/category-icons/food.png'
 import carIcon from '@/assets/category-icons/car.png'
 import cultureIcon from '@/assets/category-icons/culture.png'
