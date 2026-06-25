@@ -72,7 +72,31 @@ button {
   
   max-width: 430px;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 0 24px 32px;
+}
+
+.outside-logo {
+  height: auto !important;
+  width: 150px;
+  max-width: 52%;
+  display: block;
+  margin: -24px auto 12px;
+  object-fit: contain;
+  transform: translateY(-20px);
+}
+
+.badge {
+  margin-top: 0;
+}
+
+.character-circle {
+  margin: 28px auto 16px;
+}
+
+.dino-image {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
 }
 
 .hero-card {

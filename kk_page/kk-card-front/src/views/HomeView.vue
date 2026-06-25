@@ -2,7 +2,8 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import banklocation from '@/assets/bank-icon.png'
-import kkImage from '@/assets/kk.jpg'
+import kkImage from '@/assets/kkk.png'
+import chuImage from '@/assets/chu.png'
 import playIcon from '@/assets/play-icon.png'
 import goldbar from '@/assets/goldbar.png'
 import deposit from '@/assets/deposit.png'
@@ -41,11 +42,16 @@ function goDeposit() {
 <template>
   <div class="home-page">
     <header class="top-bar">
-      <button class="icon-btn">☰</button>
-      <h1 class="logo">룡크크</h1>
+      <!-- <button class="icon-btn">☰</button> -->
+      <!-- <h1 class="logo">룡크크</h1> -->
     </header>
 
     <main class="home-main">
+      <img
+        :src="chuImage"
+        alt="핏카츄 로고"
+        class="outside-logo"
+      />
       <section class="hero-card">
         <p class="badge">카드 추천 테스트</p>
 
