@@ -1,11 +1,32 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { computed, ref, unref, watch, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getCardDetail } from '@/api/cards'
 import { useCompareStore } from '@/stores/compare'
 import CompareFloatingBar from '@/components/CompareFloatingBar.vue'
 import { useFavoriteStore } from '@/stores/favorite'
 
+// 아이콘 이미지 불러오기
+import otherIcon from '@/assets/category-icons/other.jpg'
+import foodIcon from '@/assets/category-icons/food.png'
+import carIcon from '@/assets/category-icons/car.png'
+import cultureIcon from '@/assets/category-icons/culture.png'
+import eduIcon from '@/assets/category-icons/edu.png'
+import phoneIcon from '@/assets/category-icons/phone.png'
+import shoppingIcon from '@/assets/category-icons/shopping.png'
+import travelIcon from '@/assets/category-icons/travel.png'
+
+const categoryIconMap = {
+  '기타':otherIcon,
+  '음식/카페':foodIcon,
+  '주유/교통':carIcon,
+  '쇼핑/간편결제':shoppingIcon,
+  '여행':travelIcon,
+  '교육/건강':eduIcon,
+  '통신':phoneIcon,
+  '문화/생활':cultureIcon,
+
+}
 const route = useRoute()
 const router = useRouter()
 const compareStore = useCompareStore()
@@ -61,6 +82,27 @@ function handleCardDetailImageLoad(event) {
   const isPortrait = image.naturalHeight > image.naturalWidth
   image.classList.toggle('is-portrait', isPortrait)
 }
+
+const benefitCategories = computed(() => {
+  const benefits = unref(card)?.benefits ?? {}
+
+  return Object.entries(benefits)
+    .filter(([, items]) => {
+      return Array.isArray(items) && items.length > 0
+    })
+    .map(([category, items]) => {
+      return {
+        category,
+        items,
+        icon: categoryIconMap[category] || otherIcon,
+      }
+    })
+    .sort((a, b) => {
+      if (a.category === '기타') return -1
+      if (b.category === '기타') return 1
+      return 0
+    })
+})
 
 onMounted(fetchCardDetail)
 </script>
@@ -121,7 +163,6 @@ onMounted(fetchCardDetail)
             <h1>{{ card.name }}</h1>
 
             <p>
-              카드 유형:
               {{
                 card.card_type === 'credit'
                   ? '신용카드'
@@ -130,8 +171,9 @@ onMounted(fetchCardDetail)
                     : card.card_type
               }}
             </p>
-
-            <p>대상: {{ card.target }}</p>
+            <p v-if="card.target !== '일반'" >
+              <p>{{ card.target }} 대상 카드</p>
+            </p>
           </div>
 
             <div class="detail-action-area">
@@ -165,46 +207,48 @@ onMounted(fetchCardDetail)
             </div>
         </section>
 
-        <!-- <section class="card-detail-section">
-          <h2>연회비</h2>
+        <section
+          v-if="benefitCategories.length > 0"
+          class="card-detail-section card-benefit-section"
+        > <div class="title-section">
+            <h2>카테고리별 혜택</h2>
+          </div>
 
-          <ul class="card-detail-fee-list">
-            <template
-              v-for="(fee, brand) in card.annual_fee"
-              :key="brand"
+          <div class="card-benefit-list">
+            <article
+              v-for="item in benefitCategories"
+              :key="item.category"
+              class="card-benefit-row"
             >
-              <li v-if="fee">
-                <span>{{ brand }}</span>
-                <strong>{{ fee }}원</strong>
-              </li>
-            </template>
-          </ul>
-        </section> -->
+              <!-- 왼쪽: 카테고리 아이콘 -->
+              <div class="card-benefit-icon-box">
+                <img
+                  :src="item.icon"
+                  :alt="`${item.category} 아이콘`"
+                  class="card-benefit-icon"
+                />
+              </div>
 
-        <section class="card-detail-section">
-          <h2>주요 혜택</h2>
+              <!-- 가운데: 카테고리명 -->
+              <div class="card-benefit-category-box">
+                <h3>{{ item.category }}</h3>
+              </div>
 
-          <template
-            v-for="(items, category) in card.benefits"
-            :key="category"
-          >
-            <div
-              v-if="items && items.length"
-              class="card-detail-benefit-box"
-            >
-              <h3>{{ category }}</h3>
-
-              <ul>
-                <li
-                  v-for="item in items"
-                  :key="item"
-                >
-                  {{ item }}
-                </li>
-              </ul>
-            </div>
-          </template>
+              <!-- 오른쪽: 혜택 내용 -->
+              <div class="card-benefit-content-box">
+                <ul>
+                  <li
+                    v-for="benefit in item.items"
+                    :key="benefit"
+                  >
+                    {{ benefit }}
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
         </section>
+
 
         <a
           v-if="card.detail_url"

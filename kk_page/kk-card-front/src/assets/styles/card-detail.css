@@ -11,12 +11,18 @@
   margin: 0 auto;
 }
 
+
+/* =========================
+   목록으로 돌아가기
+========================= */
+
 .card-detail-return-area {
   margin-bottom: 18px;
 }
 
 .card-detail-return-button {
   appearance: none;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -50,17 +56,31 @@
   transform: translateY(-1px);
 }
 
+
+/* =========================
+   카드 상단 정보
+========================= */
+
 .card-detail-top-section {
   position: relative;
+
   display: grid;
   grid-template-columns: 300px minmax(0, 1fr);
   align-items: start;
   gap: 10px;
+
   padding: 36px;
+
   border: 1px solid #e4eee8;
   border-radius: 24px;
   background-color: #ffffff;
   box-shadow: 0 10px 28px rgba(45, 156, 122, 0.1);
+}
+
+.card-left-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .card-detail-image-box {
@@ -78,26 +98,42 @@
 
 .card-detail-image {
   display: block;
+
   width: 88%;
   height: 88%;
-  object-fit: contain;
   max-width: none;
   max-height: none;
+
+  object-fit: contain;
+  object-position: center;
+
   transform-origin: center;
 }
 
 .card-detail-image.is-portrait {
   width: 100%;
   height: 150%;
+
   transform: rotate(270deg);
+  transform-origin: center;
+}
+
+.card-fee-row {
+  padding-left: 20px;
+
+  color: #444444;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 .card-detail-summary {
   min-width: 0;
+  padding-right: 180px;
 }
 
 .card-detail-company {
   margin: 0 0 8px;
+
   color: #2d9c7a;
   font-size: 14px;
   font-weight: 800;
@@ -105,17 +141,25 @@
 
 .card-detail-summary h1 {
   margin: 0 0 22px;
+
   color: #181b19;
   font-size: 30px;
   line-height: 1.35;
+
   word-break: keep-all;
 }
 
 .card-detail-summary p {
   margin: 8px 0;
+
   color: #647069;
   font-size: 15px;
 }
+
+
+/* =========================
+   공통 상세 영역
+========================= */
 
 .card-detail-section {
   margin-top: 22px;
@@ -128,16 +172,23 @@
 }
 
 .card-detail-section h2 {
-  margin: 0 0 20px;
-  text-align: left;
+  margin: 0 0 24px;
+
   color: #202522;
   font-size: 20px;
   font-weight: 900;
+  text-align: left;
 }
+
+
+/* =========================
+   연회비
+========================= */
 
 .card-detail-fee-list {
   margin: 0;
   padding: 0;
+
   list-style: none;
 }
 
@@ -147,6 +198,7 @@
   justify-content: space-between;
 
   padding: 14px 0;
+
   border-bottom: 1px solid #edf2ef;
 
   color: #59635d;
@@ -161,33 +213,157 @@
   color: #2d9c7a;
 }
 
-.card-detail-benefit-box {
-  padding: 20px 0;
-  border-bottom: 1px solid #edf2ef;
+
+/* =========================
+   카테고리별 혜택
+========================= */
+
+.card-benefit-section {
+  overflow: hidden;
 }
 
-.card-detail-benefit-box:last-child {
-  border-bottom: none;
+.card-benefit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.card-detail-benefit-box h3 {
-  margin: 0 0 12px;
+/*
+  한 카테고리 행:
+  아이콘 박스 / 카테고리 박스 / 혜택 박스
+*/
+.card-benefit-row {
+  display: grid;
+  grid-template-columns:
+    110px
+    150px
+    minmax(0, 1fr);
+  align-items: stretch;
+  gap: 14px;
+
+  width: 100%;
+  padding: 14px;
+
+  border: 1px solid #dce9e3;
+  border-radius: 18px;
+  background-color: #f7fcf9;
+  box-shadow: 0 5px 14px rgba(45, 156, 122, 0.06);
+
+  box-sizing: border-box;
+}
+
+.card-benefit-section .title-section {
+  width: 100%;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.card-benefit-section .title-section h2 {
+  margin: 0;
+  text-align: center;
+}
+
+/* 아이콘 박스 */
+.card-benefit-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 118px;
+  padding: 0;
+
+  border: 1px solid #e0ece6;
+  border-radius: 14px;
+  background-color: #eafff5;
+
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* 아이콘을 눈에 띄게 크게 표시 */
+.card-benefit-icon {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  transform: scale(1.18);
+  transform-origin: center;
+}
+
+
+/* 카테고리명 박스 */
+.card-benefit-category-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 118px;
+  padding: 14px;
+
+  border: 1px solid #e0ece6;
+  border-radius: 14px;
+  background-color: #ffffff;
+
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.card-benefit-category-box h3 {
+  margin: 0;
+
   color: #2d9c7a;
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 900;
+  line-height: 1.4;
+
+  word-break: keep-all;
 }
 
-.card-detail-benefit-box ul {
+
+/* 혜택 내용 박스 */
+.card-benefit-content-box {
+  display: flex;
+  align-items: center;
+
+  min-width: 0;
+  min-height: 118px;
+  padding: 18px 22px;
+
+  border: 1px solid #e0ece6;
+  border-radius: 14px;
+  background-color: #ffffff;
+
+  box-sizing: border-box;
+}
+
+.card-benefit-content-box ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 100%;
   margin: 0;
   padding-left: 20px;
 }
 
-.card-detail-benefit-box li {
-  margin: 8px 0;
+.card-benefit-content-box li {
+  margin: 0;
+
   color: #59635d;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.65;
+
+  word-break: keep-all;
 }
+
+
+/* =========================
+   카드사 상세 링크
+========================= */
 
 .card-detail-link {
   display: flex;
@@ -207,6 +383,7 @@
   text-decoration: none;
 
   box-shadow: 0 8px 18px rgba(45, 156, 122, 0.2);
+
   transition:
     background-color 0.2s,
     transform 0.2s;
@@ -219,70 +396,35 @@
 
 .card-detail-loading {
   padding: 70px 20px;
+
   color: #718078;
   text-align: center;
 }
 
-@media (max-width: 720px) {
-  .card-detail-page {
-    padding: 28px 18px 50px;
-  }
 
-  .card-detail-top-section {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 24px;
-  }
+/* =========================
+   비교함 및 관심 카드
+========================= */
 
-  .card-detail-image-box {
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
-  .card-detail-section {
-    padding: 24px 22px;
-  }
-
-  .card-detail-summary h1 {
-    font-size: 25px;
-  }
-}
-
-.card-left-area {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.card-fee-row {
-  padding-left: 20px;
-  font-size: 13px;
-  color: #444;
-  white-space: nowrap;
-}
-
-
-
-/* 상세 페이지 비교함 버튼 */
-/* 상세 페이지 오른쪽 하단 액션 버튼 영역 */
 .detail-action-area {
   position: absolute;
+  top: 50%;
   right: 36px;
-  bottom: 28px;
+  bottom: auto;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 
+  transform: translateY(-50%);
   z-index: 20;
 }
+
 
 /* 비교함 버튼 */
 .detail-compare-btn {
   appearance: none;
-  border: 1px solid #b8efd8;
-  border-radius: 999px;
-  background: #ffffff;
 
   display: inline-flex;
   align-items: center;
@@ -292,13 +434,16 @@
   height: 42px;
   padding: 0 16px;
 
+  border: 1px solid #b8efd8;
+  border-radius: 999px;
+  background-color: #ffffff;
+
   color: #2d9c7a;
   font-family: inherit;
   font-size: 14px;
   font-weight: 800;
 
   cursor: pointer;
-  /* box-shadow: 0 8px 18px rgba(45, 156, 122, 0.16); */
 
   transition:
     transform 0.2s ease,
@@ -307,54 +452,50 @@
 }
 
 .detail-compare-btn:hover {
-  background: #e5fff4;
   border-color: #2d9c7a;
+  background-color: #e5fff4;
   transform: translateY(-2px);
 }
 
 .detail-compare-btn.active {
-  background: #2d9c7a;
-  color: #ffffff;
   border-color: #2d9c7a;
+  background-color: #2d9c7a;
+  color: #ffffff;
 }
 
 .detail-compare-icon {
+  display: inline-flex;
   flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
 
   width: 22px;
   height: 22px;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
   border-radius: 50%;
-  background: #e5fff4;
+  background-color: #e5fff4;
   color: #2d9c7a;
 
+  font-family: Arial, sans-serif;
   font-size: 18px;
   font-weight: 900;
   line-height: 1;
-  font-family: Arial, sans-serif;
 }
 
 .detail-compare-btn.active .detail-compare-icon {
-  background: #ffffff;
+  background-color: #ffffff;
   color: #2d9c7a;
 }
 
-.card-notice {
-  text-align: center;
-  margin-top: 30px;
-  font-size: 12px;
-  color: #999;
-  line-height: 1.5;
-}
 
 /* 하트 버튼 */
 .detail-favorite-circle-btn {
   appearance: none;
   -webkit-appearance: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   width: 42px;
   height: 42px;
@@ -363,14 +504,10 @@
   border: none;
   outline: none;
   border-radius: 50%;
-  background: transparent;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  background-color: transparent;
+  box-shadow: none;
 
   cursor: pointer;
-  box-shadow: none;
 
   transition:
     transform 0.2s ease,
@@ -394,19 +531,134 @@
   line-height: 1;
 }
 
+
+/* =========================
+   안내 문구
+========================= */
+
+.card-notice {
+  margin-top: 30px;
+
+  color: #999999;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+
+/* =========================
+   반응형
+========================= */
+
+@media (max-width: 800px) {
+  .card-benefit-row {
+    grid-template-columns:
+      92px
+      125px
+      minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .card-benefit-icon-box,
+  .card-benefit-category-box,
+  .card-benefit-content-box {
+    min-height: 105px;
+  }
+
+  .card-benefit-icon {
+    width: 58px;
+    height: 58px;
+  }
+
+  .card-benefit-category-box h3 {
+    font-size: 17px;
+  }
+
+  .card-benefit-content-box {
+    padding: 15px 17px;
+  }
+}
+
 @media (max-width: 720px) {
+  .card-detail-page {
+    padding: 28px 18px 50px;
+  }
+
   .card-detail-top-section {
     grid-template-columns: 1fr;
     gap: 24px;
+
     padding: 24px;
-    padding-bottom: 86px;
+    padding-bottom: 100px;
+  }
+
+  .card-detail-image-box {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .card-detail-summary {
+    padding-right: 0;
+  }
+
+  .card-detail-summary h1 {
+    font-size: 25px;
+  }
+
+  .card-detail-section {
+    padding: 24px 22px;
   }
 
   .detail-action-area {
+    top: auto;
     right: 24px;
     bottom: 24px;
+
+    flex-direction: row;
+
+    transform: none;
+  }
+
+  /*
+    모바일에서는 한 카테고리를
+    아이콘 / 카테고리 / 혜택 순서로 세로 배치
+  */
+  .card-benefit-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+
+    padding: 12px;
+  }
+
+  .card-benefit-icon-box {
+    min-height: 100px;
+    padding: 16px;
+  }
+
+  .card-benefit-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .card-benefit-category-box {
+    min-height: auto;
+    padding: 14px;
+  }
+
+  .card-benefit-category-box h3 {
+    font-size: 18px;
+  }
+
+  .card-benefit-content-box {
+    min-height: auto;
+    padding: 17px 18px;
   }
 }
+
+
+/* =========================
+   애니메이션
+========================= */
 
 @keyframes heart-pop {
   0% {
@@ -422,9 +674,3 @@
   }
 }
 
-@media (max-width: 720px) {
-  .detail-favorite-circle-btn {
-    right: 24px;
-    bottom: 24px;
-  }
-}
