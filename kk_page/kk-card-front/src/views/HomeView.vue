@@ -5,6 +5,7 @@ import banklocation from '@/assets/bank-icon.png'
 import kkImage from '@/assets/kk.jpg'
 import playIcon from '@/assets/play-icon.png'
 import goldbar from '@/assets/goldbar.png'
+import deposit from '@/assets/deposit.png'
 
 const router = useRouter()
 
@@ -30,6 +31,9 @@ function goBankMap() {
 
 function goPrice() {
   router.push({ name: 'price' })
+}
+function goDeposit() {
+  router.push({ name: 'deposits' })
 }
 </script>
 
@@ -99,6 +103,15 @@ function goPrice() {
           <img
             :src="goldbar"
             alt="금/은 비교"
+            class="feature-floating-icon bank-icon"
+          />
+        </button>
+
+        <!-- 예적금 버튼 -->
+        <button class="feature-floating-btn" @click="goDeposit">
+          <img
+            :src="deposit"
+            alt="예적금 상품 조회"
             class="feature-floating-icon bank-icon"
           />
         </button>

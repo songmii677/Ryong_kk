@@ -36,9 +36,9 @@ function goCards() {
   router.push({ name: 'cards' })
 }
 
-function goGoldChart() {
+function goDepositChart() {
   // 너희 router/index.js의 금은 그래프 path/name에 맞게 수정
-  router.push('/gold-silver')
+  router.push({ name: 'mydeposit' })
 }
 
 function goCommunity() {
@@ -112,11 +112,11 @@ function goMyResult(){
         <button
           type="button"
           class="mypage-action-card"
-          @click="goGoldChart"
+          @click="goDepositChart"
         >
           <span class="mypage-action-icon">📈</span>
           <strong>나의 금리 그래프</strong>
-          <p>금·은 가격 변동 확인</p>
+          <p>관심 등록한 예·적금 상품의 금리를 비교합니다.</p>
         </button>
 
         <button
