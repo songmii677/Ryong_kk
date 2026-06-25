@@ -1,7 +1,7 @@
 [
   {
     "company": "우리",
-    "name": "카드명 카드의정석2 SUPER",
+    "name": "카드의정석2 SUPER",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -31,7 +31,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석2 ROUTINE",
+    "name": "카드의정석2 ROUTINE",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -69,7 +69,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석2 SHOPPER",
+    "name": "카드의정석2 SHOPPER",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -103,7 +103,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석2",
+    "name": "카드의정석2",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -129,7 +129,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 우리 UniMile",
+    "name": "우리 UniMile",
     "card_type": "credit",
     "target": "특정지역",
     "annual_fee": {
@@ -165,7 +165,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 우리 7CORE",
+    "name": "우리 7CORE",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -202,7 +202,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석2 원더라이프",
+    "name": "카드의정석2 원더라이프",
     "card_type": "credit",
     "target": "법인",
     "annual_fee": {
@@ -239,7 +239,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석2 EVERY DISCOUNT",
+    "name": "카드의정석2 EVERY DISCOUNT",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -267,7 +267,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석2 EVERY POINT",
+    "name": "카드의정석2 EVERY POINT",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -295,7 +295,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석 TEN",
+    "name": "카드의정석 TEN",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -331,7 +331,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석 EVERY MILE SKYPASS",
+    "name": "카드의정석 EVERY MILE SKYPASS",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -361,7 +361,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 우리 MILE&POINT",
+    "name": "우리 MILE&POINT",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -390,7 +390,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 DA카드의정석 Ⅱ",
+    "name": "DA카드의정석 Ⅱ",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -427,7 +427,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 D4카드의정석Ⅱ",
+    "name": "D4카드의정석Ⅱ",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -458,7 +458,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석 I&U+",
+    "name": "카드의정석 I&U+",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -489,7 +489,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석 SHOPPING+",
+    "name": "카드의정석 SHOPPING+",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -524,7 +524,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석2 AUTO",
+    "name": "카드의정석2 AUTO",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -550,7 +550,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석2 후불하이패스+",
+    "name": "카드의정석2 후불하이패스+",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -575,7 +575,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 NU Biz",
+    "name": "NU Biz",
     "card_type": "credit",
     "target": "일반",
     "annual_fee": {
@@ -609,7 +609,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석2 T-WON 체크",
+    "name": "카드의정석2 T-WON 체크",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
@@ -650,7 +650,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석2 원더라이프 CHECK",
+    "name": "카드의정석2 원더라이프 CHECK",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
@@ -685,7 +685,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석 오하CHECK",
+    "name": "카드의정석 오하CHECK",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
@@ -728,7 +728,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석2 칼퇴 CHECK",
+    "name": "카드의정석2 칼퇴 CHECK",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
@@ -762,7 +762,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석2 ExK 체크",
+    "name": "카드의정석2 ExK 체크",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
@@ -795,7 +795,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 위비트래블 체크카드",
+    "name": "위비트래블 체크카드",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
@@ -831,7 +831,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 위비트래블 J 체크카드",
+    "name": "위비트래블 J 체크카드",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
@@ -869,7 +869,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석 EVERYDAY CHECK",
+    "name": "카드의정석 EVERYDAY CHECK",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
@@ -903,7 +903,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 KREAM 체크카드",
+    "name": "KREAM 체크카드",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
@@ -929,7 +929,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 우리WON모바일 체크카드",
+    "name": "우리WON모바일 체크카드",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
@@ -954,7 +954,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 카드의정석 LCK 우리체크",
+    "name": "카드의정석 LCK 우리체크",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
@@ -986,7 +986,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 그랑블루 체크카드",
+    "name": "그랑블루 체크카드",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
@@ -1025,7 +1025,7 @@
   },
   {
     "company": "우리",
-    "name": "카드명 FC EXPRESS 체크",
+    "name": "FC EXPRESS 체크",
     "card_type": "check",
     "target": "일반",
     "annual_fee": {
