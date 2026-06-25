@@ -65,8 +65,8 @@ const goDetail = function (video) {
 <template>
   <main class="youtube-page">
     <section class="hero-section">
-      <p class="sub-title">RyongKK Financial Contents</p>
-      <h1>룡크크 금융 콘텐츠 검색</h1>
+      <p class="sub-title">FitCH Financial Contents</p>
+      <h1>핏카츄 금융 콘텐츠 검색</h1>
       <p class="description">
         카드 추천, 혜택 비교, 재테크, 소비 습관과 관련된 유튜브 영상을 검색해보세요.
       </p>
