@@ -172,7 +172,7 @@ onMounted(fetchCardDetail)
               }}
             </p>
             <p v-if="card.target !== '일반'" >
-              <p>{{ card.target }} 대상 카드</p>
+              {{ card.target }} 대상 카드
             </p>
           </div>
 
