@@ -240,6 +240,7 @@ def ai_recommend_cards(request):
     card_type = analysis['card_type']
     selected_category = analysis['selected_category']
     category_score = analysis['category_score']
+    target_group = analysis.get('target_group')
 
     # 페르소나는 카드 타입과 무관하게 카테고리로만 결정
     persona = get_persona(selected_category)
@@ -250,6 +251,7 @@ def ai_recommend_cards(request):
         card_type=card_type,
         selected_category=selected_category,
         category_score=category_score,
+        target_group=target_group,
         limit=30,
     )
 
