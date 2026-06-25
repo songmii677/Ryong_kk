@@ -5,6 +5,14 @@ import CompareModal from '@/components/CompareModal.vue'
 
 const compareStore = useCompareStore()
 const isModalOpen = ref(false)
+
+function handleCardDetailImageLoad(event) {
+  const image = event.currentTarget
+  const isPortrait = image.naturalHeight > image.naturalWidth
+  image.classList.toggle('is-portrait', isPortrait)
+}
+
+
 </script>
 
 <template>
