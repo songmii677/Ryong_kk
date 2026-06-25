@@ -4,6 +4,9 @@ import os
 from django.conf import settings
 from google import genai
 
+CATEGORY_WEIGHT = {
+    '기타': 0.6,
+}
 
 def normalize_benefits(benefits):
     if benefits is None:
