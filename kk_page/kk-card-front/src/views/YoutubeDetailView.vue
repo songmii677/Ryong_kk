@@ -27,8 +27,8 @@ const videoUrl = computed(() => {
         ← 검색 결과로 돌아가기
       </button>
 
-      <p class="sub-title">RyongKK Video Detail</p>
-      <h1>룡크크 금융 영상 상세</h1>
+      <p class="sub-title">FitCH Video Detail</p>
+      <h1>핏카츄 금융 영상 상세</h1>
     </section>
 
     <section class="video-section">
