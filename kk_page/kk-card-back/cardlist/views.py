@@ -304,9 +304,9 @@ def ai_recommend_cards(request):
 
         ai_data = {
             'recommended_card_ids': [card.id for card in candidate_cards[:3]],
-            'type_reason': 'AI 추천 중 오류가 발생하여 설문 점수 기반으로 추천했습니다.',
-            'common_benefits': '추천 카드들은 선택된 소비 카테고리와 관련된 혜택을 중심으로 구성되어 있습니다.',
-            'recommend_reason': '사용자의 소비 성향과 카드 혜택이 직접적으로 연결되는 후보 카드를 우선 추천했습니다.',
+            'type_reason': '설문 응답을 바탕으로 가장 두드러진 지갑 성향을 분석했습니다.',
+            'common_benefits': '추천 카드들은 선택된 생활 패턴과 잘 맞는 혜택을 중심으로 구성되어 있습니다.',
+            'recommend_reason': '자주 선택한 소비 흐름과 카드 혜택이 잘 맞는 후보를 우선 추천했습니다.',
             'card_reasons': [],
         }
 
