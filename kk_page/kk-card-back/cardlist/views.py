@@ -24,17 +24,33 @@ from .ai_recommend import (
 @api_view(["GET"])
 def card_list(request):
     cards = Card.objects.all()
-    card_filter = CardFilter(
-        request.query_params,
-        queryset=cards,
-    )
-    if not card_filter.is_valid():
-        return Response(
-            card_filter.errors,
-            status=status.HTTP_400_BAD_REQUEST,
-        )
-    serializer = CardSerializer(card_filter.qs, many=True)
+
+    company = request.GET.get("company")
+    card_type = request.GET.get("card_type")
+
+    if company:
+        cards = cards.filter(company__icontains=company)
+
+    if card_type:
+        cards = cards.filter(card_type=card_type)
+
+    serializer = CardSerializer(cards, many=True)
     return Response(serializer.data)
+
+# @api_view(["GET"])
+# def card_list(request):
+#     cards = Card.objects.all()
+#     card_filter = CardFilter(
+#         request.query_params,
+#         queryset=cards,
+#     )
+#     if not card_filter.is_valid():
+#         return Response(
+#             card_filter.errors,
+#             status=status.HTTP_400_BAD_REQUEST,
+#         )
+#     serializer = CardSerializer(card_filter.qs, many=True)
+#     return Response(serializer.data)
 
 
 @api_view(["GET"])

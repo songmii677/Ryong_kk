@@ -43,11 +43,11 @@ const companyOptions = [
   },
   {
     label: '신한카드',
-    value: '신한카드',
+    value: '신한',
   },
   {
     label: '우리카드',
-    value: '우리카드',
+    value: '우리',
   },
 ]
 
