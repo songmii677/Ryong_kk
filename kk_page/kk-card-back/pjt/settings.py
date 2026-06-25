@@ -18,8 +18,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / '.env')
 
-USE_GEMINI = os.getenv('USE_GEMINI', 'false').lower() == 'true'
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-3.5-flash')
+USE_GEMINI = True
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_MODEL = "gemini-3.5-flash"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
